@@ -1,0 +1,61 @@
+\usepackage{enumitem}
+\usepackage{float} % use H for figure placement
+\usepackage{pgfplots}
+\usetikzlibrary{arrows}
+\usepackage{amsmath,amssymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage[amsthm]{ntheorem}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{physics}
+\definecolor{shadecolor}{rgb}{0.95,0.95,0.95}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{ex}{Example}
+\newtheorem{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\usepackage [autostyle, english = american]{csquotes}
+\MakeOuterQuote{"}
+\newcommand{\Section}[1]{\hrule\hrule\section{#1}}
+\newcommand{\Def}[2]{
+\begin{shaded*}
+\begin{definition}{\textit{#1}}\\#2\end{definition}
+\end{shaded*}
+}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+\newcommand{\siid}{\sim^{iid}}
+
+\def\R{\mathbb{R}}
+\def\Eps{\mathcal{E}}
+\def\E{\mathbb{E}}
+\def\V{\mathbb{V}}
+\def\F{\mathcal{F}}
+\def\G{\mathcal{G}}
+\def\H{\mathcal{H}}
+\def\S{\mathcal{S}}
+\def\P{\mathbb{P}}
+\def\1{\mathbf{1}}
+\def\n{\nappa}
+\def\h{\mathbf{w}}
+\def\v{\mathbf{v}}
+\def\x{\mathbf{x}}
+\def\X{\mathcal{X}}
+\def\Y{\mathcal{Y}}
+\def\eps{\epsilon}
+\def\y{\mathbf{y}}
+\def\e{\mathbf{e}}
+\def \E{\mathbb E}
+\def \P{\mathbb P}
+\def \R{\mathbb R}
+\def \A{\cal A}
+\def\N{\mathcal{N}}

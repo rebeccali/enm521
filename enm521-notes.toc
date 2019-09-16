@@ -1,1 +1,7 @@
 \contentsline {section}{\numberline {1}Complex Numbers}{1}{section.1}
+\contentsline {section}{\numberline {2}Real and imaginary pairs of Z}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Differentiation of complex functions}{5}{subsection.2.1}
+\contentsline {section}{\numberline {3}Branch points and Branch Cuts}{7}{section.3}
+\contentsline {section}{\numberline {4}Harmonic functions}{7}{section.4}
+\contentsline {section}{\numberline {5}Sequences}{8}{section.5}
+\contentsline {section}{\numberline {6}Series}{9}{section.6}
