@@ -42,6 +42,9 @@
 \begin{document}
 	\maketitle
 	\tableofcontents
+
+\section*{Organization}
+These notes are live-TeXed and not guaranteed to be correct. Likewise, sometimes symbols, particularly $m$ and $n$ may be mixed up.
 	
 \section*{Organization}
 \begin{itemize}
@@ -53,9 +56,10 @@
 	\\\textit{PDE: theory and technique}, Carrier. 
 	\\\textit{Introduction to complex variables and Applications}, Churchill. 
 	\\\textit{Boundary Value Problems of Mathematical Physics}, Stakgold.
+	
 
 \end{itemize}
-\section{Complex Numbers}
+\Section{Complex Numbers}
 Real numbers obey the usual operations. In particular, $\R$ is closed under addition and multiplication. However, there are some operations that are not possible with real numbers:, e.g. Find $x \in \R$ such that $x^2 = -1$.
 
 
@@ -162,7 +166,7 @@ One way to imagine this is to consider the \textit{stereographic projection} (Fi
 \end{figure}
 
 
-\section{Real and imaginary pairs of Z}
+\subsection{Real and imaginary pairs of Z}
 
 \begin{align}
 	f(z) = u(x,y)+iv(x,y)
@@ -197,8 +201,7 @@ $f(z) = z^2$ is everywhere differentiable.
 
 
 
-\begin{theorem}
-	Differential of a Complex function
+\begin{theorem}[Differential of a Complex function]
 \begin{enumerate}
 	\item If $f(z) = z^m$, m is integer, then $f'(z) = mz^{m-1}$
 \end{enumerate}
@@ -308,14 +311,14 @@ $$f'(z) = e^z$$
 Note: if $f$ is analytic of non-zero at a point z, then a branch may be chosen for which $\log (f(z))$ is also analytic in the neighborhood of z and $\dv{}{z} log(f(z)) = \frac{f'(z)}{f(z)}$
 
 
-\section{Branch points and Branch Cuts}
+\subsection{Branch points and Branch Cuts}
 Explaining the epsilon method: \url{https://math.stackexchange.com/questions/2150639/branch-point-of-logz}
 The easy way to do branch points is to remember that $log(z)$ and $z^p$ where p is non integer both have branch points at $0, \infty$. So simply find when $z = 0, \infty$ for those functions to get the branch points. Then a branch cut must connect all branch points, but does not have to go in any particular way. For $log(z)$, the negative real line is often the branch cut that is picked.
 
 
+Branch points are points where the function is non-analytic. 
 
-
-\section{Harmonic functions}
+\subsection{Harmonic functions}
 Later, we will see that analytic functions have derivatives of all orders. Recall:
 $$f'(z) = \frac{\partial f}{\partial x} = -i \frac{\partial f}{\partial y}$$
 
@@ -346,7 +349,7 @@ $u(x,y) = x^2+y$
 This cannot be the real part of any analytic function, since the Laplace equations are not satisfied. $$\pdv{^2u}{x^2} + \pdv{^2u}{y^2} \neq 0 $$.
 \end{ex}
 
-\section{Sequences}
+\Section{Sequences}
 \Def{Sequence}{ A sequence $\{z_n\}$ of complex numbers is an assignment of a complex number $z_n$ to each positive integer $n$.}
 
 \Def{Convergent sequence}{A sequence $\{z_n\}$ is said to have a limit $z_0$ or converge to $z_0$ which we write as 
@@ -416,7 +419,7 @@ A sequence $\{z_m\}$ converges if and only if $\{z_m\}$ is a Cauchy sequence.
 Note: The two notions of convergence and Cauchy convergence are equivalent. Cauchy convergence is the most general test of convergence. It works even if the limit $z_0$ is not known.
 \end{theorem}
 
-\section{Series}
+\Section{Series}
 \Def{Series}{Given a complex sequence $\{a_m\}$, we associate a new sequence defined by $s_m = \sum_{k=1}^{n}a_k$. Then, we say that $\sum_{k=1}^{\infty}a_k$ is a series. The series is said to converge or diverge according to whether the sequence $\{s_m\}$ converges or diverges. We call $\{s_m\}$ the \textbf{partial sum} of the series, and $a_k$ the kth term.
 
 \textbf{Note:} Every theorem about sequences can be rephrased to be a theorem about series, since series are sequences, and vice versa
@@ -464,17 +467,214 @@ Suppose $a_m>0\ \forall m$ and that $\sum_{m=1}^{\infty} a_m$ diverges. If $s_m 
 The series 	$\sum_{m=1}^{\infty} \frac{1}{m}$ also diverges. But $\sum_{m=1}^{\infty} \frac{1}{m^2}$ converges.
 \end{corollary}
 
-\begin{theorem}Geometric series
+\begin{theorem}[Geometric series]
 Consider $s_m = \sum_{k=1}^m r^{k-1} = \frac{1-r^m}{1-r}$. This is a geometric series.  
 
 \textbf{Proof:}
 
 \begin{align}
-(1-r)\sum_{k=1}^m r^{k-1} &= \sum_{k=1}^m r^{k-1} - r-^k \\ 	
+(1-r)\sum_{k=1}^m r^{k-1} &= \sum_{k=1}^m r^{k-1} - r^k \\ 	
 & = 1-r^m
 \end{align}
 
 Hence a series $\sum_{m=1}^\infty a_m$ converges absolutely if ther eexists a constant $r \in [0,1)$ and a real number M such that $|a_m| < M r^m,\ m>M$
 \end{theorem}
+
+\subsection{Limits of series and sequences}
+\Def{Limit Superior }{Let $\{a_m\}$ be the real bounded sequence and let A be the set of subsequence limits of $\{a_m\}$. We define the limit $\sup$ of $\{a_m\}$ as the least upper bound of A:
+
+$$\lim\sup_{m \to \infty }a_m = L.U.B.\{A\}$$
+
+\textbf{Note:} If $\{a_m\}$ is unbounded above, then:
+
+$$\lim\sup_{m \to \infty }a_m = + \infty $$
+
+
+Note: If all but a finite number of $a_m$ are less than any pre-assigned real number, we say that :
+
+$$\lim\sup_{m \to \infty } a_m = - \infty $$
+}
+
+
+
+\Def{Limit Inferior}{Let $\{a_m\}$ be the real bounded sequence and let A be the set of subsequence limits of $\{a_m\}$. We define the limit $\inf$ of $\{a_m\}$ as the greatest lower bound of A:
+	
+	$$\lim\inf_{m \to \infty }a_m = G.LB.\{A\}$$
+}
+
+Note: in the extended reals $(\R \cup \pm \infty)$, the limit superior and limit inferior of a real sequence always exists. This allows us to state and prove results without worrying about the existence of limits.
+
+\begin{theorem}
+Let $\{a_m\}$ and $\{b_m\}$ be real valued sequences. Then, 
+\begin{enumerate}
+	\item $\lim \sup_{m \to \infty }(a_n + b+m) \leq \lim\sup a_m + \lim\sup b_m$
+	\item $\lim \inf_{m \to \infty }(a_n + b+m) \leq \lim\inf a_m + \lim\inf b_m$
+\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+\textbf{On the difference between limsup and sup}
+\url{https://math.stackexchange.com/questions/1734087/difference-between-limsup-and-sup}
+
+\end{remark}
+
+\begin{theorem}[Root Test]
+Let $\{a_m\}$ be a complex sequence and suppose that:
+$$\lim\sup_{m \to \infty } |a_m|^{1/m} = L$$
+
+Then the series $\sum_{m=1}^\infty a_m$ converges absolutely if $L<1$ and diverges if $L>1$. 
+
+\textbf{Proof:}
+
+Case 1: \\ 
+If $L<1$, choose $r$ such that $L<r<1$. For all but a finite number of m, we have that:
+
+\begin{align}
+|a_m|^{1/m} & < r \\ 
+|a_m|&  < r^m  
+\end{align}
+
+This is true since by the definition of $L$, this must be true. 
+
+The convergence of $\sum_{m=1}^\infty a_m$ now follows from convergence of $\sum_{m=1}^\infty r^m$, $r<1$.
+
+Case 2:\\
+If $L>1$, then $|a_m|^{1/m} >1$ for infinitely many values of $m$. But then $|a_m|>1$ infinitely often. Then $a_m \not \to 0$ and the series diverges. 
+
+Case 3: \\ 
+If $L=1$, the root test does not give any information.
+
+\textbf{Ex:} $\sum \frac{1}{m}$ diverges, but $\sum \frac{1}{m^2}$ converges.
+
+ However, $\lim\sup_{m \to \infty }|\frac{1}{m}|^{1/m} = 1$. Similarly, $\lim\sup_{m \to \infty }|\frac{1}{m^2}| = 1$
+
+\end{theorem}
+
+\subsection{Convergence}
+\Def{Pointwise Convergence}{A sequence of functions $\{f_m(z)\}$ converges pointwise to a function $f$ on a set $E$ $(f_m \to f)$, if to each $z_0 \in E$, and $\epsilon>0$, there corresponds  and integer $N = N(\epsilon, z_0)$ for which $|f_m(z_0) - f(z_0)|<\epsilon$ whenever $m>N$.
+
+Pointwise convergence implies $\lim_{m\to\infty} f_m(z_0) = f(z_0)$
+
+
+Note: the integer $N$ may, in general, vary with $z_0 \in E$. If one integer can be found that works for all $z_0 \in E$, then we have a special (stronger) type of convergence: \textbf{uniform convergence.}
+}
+
+\Def{Uniform Convergence}{A sequence of functions $\{f_m\}$ converges uniformly to $f$ on set $E$ $(f_m \Rightarrow f)$, If for each $\epsilon>0$ there corresponds an integer $N = N(\epsilon)$ such that for all $z \in E$, $|f_m(z_0) - f(z_0)| < \epsilon$ whenever $m>N$.}
+
+\begin{ex}
+Consider $f_m(z) = \frac{1}{mz}$ . This converges pointwise but not uniformly to $f(z)=0$ in the set $0<|z|<1$. This is because uniform convergence would require existence of $N$ such that $\left|\frac{1}{mz}\right| < \epsilon < 1$ valid for all $z$ in the set. You can see this is not true in the case $z = \frac{1}{n}$. $f(\frac{1}{n})$ would be greater than $1$, so yeah. 
+\end{ex}
+
+The importance of uniform convergence is that it allows for the interchange of many limiting operations.  which, in turn, compels the limit to retain many properties of sequences.
+
+\begin{theorem}
+Suppose $\{f_m\}$ converges uniformly to $f$ on $E$. If each $f_m$ is continuous at point $z_0 \in E$, the limit of the function $f$ is also continuous at $z_0$:
+
+$$\lim_{z \to z_0} \lim_{m \to \infty }f_m(z) = \lim_{m \to \infty }\lim_{z \to z_0}f_m(z)$$
+
+
+The provides a necessary condition for uniform convergence.
+\end{theorem}
+
+\begin{ex}
+$f_m = \frac{1}{1_mz}$. This converges pointwise to 
+
+\begin{align}
+f = \begin{cases}
+0 & if\ z\neq 0 \\ 1 & if\ z = 0 \\ 
+\end{cases}
+\end{align}
+
+Since $f$ is not continuous, the convergence cannot be uniform in any region containing the point $z=0$. 
+\end{ex}
+
+Note, this generalizes cauchy convergence. 
+
+
+
+\subsection{Series of Complex Functions}
+Given a sequence of functions $\{f_m\}$ defined on the set $E$, we associate a new sequence $\{s_m(z)\}$ defined by 
+$$s_m(z) = \sum_{k=1}^m f_m(z)$$
+
+For values for which  $\lim_{m \to \infty }s_m(z)$ exists, we say the series converges. 
+
+\begin{align}
+f(z) &= \lim_{m \to \infty } \sum_{k=1}^m f_k(z) \\ 
+& = \sum_{k=1}^\infty f_k(z)
+\end{align}
+
+Note, this is different than before. Now $f(z)$ is the limit of the sum, not just the limit.
+
+If $\{s_m(z)\}$ converges uniformly on $E$, then the series $\sum_{k=1}^\infty f_k(z)$ is said to be \textbf{uniform} on $E$. Similarly, if $\sum_{k=1}^\infty f_k(z)$ is uniformly convergent on $E$, then
+$\sum\left|f_m(z)\right|$ converges. 
+
+\begin{theorem}
+The series $\sum_{m=1}^\infty f_m(z)$ converges uniformly on a set $E$ if and only if to each $\epsilon$, there corresponds an integer $N = N(\epsilon)$, such that for all $z \in E$, 
+\begin{align}
+\left|\sum_{k=m+1}^{m+p}f_k(z) \right| < \epsilon,\ m>N,\ p = 1,2,3..
+\end{align}
+
+
+By the triangle inequality, this also implies absolute convergence. 
+\end{theorem}
+
+\begin{theorem}[Weirstrass M-test]
+Let $M_m$ be a sequence of real numbers. Suppose that $|f_m(z)| < M_m, \forall z \in E, m\in \mathbb{Z}^+$.  If $\sum_{m=1}^\infty M_m$ converges, then $\sum_{m=1}^\infty f_m(z)$ converges uniformly and absolutely on $E$. 
+\end{theorem}
+\begin{ex}
+The series $\sum_{m=1}^\infty z^m $ converges absolutely for $|z|<1$. It converges uniformly for $|z|\leq r < 1$. 
+\end{ex}
+
+Note: $\sum_{m=1}^\infty |z^m| = \sum_{m=1}^\infty |z|^m = \frac{|z|}{1-|z|},\ |z|<1$. This proves absolute convergence for $|z|<1$. 
+
+
+Let $M_m = r^m$. Then $|z^m| \leq r^m$ for $|z| \leq r < 1$. But $\sum_{m=1}^\infty r^m$ converges for $r<1$. So: $\sum_{m=1}^\infty z_m$ converges uniformly for $|z| \leq r < 1$. This follows from the Weirstrass M-test. 
+
+\Section{Power Series}
+\Def{Power Series}{Let $f_m(z) = a_m(z-b)^m$ where $a_m, b$ are complex. $\sum_{m=1}^\infty f_m(z) = \sum_{m=0}^\infty a_m(z-b)^m$ is a called a power series in $z-b$. WLOG, set $b=0$. }
+
+\begin{theorem}
+Suppose a power series $\sum_{m=0}^\infty a_m z^m$ converges at point $z=z_0$. Then $\sum_{m=0}^\infty |a_m| |z|^m$ converges for $|z|<|z_0|$. 
+
+Basically, if it converges at $z_0$, then it converges in a disc centered at $b$ with radius $z_0-b$. 
+
+\textbf{Proof:} Since $\sum_{m=0}^\infty a_m z_0^m$ converges, we have that $\lim_{m \to \infty }a_m z_0^m = 0$. Hence there is a constant $M$ such that $\left|a_mz_0^m\right|<M,\ \forall m$. Also:
+
+$$|a_m| |z|^m =\left| a_m z_0^m \left(\frac{z}{z_0}\right)^m \right| < M \left|\frac{z}{z_0}\right|^m$$
+For $|z|<|z_0|$, the geometric series $\sum_{m=0}^\infty \left|\frac{z}{z_0}\right|^m$ converges. Thus:
+
+$$\sum_{m=0}^\infty |a_m| |z|^m \leq \sum_{m=0}^\infty \left|\frac{z}{z_0}\right|^m = \frac{M}{1-\left|\frac{z}{z_0}\right|},\ |z|<|z_0|$$
+\end{theorem}
+
+\begin{corollary}
+If $\sum_{m=0}^\infty a_m z^m$ diverges at $z = z_0$, then $\sum_{m=0}^\infty a_m z^m$ diverges for $|z| > |z_0|$. 
+\end{corollary}
+
+\begin{corollary}
+Of $\sum_{m=0}^\infty a_m z^m$ converges for all real values of z, then the series also converges for all complex values.	\end{corollary}
+\begin{theorem}
+For every power series $\sum_{m=0}^\infty a_m z^m$, there correspondes a number $R \in [0, \infty]$ for which it satisfies:
+\begin{enumerate}
+	\item It converges absolutely in $|z| < R$
+	\item It converges uniformly in $|z|\leq R_0 < R$ 
+	\item It diverges for $|z|>R$.
+\end{enumerate}
+
+\textbf{Proof:} Let $s = \{r\ s.t.\ \sum_{m=0}^\infty a_m z^m\text{ converges for } |z|<r\}$. Then $R = \begin{cases}
+L.U.B. s \text{ if } s \text{is bounded} \\ 
+\infty \ otherwise
+\end{cases}$
+
+Note: $R$ is the radius of convergence of a power series. It converges inside, diverges outside the circle $|z| = R$. On the other hand, it may converge at all some, or none of the points on the circle $|z|=R$. 
+
+\end{theorem}
+
+\begin{theorem}
+The power series $\sum_{m=0}^\infty a_m z^m$ has a radius of convergence $R = \frac{1}{A}$, where $A =\lim\sup_{m \to \infty } |a_m|^{1/m}$. If $A = \infty$, $R = 0$. Likewise, if $A=0$, $R = \infty$. 
+
+\textbf{Proof:}
+TODO
+\end{theorem}
+
 
 \end{document}
