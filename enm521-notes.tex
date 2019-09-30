@@ -673,7 +673,164 @@ Note: $R$ is the radius of convergence of a power series. It converges inside, d
 The power series $\sum_{m=0}^\infty a_m z^m$ has a radius of convergence $R = \frac{1}{A}$, where $A =\lim\sup_{m \to \infty } |a_m|^{1/m}$. If $A = \infty$, $R = 0$. Likewise, if $A=0$, $R = \infty$. 
 
 \textbf{Proof:}
-TODO
+For any point $z_0$, $\lim\sup_{n \to \infty } |a_nz_0^n|^{1/n} = \left(\lim\sup_{n \to \infty }|a_n|^{1/n}\right)$. According to the root test, the series $\sum_{m=0}^\infty a_m z^m$ converges absolutely when $|z_0|A < 1$ 
+
+\textbf{Note:} $f(z) = \sum_{m=0}^\infty a_m z^m$ is continuous at $z = z_0$ with $|z_0|<R$. what about differentiation?
+\end{theorem}
+
+
+\begin{theorem}
+If a function $f(z)$ is the pointwise limit of a power series $\sum_{m=0}^\infty a_m z^m$ in $|z|<R$,
+\end{theorem}
+See other notes of 9/23-9/25 for a description of what happened here.
+
+\Section{Contours}
+
+Note: If f is analytic in domain including $C$, we can find $F$ such that $F'=f$
+
+\begin{theorem}[Cauchy's Theorem]
+If $f(z)$ is analytic in a Domain D and C is a closed contour lying on D, then $$\int_{C} f(z) dz = 0$$
+
+\textbf{Note:} the argument use to generalize the weaker version of Cauchy for multiply connected regions can be repeated for the stronger version
+
+\textbf{Note:} this takes the work of parameterizing ugly contours, as will be seen in the next example.
+\end{theorem}
+
+\begin{ex}
+Evaluate $\int_C \frac{1}{z-z_0}dz$ for some arbitrary ugly contour
+Define a nice contour $C_1 : |z-z_0| = \epsilon$ which is a circle completely inside $C$, such taht it does not divide the interior region.
+
+Now, $f(z) = \frac{1}{z-z_0}$ is analytic in a multiply connected region between $C$ and $C_1$. Hence
+$$\int_{C+C_1}f(z)dz = 0$$
+
+Therefore, $\int_C \frac{1}{z-z_0}dz = -\int_{C_1} \frac{1}{z-z_0}dz$. 
+
+Since $C_1 : z(t) = z_0 + \epsilon e^{it},\ t \in [0, 2\pi]$. Thus, 
+
+$$\int_C \frac{1}{z-z_0}dz = \int_{0}^{2\pi}\frac{z'(t)}{z(t)-z_0} dt = \int_{0}^{2\pi} \frac{i\epsilon e^{it}}{\epsilon e^{it}} dt = 2\pi i$$
+\end{ex}
+
+\Def{Laplace Transform}{$$F(s) = \int_{0}^{\infty} e^{-st} f(t) dt$$
+
+The inversion of the Laplace transform involves an integral on the complex plane of a vertical contour to the right of all singularities. 
+
+$$f(t) = \frac{1}{2\pi}\int_{\gamma - i \infty}^{\gamma + i \infty} F(s) e^{st}ds $$
+
+There is a trick where you can close the contour to the right if there are no singularities to the right of the contour. Then, this causes $f(t)$ to have a zero contribution from the point at infinity. This only happens if $t<0$. This is usually true as $f(t)$ is usually zero before $t=0$.}
+
+
+\begin{theorem}[Cauchy Integral Formula]
+	
+Let $f(z)$ be analytic in a simply connected domain containing the simple closed contour C. If $z_0 \in C$, then 
+
+$$f(z_0) = \frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz$$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{intform}
+	\caption{Contour for Cauchy integral Form on some domain.}
+	\label{fig:intform}
+\end{figure}
+
+Note: $f(z)=1$ is the previous example.
+
+Roughly speaking, if $z_0$ in the integral, then $\frac{f(z)}{z-z_0}dz = 2\pi i f(z_0)$. If it is outside $C$, the value of the integral is zero. 
+
+\textbf{Proof:}
+
+Given $\epsilon>0$, construct a circle $C_1: |z-z_0|=r$. And small enough $r$ such that $|f(z) - f(z_0)|<\epsilon$ for all $z$ on $C_1$. By Cauchy's theorem:
+
+\begin{align}
+\int_C \frac{f(z)}{z-z_0}dz &= \int_{C_1} \frac{f(z)}{z-z_0}dz\\ 
+& = \int_{C_1} \frac{f(z_0)}{z-z_0}dz +  \int_{C_1} \frac{f(z) - f(z_0)}{z-z_0}dz\\
+ & = 2 \pi i f(z_0) +  \int_{C_1} \frac{f(z) - f(z_0)}{z-z_0}dz
+\end{align}
+
+However:
+
+\begin{align}
+\left|\int_{C_1} \frac{f(z) - f(z_0)}{z-z_0}dz \right| &\leq \int_{C_1} \frac{|f(z) - f(z_0)|}{|z-z_0|}dz \\
+&< \int_{0}^{2\pi} \frac{\epsilon}{r} |dz| = \epsilon 2 \pi 
+\end{align}
+
+This goes to zero as $\epsilon \to 0$. Thus, $\int_C \frac{f(z)}{z-z_0}dz = 2 \pi i f(z_0)$
+
+\textbf{Note:} The theorem expresses the value of $f(z)$ at any point in $C$ in terms of values of $f$ on $C$ (no real valued analog to this result).
+\end{theorem}
+
+\begin{theorem}[Cauchy Integral Formula for Derivative]
+Let $f(z)$ be analytic on a simply connected domain containing a closed simple contour $C$. Then, $f(z)$ has derivatives of all orders at each point $z_0 \in C$. Moreover, the $nth$ derivative at that point is:
+$$f^{(n)}(z_0) = \frac{n!}{2\pi i } \int_C \frac{f(z)}{(z-z_0)^{n+1}}dz$$
+
+\textbf{Proof:}
+Use the previous result with the definition of the derivative. Assume that $h$ is small enough such that $z_0+h$ is inside $C$. Then:
+
+\begin{align}
+\frac{f(z_0+h) - f(z_0)}{h}& = \frac{1}{2\pi i h } \left(\int_C \frac{f(z+h)}{z-z_0-h} dz - \int_C \frac{f(z)}{z-z_0}dz \right)\\
+&= \frac{1}{2\pi i } \int_C \frac{f(z)}{(z-z_0)(z-z_0-h)} dz
+\end{align}
+
+As $h \to 0$, we see $f'(z_0) = \frac{1}{2\pi i h } \int_C \frac{f(z)}{(z-z_0)^2} dz$. However, it is hard to take the limit of an integral so this is hard, so we have to argue this.
+\end{theorem}
+
+\textbf{Note:} We know by hypothesis that $f(z)$ was differentiable at all $z_0$ inside $C$. The theorem demonstrates the existence of all derivatives of $f(z)$. 
+
+\textbf{Note:} If $f$ is analytic at $z_0$, it is differentiable to all orders there. 
+
+\textbf{Note:} The Cauchy-integral formula is also valid for multiply connected domains.
+
+\begin{ex}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{example12}
+	\caption{}
+	\label{fig:example12}
+\end{figure}
+
+
+$$\int_{|z|=2}\frac{z-3\cos z}{(z-\pi/2)^2}dz$$
+
+Let $f(z) = z-3\cos z$. Then $f'(z) = 1+3 \sin z$. By the Cauchy integral Formula, 
+
+$$\int_{C} \frac{f(z)}{(z-z_0)^2} dz = 2\pi i f'(\pi/2) = 8\pi i $$
+\begin{quote}
+	"Almost like magic, isn't it?"
+\end{quote}
+\end{ex}
+
+
+\Def{Principal Value Integrals}{
+If $z_0$ is outside contour $C$, then $\frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz = 0$. If $z_0$ is on $C$, the integral does not exist. Instead, the integrand blows up "too strongly," much like the drink I'll be having tonight. However, we can re-interpret the integral so as to avoid the singularity, keeping in mind of course that such a reinterpretation is a matter of definition. Given $C$ and $z_0$ through $C$, and not having a corner there , we consider the modified contour $C'$ excluding $z_0$, putting $z_0$ on the inside. By semi-circle of radius $\epsilon>0$. Then:
+
+$$\frac{1}{2\pi i}\int_{C'} \frac{f(z)}{z-z_0}dz = 0$$
+
+As $\epsilon \to 0$, the part over the semicircle becomes 
+
+$$\frac{1}{2\pi i}\int_{\pi}^0 \frac{f(z_0 + \epsilon e^{i\theta})}{\epsilon e^{i\theta}} i \epsilon e^{i\theta} d\theta = -\frac{f(z_0)}{2}$$
+
+Using the previous theorems:
+
+$$\frac{1}{2\pi i}\int_{C'} \frac{f(z)}{z-z_0}dz = PV \frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz -\frac{f(z_0)}{2} =  0$$
+
+And so:
+
+$$PV \frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz = \frac{f(z_0)}{2}$$
+
+\textbf{Note:} This relies on putting the contour on the inside, but we could put it on the outside. Key feature, it doesn't matter! Wow. Now if $z_0$ is a corner point enclosing an \textbf{interior angle} of $\alpha$ radians, then the principal value is:
+
+$$PV \frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz = \frac{f(z_0)}{2}$$
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{angle_contour}
+	\caption{}
+	\label{fig:anglecontour}
+\end{figure}
+
+}
+
+\begin{theorem}[Taylor Theorem/Potato theorem]
+Let $f(z)$ be analytic in domain $D$ whose boundary is $C$. If $z_0$ is a point in $D$, then $f(z) = f(z_0) + f'(z_0)(z-z_0) + \frac{1}{2!} f''(z_0) (z-z_0)^2+$.... This kind of assumes $f$ is analytic.
 \end{theorem}
 
 
