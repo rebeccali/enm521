@@ -829,9 +829,332 @@ $$PV \frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz = \frac{f(z_0)}{2}$$
 
 }
 
-\begin{theorem}[Taylor Theorem/Potato theorem]
-Let $f(z)$ be analytic in domain $D$ whose boundary is $C$. If $z_0$ is a point in $D$, then $f(z) = f(z_0) + f'(z_0)(z-z_0) + \frac{1}{2!} f''(z_0) (z-z_0)^2+$.... This kind of assumes $f$ is analytic.
+% 10/2 Notes
+\begin{theorem}[Taylor's Theorem]
+Let $f(z)$ be analytic in domain $D$ whose boundary is $C$. If $z_0$ is a point in $D$, then $f(z) = f(z_0) + f'(z_0)(z-z_0) + \frac{1}{2!} f''(z_0) (z-z_0)^2+...$
+
+The series converges for $|z-z_0|<\delta$ where $\delta$ is the distance from $z_0$ to $C$. 
+
+\textbf{Proof:}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{disc}
+	\caption{$\delta$ is the largest circle that fits inside the contour $C$}
+	\label{fig:disk}
+\end{figure}
+
+Construct circle $C_1:|\zeta - z_0| = \rho$ with $\rho < \delta$. Let $z$ be any point inside $C_1$, then by C.T.M, 
+
+$$\rho(z) = \frac{1}{2 \pi} \int_{C_1} \frac{\rho(\zeta)}{\zeta - z} d\zeta$$.
+
+We set $|z-z_0| = r$, then $ r = |z-z_0|  < |\zeta - z_0| = \rho$. Additionally, 
+
+\begin{align}
+\frac{1}{\zeta - z} &= \frac{1}{\zeta - z_0 - (z - z_0)}\\
+&= \frac{1}{\zeta - z_0} \frac{1}{1-\frac{z-z_0}{\zeta - z_0}}\\
+&= \frac{1}{\zeta - z_0} \left[1 + \frac{z-z_0}{\zeta - z_0} + \left(\frac{z-z_0}{\zeta - z_0}\right)^2 + .. + \left(\frac{z-z_0}{\zeta - z_0}\right)^{n-1} + \sum_{k=m}^\infty \left(\frac{z-z_0}{\zeta - z_0}\right)^k\right] \\ 
+&= \frac{1}{\zeta - z_0} \left[1 + \frac{z-z_0}{\zeta - z_0} + .. + \left(\frac{z-z_0}{\zeta - z_0}\right)^{n-1} + \frac{\left(\frac{z-z_0}{\zeta - z_0}\right)^n}{1-\frac{z-z_0}{\zeta - z_0}}\right]
+\end{align}
+
+Then 
+
+\begin{align}
+f(z) = \frac{1}{2 \pi i } \int \frac{f(\zeta)}{\zeta - z_0} d\zeta + ... + \frac{(z-z_0)^{n-1}}{2 \pi i}\int \frac{f(\zeta)}{\zeta - z_0} d\zeta + R_n
+\end{align}
+
+Where 
+$$R_n = \frac{1}{2 \pi i } \int_{C_1} \left(\frac{z-z_0}{\zeta - z_0}\right)^n \frac{f(\zeta)}{\zeta - z}d\zeta$$
+
+By Cauchy Integral Formula, we get that 
+
+\begin{align}
+f(z) = f(z_0) + f'(z_0)(z-z_0) + ... + \frac{f^{(n-1)}(z_0)}{n-1}(z-z_0)^{n-1} + R_n
+\end{align}
+
+However, we still need to show that $R_n \to 0$ as $n \to \infty$. 
+
+For ??? assume $|f(z)| \leq M $ on $C_1$. Then,
+We note that from triangle inequality $$\frac{1}{|\zeta-z|} = \frac{1}{|\zeta - z - z_0 + z_0|} \leq \frac{1}{|\zeta - z_0| - |z-z_0|} = \frac{1}{\rho - r}$$
+
+Then we can conclude that
+
+\begin{align}
+|R_n| &\leq \frac{1}{2 \pi i } \int_{C_1} \left|\frac{z-z_0}{\zeta - z_0}\right|^n \frac{|f(\zeta)|}{|\zeta - z|}|d\zeta \\ 
+&\leq \frac{M}{2 \pi i } \left(\frac{r}{\rho}\right)^n \int_{C_1} \frac{1}{|\zeta-z|}|d\zeta| \\
+&\leq \frac{M}{2 \pi i } \left(\frac{r}{\rho}\right)^n \frac{1}{\rho - r} 2 \pi \rho 
+\end{align}
+
+Since $r/\rho < 1$ as $n \to \infty$, $|R_n| \to 0$
+
+\textbf{Note:} by the M-test, the Taylor series converges uniformly on  compact subsets of disk $|z-z_0|<\delta$. 
+
+
+What is this saying? We can chose any circle originating from $z_0$ with radius $R$, as long as it is less than $\delta$ which is the maximum radius to stay within the contour $C$, we will converge uniformly. (is this really true?)
 \end{theorem}
 
+We have seen before that a power series represents an analytic function inside its radius of convergence. The result in Taylor's theorem says essentially the converse. Thus, a function $f(z)$ is analytic at a point $z_0$ if and only if $f(z) = \sum_{n=0}^{\infty}a_n(z-z_0)^n$ in some disk $|z-z_0| \leq R$. $a_n$ has a dual representation in both derivative and integral form:
 
+$$a_n  = \frac{f^(n)(z_0)}{n!} = \frac{1}{2 \pi i } \int_{|z-z_0|=\delta} \frac{f(z)}{z - z_0} dz$$
+
+
+\textbf{Note:} Taylor's theorem now fully justifies Maclaurin expansions such as 
+
+\begin{align}
+e^z &= \sum_{n=0}^\infty \frac{z^n}{n!}\\
+\sin z &= \sum_{n=1}^\infty \frac{(-1)^n z^{2n-1}}{(2n-1)!}
+\end{align}
+
+
+\begin{ex}
+Consider $\sum_{n=1}^\infty z^n = \frac{1}{1-z}$. It converges within the disk of radius 1 about the origin.  Can we define the function outside of this disk? This is called \textit{analytic continuation}. We might expand this function around a different point! We see that on the circle $r=1$, the function blows up. How might we do this when we do not know the non-power series form? Contour integrals. More on that later.
+\end{ex}
+
+\begin{theorem}
+Let $\{f_n(z)\}$ be a sequence of functions continuous on contour $C$. Suppose that the series $\{f_n(z)\}$ converges uniformly to some function $f(z)$ on the contour. Then, we can show that
+
+\begin{align}
+\lim_{n\to\infty} \int_{C} f_n(z) dz &= \int_{C} \lim_{n\to\infty} f_n(z) dz \\ 
+&= \int_{C}f(z) dz
+\end{align}
+
+Essentially, this means we can interchange limits, but only for uniformly converging functions.
+
+We can also do this for series: 
+\begin{align}
+\sum \int_{C} f_n(z) dz &= \int_{C} \sum f_n(z) dz \\ 
+&= \int_{C}f(z) dz
+\end{align}
+\end{theorem}
+
+We might expect a function $f(z)$ to be analytic at a point $z_0$ if $\int_{C}f(z)dz = 0$ along every simple closed contour in which $z_0$ is an interior point. However, this is \textbf{NOT TRUE!} 
+
+\textbf{Counterexample:} $f(z) = \frac{1}{z^2}$. 
+
+However, if we add the hypothesis that $f$ is continuous, this is true:
+
+\begin{theorem}[Morera]
+Let $f(z)$ be continuous on domain $D$. If $\int_{C}f(z)dz = 0$ along every simple closed contour $C$ contained in $D$, then $f(z)$ must be analytic in $D$. 
+
+\textbf{Proof:}
+
+Fix $z_0$ in $D$, and $F(z) = \int_{z_0}^{z} f(\zeta) d\zeta$. We can consider the derivative of $F$. We can use the continuity of $f$, so it follows that $F$ is analytic.
+
+\end{theorem}
+
+\begin{corollary}
+Let $f(z)$ be a function on a simply connected domain $D$. if $z_0$ is a point in $D$, then its integral, $F(z) = \int_{z_0}^z f(\zeta)d\zeta $ is also analytic in $D$. 
+\end{corollary}
+\begin{theorem}
+Let $\{f_n(z)\}$ be a sequence of analytic functions converging uniformly to a function $f(z)$ on all compact (closed and bounded) subsets of a domain $D$. Then, $f(z)$ is analytic in $D$. 
+\end{theorem}
+
+\begin{corollary}
+Given the same hypothesis as above, $\sum_{k=0}^\infty f_k(z)$ where $f_k(z)$ converges uniformly to $f(z)$ is analytic in $D$.
+\end{corollary}
+
+\begin{corollary}
+$f'(z) = \sum_{n=0}^\infty f'_n(z)$
+\end{corollary}
+
+In the complex case, the term by term differentiation of a sequence of analytic functions uniformly converging on  compact subsets of the domain may be used to get the derivative of the sum. This is not true in the real case.
+
+\begin{ex}
+We cannot do term by term differentiation of this real function:
+$f(x) = \sum_{n=1}^\infty \frac{\sin(nx)}{n^2}$. Its derivative cannot be computed term by term.
+\end{ex}
+
+If $f$ is entire, it has a power series representation of 
+\begin{align}
+f(z) = \sum_{n=0}^\infty a_n z^n \\ 
+ = \frac{f^(n)(0) z^n}{n!}
+\end{align}
+which is valid for all $z$. Then, 
+
+\begin{enumerate}
+	\item $f'(z) = \sum_{n=0}^\infty n a_n z^n $
+	\item $F(z) = \int_{0}^zf(\zeta)d\zeta = \int_0^z \sum_{n=0}^\infty  a_n \zeta^n d\zeta =\sum_{n=0}^\infty  a_n \int_0^z  \zeta^n d\zeta = \sum_{n=0}^\infty  \frac{1}{n+1} a_n\zeta^{n+1}  $
+\end{enumerate}
+
+\begin{ex}
+Find the Maclaurin expansion of $f(z) = \log(z+1)$ valid for $|z|<1$. We know that $f'(z) = \frac{1}{1+z}$. This is just the same as a geometric series: $f'(z) = \sum_{n=0}^\infty (-1)^n z^n$
+
+Hence:
+
+\begin{align}
+f(z) &= \log(1+z) \\ 
+& = \int_{0}^z f'(\zeta) d\zeta + f(0) \\ 
+& = \sum_{n=0}^\infty \int_{0}^z (-1)^n\zeta^n d\zeta + 0 \\ 
+&  = \sum_{n=0}^\infty \frac{(-1)^n\zeta^{n+1}}{n+1}  
+\end{align}
+\end{ex}
+
+% 10/7
+
+\section{Polynomial and Transcendental Functions }
+\begin{theorem}[Cauchy's Inequality]
+Suppose $f(z)$ is analytic inside and on circle $C$ having $z_0$ and radius $r$. If $|f(z)|<M$ on $C$ then:
+
+$$f^{(m)}(z) \leq \frac{MM!}{r^m}$$
+
+\textbf{Proof:}
+By Cauchy integral formula:
+
+\begin{align}
+\left|f^{(m)}(z_0)\right| &\leq \frac{m!}{z\pi} \int_{C} \frac{|f(z)|}{|z-z_0|^{m+1}} |dz| \\ 
+& \leq \frac{m!}{z\pi}\frac{M(2\pi r)}{r^{m+1}}
+\end{align}
+\end{theorem}
+
+\begin{theorem}[Liouville's theorem]
+A bounded entire function must be constant.
+
+\textbf{Proof:}
+Suppose $f(z)$ is entire with $|f(z)| \leq M$ for all $z$. It is sufficient to show that $f'(z) = 0$ given complex $z_0$. We have by Cauchy's inequality:
+
+$$f'(z_0) \leq \frac{M}{r},\ r \in \R^+$$
+
+As $r \to \infty$, we deduce that $f'(z_0) = 0$. Since $z_0$ was arbitrary, the result follows.
+
+\textbf{Note:}
+There is no real variable analog. For example $f(x) = \sin(x)$ is everywhere bounded, but not constant. 
+
+\textbf{Note:}
+
+Liouviolle's implies for a non-constant entire function $f(z)$, there is a set $\{z_m\}$ such that $f(z_m) \to \infty$. 
+
+
+\end{theorem}
+
+\begin{theorem}
+Suppose that $f(z)$ is an entire function and that $|f(z)| \leq Mr^\lambda$, and that $|z| = r \leq r_0$ for some non-negative $\lambda$. Then $f(z)$ is a polynomial of degree at least $\lambda$. 
+
+\textbf{Proof:}
+
+Let $f(z) = \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!} z^n = \sum_{n=0}^\infty a_n z^n$. By Cauchy's inequality, on circle $|z|=r$, we have that:
+
+\begin{align}
+|a_n| &= \left|\frac{f^{(n)}(0)}{n!}\right| \\
+& \leq \frac{Mr^\lambda}{r^m}
+\end{align}
+
+Letting $r \to \infty$, we see that $a_n = 0$ whenever $m>\lambda$. Hence $f$ is a polynomial of a degree no more than $\lambda$.
+
+\textbf{Note:}
+
+What if $\lambda = 0$? The function is constant. This is a special case.
+\end{theorem}
+
+\Def{Transcendental Function}{A \textbf{transcendental} entire function is one that is not a polynomial. }
+
+\textbf{Note:}
+
+Letting $M(r,f) = \max_{|z|=r} |f(z)|$. The theorem says that for a transcendental function, $M(r,f)$ frows faster than any ? of $r$. However, this does not necessarily imply that $f(z) \to \infty$ along any path going to $\infty$. 
+
+\begin{ex}
+$f(z) = e^z$. Then $M(r,f) = e^r$. But $e^z \to 0$ as $z \to \infty$ along negative real axis. 
+\end{ex}
+
+\begin{theorem}[Picard]
+A non-constant entire function assumes each complex value with one possible exception.
+\end{theorem}
+
+\begin{theorem}
+Suppose that $P(z) = a_0 + a_1 z + .. + z_m z^m$, for $a_m \neq 0$. Then for $|z| = r$ sufficiently large, 
+
+\begin{align}
+\frac{|a_m}{z} r^m \leq |P(z)| \leq \frac{3 |a_m|}{2} r^m
+\end{align}
+
+\textbf{Note:}
+Along its "rest" path, transcendental functions approach $\infty$ more rapidly than any polynomial. However, polynomials may go to $\infty$ along any path. Transcendental functions grow more rapidly than polynomials, but polynomials grow more uniformly. 
+
+\textbf{Proof:} Exercise.
+\end{theorem}
+
+Complex analysis leads to important results in algebra. 
+
+\begin{theorem}[Fundamental theorem of Algebra]
+Every non-constant polynomial has at least one zero.
+
+\textbf{Proof:}
+Assume $P(z) \neq 0$, such that $\frac{1}{P(z)}$ is entire. Use previous to results to obtain a contradiction.
+\end{theorem}
+\begin{corollary}
+Every polynomial has exactly $n$ roots.
+\end{corollary}
+\begin{corollary}
+Every polynomial of degree n assumes eat complex number explicitly n times.
+\end{corollary}
+\begin{theorem}
+Suppose $f(z)$ is analytic in domain F. $\{z_n\}$ is a sequence of distinct points converging to point $z_0 \in D$. If $f(z_n) = 0 \forall n$, then $f(z) = 0,\ z \in D$. 
+
+\textbf{Proof:}
+Consider a disk $z-z_0 < R$. Then:
+
+$$f(z) = a_0 + \sum_{n=1}^\infty a_n (z-z_0)^n$$
+
+Since $f(z)$ is continuous t $z_0$, it follows that $f(z_n) \to f(z_0),\ z_n \to z_0$. Therefore:
+
+\begin{align}
+\lim_{n\to\infty}f(z_n) = 0 = f(z_0) = a_0\\
+\implies a_0=0
+\end{align}
+
+Hence:
+
+$$f(z) = (z-z_0) \left(a_1 + \sum_{k=2}^\infty a_k (z-z_0)^k\right)$$
+
+Setting $z = z_n$ and dividing by $z_n - z_0$:
+
+$$\lim \frac{f(z_n)}{z_n-z_0} = 0 = a_1$$
+
+$$\implies a_1 = 0$$
+
+Repeating we get the result that $f(z) = 0$.
+\end{theorem}
+
+\begin{corollary}
+Suppose f(z) is analytic at $z=z_0$, with $f(z_0) = 0$. Then, either $f(z) = 0$ in some neighborhood of $z_0$, or there exists a number $f$ such that $f(z) \neq 0$ in $\delta < |z-z_0| < r$. 
+
+\textbf{Note:} No real-valued analog/
+\end{corollary}
+\begin{theorem}[Identity Theorem]
+Suppose $\{z_n\}$ is a sequence of points with a limit point in domain D. If $f(z)$ and $g(z)$ are analytic in D, where $f(z_n) = g(z_n) \forall n$, then  $f=g forall z \in D$. 
+
+\textbf{Proof:}
+Let $h(z) = f(z) - g(z)$. Recall the mean value theorem for real valued functions:
+
+\begin{align}
+\frac{1}{b-a} \int_{a}^{b} f(x) dx = \frac{F(b)-F(a)}{b-a} = F'{\zeta}
+\end{align}
+
+$F' = f,\ a < \zeta < b$. 
+\end{theorem}
+
+\begin{theorem}[Gauss Mean value]
+Suppose $f(z)$ is analytic in the closed disk $|z-z_0| \leq r$. Then:
+$$f(z_0) = \frac{1}{2 \pi } \int_{0}^{2\pi} f(z_0 + r e^{i\theta} d\theta)$$
+
+\textbf{Proof:}
+$$f(z_0) = \frac{1}{2 \pi i } \int \frac{f(z)}{z-z_0} dz$$
+$$|z-z_0| = r$$
+
+We set $z = z_0 + r e^{i\theta}$ and obtain the result. 
+
+\textbf{Note:} If $f(z) = c$ is constant, $f(z_0)=c$. 
+\end{theorem}
+In fact, for non-constant $f$, there must be some points on the circle for which $|f(z)| < |f(z_0)|$
+
+\begin{theorem}[Maximum Modulus]
+If $f(z)$ is analytic on domain $D$, then $|f(z)|$ cannot obtain a max on $D$ unless $f(z)$ is constant. 
+
+\textbf{Proof:}
+First, we make use of the Gauss Mean value theorem. 
+\end{theorem}
+
+\begin{theorem}[Maximum modulus theorem (Strong)]
+If $f(z)$ is analytic in a bounded domain $D$ and continuous in its closure $\bar{D}$ (domain plus boundary), then $|f(z)|$ obtain a maximum on its boundary. Additionally, $|f(z)|$ does not attain a maximum at any interior point, unless $f(z) $ is a constant.
+
+\textbf{Note:} The domain need not be simply connected. The domain can be taken to be any small neighborhood surrounding a given point. It follows that a non-constant analytic function cannot attain even a local maximum at any point inside the region of analyticity.
+\end{theorem}
 \end{document}

@@ -10,3 +10,4 @@
 \contentsline {subsection}{\numberline {3.3}Series of Complex Functions}{13}{subsection.3.3}
 \contentsline {section}{\numberline {4}Power Series}{13}{section.4}
 \contentsline {section}{\numberline {5}Contours}{14}{section.5}
+\contentsline {section}{\numberline {6}Polynomial and Transcendental Functions }{21}{section.6}
