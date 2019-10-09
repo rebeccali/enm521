@@ -11,3 +11,4 @@
 \contentsline {section}{\numberline {4}Power Series}{13}{section.4}
 \contentsline {section}{\numberline {5}Contours}{14}{section.5}
 \contentsline {section}{\numberline {6}Polynomial and Transcendental Functions }{21}{section.6}
+\contentsline {subsection}{\numberline {6.1}Classification of Singularities}{24}{subsection.6.1}

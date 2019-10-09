@@ -1157,4 +1157,126 @@ If $f(z)$ is analytic in a bounded domain $D$ and continuous in its closure $\ba
 
 \textbf{Note:} The domain need not be simply connected. The domain can be taken to be any small neighborhood surrounding a given point. It follows that a non-constant analytic function cannot attain even a local maximum at any point inside the region of analyticity.
 \end{theorem}
+
+\subsection{Classification of Singularities}
+\Def{Singularity}{A single-valued function is said to have a singularity at a point if the function is not analytic at that point. Furthermore, if the function is analytic in some deleted neighborhood (neighborhood not including the point) of the point, then the singularity is said to be isolated. The behavior of the function near the isolated singularity $z_0$ can be :
+
+\begin{enumerate}
+	\item $f(z)$ may be bounded in a deleted neighborhood of $z_0$. As an example, take $f(z) = \frac{num}{den},\ z\neq 0$. $f(z)$ is bounded in the neighborhood of $z_0 = 0$. In fact, $f(z)$ can be made analytic at $z=0$ by defining $f(0)=1$. 
+	\item $f(z)$ may approach $\infty$ as $z \to z_0$. Example being $f(z) = \frac{1}{z},\ z \neq 0$. There is a singularity at $z_0 = 0$ and $\lim_{z\to0} f(z) = \infty $. 
+	\item $f(z)$ satisfies neither (1) nor (2). As an example, consider $f(z) = e^{1/z}, z\neq 0$. 
+\end{enumerate}
+}
+
+\begin{theorem}[Riemann's Theorem]
+	If $f(z)$ has an isolated singularity at $z_0$ and is bounded in some deleted neighborhood of $z_0$, then $f(z)$ can be defined at $z_0$ in such a way that it is analytic at $z_0$. 
+	
+	\textbf{Proof:} For some $R>0$, $f(z)$ is analytic in a punctured disk $0<|z-z_0|<R$. Given a point z in the punctured disk, choose $r>0$ such that $r < |z_1 - z_0|<R$ The function is analytic in such annulus bounded by the circle $C$ and $C_1$ (Figure \ref{fig:riemann}). 
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{riemann}
+		\caption{Riemann's theorem proof graphics. In the blue annulus, $|f(z)|\leq M$.}
+		\label{fig:riemann}
+	\end{figure}
+	Hence, by Cauchy, 
+	\begin{align}
+	f(z_1) &= \frac{1}{2\pi}\int_C \frac{f(\zeta)}{\zeta - z_1} d\zeta - \frac{1}{2\pi i}\int_{C_1} \frac{f(\zeta)}{\zeta - z_1} d\zeta
+	\end{align}
+	
+	Note that the value of $f(z_1)$ is independent of $r$. We can say that:
+	
+	\begin{align}
+	\left|\frac{1}{2\pi i }\int \frac{f(\zeta)}{\zeta - z_1} d\zeta\right| \leq \frac{M2\pi r}{2\pi (|z_1-z_0|-r)}
+	\end{align}
+	
+	The RHS goes to zero as $r \to \infty$. And so:
+	
+	\begin{align}
+	f(z) = \frac{1}{2\pi i }\int_C \frac{f(\zeta)}{\zeta - z_1} d\zeta
+	\end{align}
+	
+	But the right hand side is analytic inside $C$. So define:
+	\begin{align}
+	f(z_0) = \frac{1}{2\pi i }\int_C \frac{f(\zeta)}{\zeta - z_0} d\zeta
+	\end{align}
+	
+	Thus, the function $f(z)$ becomes analytic in the whole disk $|z-z_0|<R$. 
+	
+\end{theorem}
+
+\begin{corollary}
+If $f(z)$ has an isolated singularity at $z=0$ and is bounded in some neighborhood of $z_0$, then $\lim_{z \to z_0}f(z)$ exists. This singularity is a \textbf{removable singularity.}
+\end{corollary}
+
+\begin{ex}
+An example of a removable singularity: let $f(z) = \frac{\sin z}{z}$ Since $\lim_{z \to z_0}f(z) = 1$, we can define $f(z)$ to be 1 at $z=0$ and the function becomes entire. 
+
+\textbf{Note:} 
+
+$$f(z) = 1 - \frac{z^2}{3!} + \frac{z^4}{5!} - ... $$
+\end{ex}
+
+\Def{arg1}{If $f9z)$ is defined in the deleted neighborhood of $z_0$, and a positive integer can be found such that:
+$$\lim_{z \to z_0} (z-z_0)^n f(z) = A \neq \begin{cases}
+0 \\ \infty 
+\end{cases}$$
+
+Then we say $f(z)$ has a pole of order $n$ at $z_0$. When $n=1$, the pole is simple.}
+
+\begin{ex}
+$f(z) = \frac{1}{z}$ has a simple pole at $z=0$. 
+\end{ex}
+
+\begin{theorem}
+If $f(z)$ has an isolated singularity at $z = z_0$ and $f(z) \to \infty$ as $z \to z_0$, then $f(z)$ has a pole at $z=z_0$.
+
+\textbf{Proof:}
+If $f(z) \to \infty$ as $z \to z_0$, then $g(z) = 1/f(z)$ is bounded in some deleted neighborhood of $z_0$. By Riemann's theorem, $g(z)$ has a removable singularity at $z_0$ and we can write:
+
+$$g(z) = \frac{1}{f(z)} = a_0 + a_1(z-z_0) + a_2(z-z_0)^2 + ..$$
+
+It follows that $\lim_{z \to z_0}g(z) = a_0$
+
+Now, the coefficients of $g(z)$ cannot all be zero. Suppose that $z_k$ is the first coefficient to be nonzero. Then, 
+
+\begin{align}
+\frac{1}{f(z)(z-z_0)^k} = a_k + a_{k+1}(z-z_0) + a_{k+2}(z-z_0)^2
+\end{align}
+Hence, $\lim_{z \to z_0} (z-z_0)^n f(z) = 1/a_k$ and $f(z)$ has a pole of the order $k$ at $z_0$.
+\end{theorem}
+\begin{corollary}
+If $f(z)$ has a pole at $z=z_0$, then $f(z)$ may be expressed as $f(z) = \sum_{n=-k}^{\infty} b_n(z-z_0)^n$ where $k$ is the order of the pole. 
+\end{corollary}
+
+\Def{Essential Singularity}{An isolated singularity that is neither removable nor a pole is called an isolated essential singularity.}
+
+\begin{theorem}
+If $f(z)$ has an isolated essential singularity $z=z_0$, then $f(z)$ comes arbitrarily close to every complex value in each deleted neighborhood of $z_0$. 
+
+\textbf{Proof:} Assume, that for some complex a, there is some $\epsilon>0$ such that $|f(z)-a|\leq \epsilon$ for all $z$ in $0 |z-z_0|<\delta$. 
+
+Set $g(z) = \frac{1}{f(z)-a}$. Steps show how singularity must either be removable or pole. 
+
+\end{theorem}
+\begin{theorem}[Generalization of previous theorem, Picard]
+In the neighborhood of isolated essential singularities, a function assumes each complex value, with one possible exception, infinitely often!
+\end{theorem}
+
+\begin{ex}
+$f(z) = e^{1/z}$ has an isolated essential singularity at $z=0$ and never assumes a value of zero. Picard says that it must assume every other value in the neighborhood of the origin infinitely often.
+
+Look for values of $z$ close to zero such that $e^{1/z}=i$. First, we note that $|e^{1/z}|=|i|=1$. This is only the case if the real part of $z= 0$. Now, set $z=iy$, $y\in\R$, then $e^{1/(iy)} = e^{i/y} = \cos(1/y) - i \sin (1/y) = i$. We see this is true when $1/y = -\pi/2 + 2 n \pi,\ n \in \mathbb{Z}$. 
+
+Setting $z_n = \frac{1}{i(-\pi/2+2n\pi)}$, we have that $e^{1/z_n} = i$ for each $n$. Ovserve that there are infinitely many $z_n$ in the neighborhood of $z_0=0$. 
+\end{ex}
+
+\Def{Point at infinity singularity (functions)}{A function $f(z)$ has an isolated singularity at $z=\infty$ if $f(z)$ is analytic in the neighborhood $z=\infty$. Note that $f(z)$ is analytic for $|z|>R$ if and only if $f(\frac{1}{z})$is analytic for $\frac{1}{|z|}< \frac{1}{R}$ . Hence, $f(z)$ has an isolated singularity at $z=\infty$ if and only if $f(\frac{1}{z})$ has an isolated singularity at $z=0$. 
+
+Moreover, we can say a singularity is removable or essential according tot he singularity of $f(1/z)$ at $z=0$} 
+
+\begin{ex}
+	$f(z) = z^2+1$. This function has a pole of order 2 at $z=\infty$. This is true since $f(\frac{1}{z}) = \frac{1}{z^2}+1$ has a double pole at $z=0$. 
+\end{ex}
+
 \end{document}
