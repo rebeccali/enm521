@@ -44,7 +44,7 @@
 	\tableofcontents
 
 \section*{Organization}
-These notes are live-TeXed and not guaranteed to be correct. Likewise, sometimes symbols, particularly $m$ and $n$ may be mixed up.
+These notes are live-TeXed and not guaranteed to be correct. Likewise, sometimes symbols, particularly $m$ and $n$ may be mixed up. If you find an error, please contact rebeccali at alum dot mit dot edu. 
 	
 \section*{Organization}
 \begin{itemize}
@@ -698,7 +698,7 @@ If $f(z)$ is analytic in a Domain D and C is a closed contour lying on D, then $
 
 \begin{ex}
 Evaluate $\int_C \frac{1}{z-z_0}dz$ for some arbitrary ugly contour
-Define a nice contour $C_1 : |z-z_0| = \epsilon$ which is a circle completely inside $C$, such taht it does not divide the interior region.
+Define a nice contour $C_1 : |z-z_0| = \epsilon$ which is a circle completely inside $C$, such that it does not divide the interior region.
 
 Now, $f(z) = \frac{1}{z-z_0}$ is analytic in a multiply connected region between $C$ and $C_1$. Hence
 $$\int_{C+C_1}f(z)dz = 0$$
@@ -990,7 +990,7 @@ f(z) &= \log(1+z) \\
 
 % 10/7
 
-\section{Polynomial and Transcendental Functions }
+\Section{Polynomial and Transcendental Functions }
 \begin{theorem}[Cauchy's Inequality]
 Suppose $f(z)$ is analytic inside and on circle $C$ having $z_0$ and radius $r$. If $|f(z)|<M$ on $C$ then:
 
@@ -1062,7 +1062,7 @@ A non-constant entire function assumes each complex value with one possible exce
 Suppose that $P(z) = a_0 + a_1 z + .. + z_m z^m$, for $a_m \neq 0$. Then for $|z| = r$ sufficiently large, 
 
 \begin{align}
-\frac{|a_m}{z} r^m \leq |P(z)| \leq \frac{3 |a_m|}{2} r^m
+\frac{|a_m|}{z} r^m \leq |P(z)| \leq \frac{3 |a_m|}{2} r^m
 \end{align}
 
 \textbf{Note:}
@@ -1217,7 +1217,7 @@ An example of a removable singularity: let $f(z) = \frac{\sin z}{z}$ Since $\lim
 $$f(z) = 1 - \frac{z^2}{3!} + \frac{z^4}{5!} - ... $$
 \end{ex}
 
-\Def{arg1}{If $f9z)$ is defined in the deleted neighborhood of $z_0$, and a positive integer can be found such that:
+\Def{Pole}{If $f(z)$ is defined in the deleted neighborhood of $z_0$, and a positive integer can be found such that:
 $$\lim_{z \to z_0} (z-z_0)^n f(z) = A \neq \begin{cases}
 0 \\ \infty 
 \end{cases}$$
@@ -1273,10 +1273,311 @@ Setting $z_n = \frac{1}{i(-\pi/2+2n\pi)}$, we have that $e^{1/z_n} = i$ for each
 
 \Def{Point at infinity singularity (functions)}{A function $f(z)$ has an isolated singularity at $z=\infty$ if $f(z)$ is analytic in the neighborhood $z=\infty$. Note that $f(z)$ is analytic for $|z|>R$ if and only if $f(\frac{1}{z})$is analytic for $\frac{1}{|z|}< \frac{1}{R}$ . Hence, $f(z)$ has an isolated singularity at $z=\infty$ if and only if $f(\frac{1}{z})$ has an isolated singularity at $z=0$. 
 
-Moreover, we can say a singularity is removable or essential according tot he singularity of $f(1/z)$ at $z=0$} 
+Moreover, we can say a singularity is removable or essential according to the singularity of $f(1/z)$ at $z=0$} 
 
 \begin{ex}
 	$f(z) = z^2+1$. This function has a pole of order 2 at $z=\infty$. This is true since $f(\frac{1}{z}) = \frac{1}{z^2}+1$ has a double pole at $z=0$. 
+	
+	$g(z) = e^z$ has an isolated essential singularity at $z=\infty$
 \end{ex}
+
+\subsection{Entire Functions}
+
+\textbf{Note:} If $f(z) = \sum_{n=0}^k a_nz^n$ which is a polynomial of degree $k$, and as $z \to \infty$, the function blows up. If we look at 
+$$f(\frac{1}{z}) = \frac{1}{z^k}\left(a_k \sum_{n=0}^{k-1} a_n z^{k+n}\right)$$
+
+We see that since these powers are positive on the RHS, there is a pole of order $k$ at $z=0$. 
+
+Hence, $f(z)$ has a pole of order $k$ at $z=\infty$. This is consistent with an earlier result. $f(z) \to \infty$ as $z \to \infty$. 
+
+\textbf{Note: } A function $f(z)$ that has a pole of order k at $z= \infty$ if and only if 
+$$\lim_{z\to\infty} \frac{f(z)}{z^k} = A \neq \begin{cases}
+0 \\ \infty 
+\end{cases}$$
+
+
+Also by an earlier result, for entire functions, if the above condition is satisfied, then $f(z)$ is a polynomial of degree $k$. That is, transcendental entire functions must have essential singularities at the point at infinity. 
+
+\Section{Laurent Series and Residues}
+\subsection{Laurent Series}
+Laurent series are a "generalization" of power series. We have seen that if $f(z)$ has a pole of order $k$ at $z=z_0$, then we find that $f(z)$ has a representation of the form $f(z) = \sum_{n=-k}^\infty a_n(z-z_0)^n$, $(a_{-k} \neq 0)$. 
+
+This is valid in some deleted neighborhood about $z_0$. 
+
+Next, consider the series:
+
+\begin{align}
+f(z) = \sum_{m=-\infty}^{\infty} a_m(z-z_0)^m
+\end{align}
+
+
+First note that 
+
+\begin{align}
+\sum_{n=1}^\infty b_n(z-z_0)^{-n} & = \sum_{m=-\infty}^{-1} a_m (z-z_0)^m
+\end{align}
+
+This represents a function $f_1(z)$ which is analytic for some $|z-z_0|>R_1$. This is because $\sum_{m=1}^\infty b_m(z-z_0)^{-m}$ is analytic for $|z-z_0|^{-1}<R = \frac{1}{R_1}$. 
+
+Next, suppose $f_2(z) = \sum_{n=0}^\infty a_n(z-z_0)^n$ is analytic for $|z-z_0|>R_2$. Now we have broken up our function into circles bounded by $R_1, R_2$. So now we can say that if it so happens that $R_2>R_1$, then we get an annulus, and $f(z) = f_1(z) + f_2(z)$ in the annulus $R_1  < |z-z_0| < R_2$. 
+
+\Def{Laurent Series}{
+Suppose $f(z)$ is analytic in the annulus $R_1  < |z-z_0| < R_2$. 
+The Laurent series of a function $f(z)$ is given by
+
+\begin{align}
+f(z)=\sum _{n=-\infty }^{\infty }a_{n}(z-z_0)^{n}
+\end{align}
+where $a_n$ and $z_0$ are constants, with an defined by a line integral that generalizes Cauchy's integral formula:
+
+\begin{align}
+a_{n}={\frac {1}{2\pi i}}\oint _{C }{\frac {f(\zeta)}{(\zeta-z_0)^{n+1}}}\,d\zeta
+\end{align}
+
+$C$ is any simple closed contour inside of the annulus that makes a complete counterclockwise revolution about $z_0$. 
+
+
+\textbf{Proof:} Much like Taylor's theorem. 
+
+$$f(z) = {\frac {1}{2\pi i}}\oint _{R_1  = |z-z_0| }{\frac {f(\zeta)}{(\zeta-z_0)^{n+1}}}\,d\zeta - {\frac {1}{2\pi i}}\oint _{R_2  = |z-z_0| }{\frac {f(\zeta)}{(\zeta-z_0)^{n+1}}}\,d\zeta $$
+}
+
+\textbf{Note:} A series of positive powers of $z-z_0$ converges inside $R_2  = |z-z_0|$. It is called the \textit{analytic part}. The series of negative powers converges outside $R_1  = |z-z_0|$ and is called the \textit{principal part}. Both are analytic, just have funny names. 
+
+\begin{remark}
+If $R_1 = 0$, the point $z_0$ is an isolated singularity. There are three cases:
+\begin{enumerate}
+	\item The principal part vanishes if and only if the singularity is removable.
+	\item The principal part has finitely many terms if and only if the singularity at $z_0$ is a pole.
+	\item If it is neither of the other cases, the principal part has an infinite number of terms if and only if the singularity at $z_0$ is an essential singularity. 
+\end{enumerate}
+\end{remark}
+
+\textbf{Note:} The Laurent series representation is unique. 
+
+
+\begin{ex}[Laurent Series expansion]
+	Let $f(z) = \frac{1}{z^2 +1} = \frac{1}{(z-i)(z+i)}$. Then, $f$ has simple poles at $z=\pm i$. We note that $f(z)$ is analytic for $0 < |z-i| < 2$. This is an annulus with outer radius almost 2 expanded around $z=i$. And we can expand about $z=i$:
+	
+	\begin{align}
+	\frac{1}{z+i} &= \frac{1}{2i[1 + \frac{z-i}{2i}]} \\
+	&= \frac{1}{2i}\sum_{n=0}^\infty (-1)^n \left(\frac{z-i}{2i}\right)^n
+	\end{align}
+	
+	Hence:
+	\begin{align}
+	f(z) &= \frac{1}{2i(z-i)} \sum_{n=0}^\infty \left(\frac{-1}{2i}\right)^n (z-i)^n,\  \forall z \text{ s.t. } 0 < |z-i| < 2 \\ 
+	&= \sum_{n=-1}^\infty \left(\frac{i}{2}\right)^{n+2} (z-i)^n,\ \forall z \text{ s.t. }0 < |z-i| < 2
+	\end{align}
+	This converges for $0 < |z-i| < 2$. We can also expand about $z=-i$ to get the Laurent series:
+	\begin{align}
+	f(z) = - \sum_{n=-1}^\infty \left(\frac{-i}{2}\right)^{n+2} (z+i)^n,\ \forall z \text{ s.t. }0 < |z+i| < 2
+	\end{align} 
+\end{ex}
+
+
+\subsection{Residues}
+\Def{Residue}{The coefficient $a_{-1}$ is a special case, or the integral of the function in the Laurent series. It is called the residue of $f(z)$ at $z=z_0$. It is such that 
+
+\begin{align}
+\frac{1}{2\pi i}\int_C f(\zeta) d\zeta = a_{-1}
+\end{align}
+
+}
+
+\begin{theorem}[Residue Theorem]
+Suppose that $f(z)$ is analytic inside and on a simple closed contour $C$ except for isolated singularities at $z_1, z_2,..,z_n$ inside $C$. Let the residues at these points be $\alpha_1, \alpha_2,..,\alpha_n$ respectively. Then we can compute the following:
+
+
+\begin{align}
+\int_C f(z) dz = 2 \pi i \sum_{i=1}^n \alpha_i
+\end{align}
+
+\textbf{Proof:}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{cnn}
+	\caption{Contours for proof}
+	\label{fig:cnn}
+\end{figure}
+
+
+By the Cauchy Integral Formula, 
+
+\begin{align}
+\int_C f(z) dz = \int_{C_1} f(z) dz + \int_{C_2} f(z) dz + .. + \int_{C_n} f(z) dz
+\end{align}
+
+We note the terms are residues, so 
+
+\begin{align}
+\int_C f(z) dz = \sum_{k=1}^n \alpha_k 
+\end{align}
+
+
+\end{theorem}
+
+\textbf{Note:} The Cauchy Integral formula is the special case of the residue theorem.
+
+\begin{enumerate}
+	\item Suppose $f(z)$ is analytic inside of a simple closed contour $C$ containing $z_0$. Then :
+	
+	$$g(z) = \frac{f(z)}{z-z_0}$$
+	
+	$g(z)$ has a simple pole at $z=z_0$ provided $f(z)$ is analytic and $f(z_0) \neq 0$. The residue of $g(z)$ at $z_0$ is:
+	
+	$$\lim_{z \to z_0}(z-z_0)g(z) = f(z_0)$$
+	
+	Therefore, $\int_C g(z) dz = 2 \pi i f(z_0)$. Thus concludes the Cauchy Integral Formula. 
+\end{enumerate}
+
+% 10/16
+\textbf{Note:} Suppose $f$ has a pole of order $k$ at $z_0$. To find the residue $a_{-1}$ in terms of $f$, consider:
+
+$$(z-z_0)^k f(z) = a_{-k}+...+a_{-1}(z-z_0)^{k-1}+ g(z)(z-z_0)^k$$
+
+where $g$ is analytic. We differentiate this $k-1$ times and evaluating $z=z_0$, we find that:
+
+$$a_{-1} = \frac{1}{(k-1)!} \lim_{z \to z_0} \dv{{}^{k-1}}{z^{k-1}} (z-z_0)^k f(z)$$
+
+\begin{ex}
+Suppose:
+$$\int_C \frac{z^4-z^3+17z+2}{(z-1)^3}dz$$. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{contour_Ex}
+	\caption{Contour in example.}
+	\label{fig:contourex}
+\end{figure}
+
+We would like to find the residue of this. 
+
+\textbf{Method 1:}
+
+Set $f(z) =  \frac{z^4-z^3+17z+2}{(z-1)^3}$. Then:
+\begin{align}
+a_{-1} &= \frac{1}{2!} \lim_{z\to1} \dv{^2}{z^2} (z-1)^3 f(z) \\ 
+&= 3
+\end{align}
+
+By the residue theorem:
+
+$$\int_C f(z) dz = 2 \pi i  a_{-1} = 6 \pi i$$
+
+
+\textbf{Method 2:}
+
+Let $g(z) =  z^4-z^3+17z+2$. By the Cauchy Integral Formula:
+
+$$g''(z) = \frac{2!}{2\pi i }\int_C \frac{g(z)}{(z-1)^3}dz$$
+\end{ex}
+
+\begin{theorem}
+Let $g(z)$ and $h(z)$ be analytic at $z=z_0$, such that $g(z_0) \neq 0,\ h(z_0) \neq 0$ and $h'(z_0) = 0$. This implies that $f(z) = g(z)/h(z)$ has a simple pole with residue $g(z_0)/h'(z_0)$ at $z=z_0$. 
+
+Note that since $g$, $h$ are analytic at $z=z_0$, they have Taylor series expansions of the form:
+
+$$g(z) = \sum_{n=0}^\infty \gamma_n (z-z_0)^n $$
+$$h(z) = \sum_{n=0}^\infty \delta_n (z-z_0)^n $$
+
+
+By hypothesis, we have that $\gamma_0 \neq 0$. But $\delta_0 = 0$, and $g(z_0) = \gamma_0$ and $h'(z_0) = \delta_1$. Therefore, 
+
+\begin{align}
+f(z) = \frac{g(z)}{h(z)} & = \frac{\sum\gamma_n (z-z_0)^n}{\sum\delta_n (z-z_0)^n} \\ 
+& = \frac{\gamma_0}{\delta_1 (z-z_0)} \frac{1 + \sum\frac{\gamma_n}{\gamma_0} (z-z_0)^n}{\sum\frac{\delta_n}{\delta_1} (z-z_0)^n} 
+\end{align}
+
+Then $f(z)$ has a simple pole at $z=z_0$, which gives us the result that 
+
+\begin{align}
+a_{-1} &= \lim_{z \to z_0}(z-z_0) f(z) \\ 
+& = \frac{\gamma_0}{\delta_1}
+\end{align}
+\end{theorem}
+
+\subsection{Non-isolated Singularities }
+So far, everything we have done only applies to \textit{isolated singularities}. What about non-isolated singularities? Consider the function:
+
+$$f(z) = \frac{1}{\sin(1/z)}$$
+
+This has a singularity at $z=0$ since $\lim_{z\to0} f(z)$ does not exist. Furthermore, the points $z_n = \frac{1}{n\pi}$ are also singularities of $f(z)$. Since $z_n \to 0$ as $n \to \infty$, each deleted neighborhood of the origin contains a singularity of $f(z)$. 
+
+
+Consider an additional example of a branch point. Let $f(z) = \log z$. This has a branch point at $z=0$. From this, we can define a \textit{branch} of $f$ such as the \textit{principal branch}, $\text{Log } z$, which is the single-valued in the cut plane (branch cut on the negative real axis.) If we exclude the origin, is $\text{Log }z$ analytic? Is it analytic in a deleted neighborhood around the branch point? No, because it is discontinuous on the branch cut (negative real axis). The origin is \textit{not} an isolated singularity. A branch point is \textit{never} an isolated singularity.
+
+\Section{Real Integrals}
+\subsection{Evaluation of Real Integrals}
+\begin{ex}
+Evaluate 
+\begin{align}
+\int_0^\infty \frac{\sin x}{x} dx 
+\end{align}
+This is kind of hard, so let's just exploit the $e^{iz} = \sin z + i \cos z$. 
+Consider $\int_C \frac{e^{iz}}{z} dz$, where $C$ is a semicircular annulus enclosing the positive imaginary plane excluding the origin. It has an inner radius of $\epsilon$ and outer radius of $R$, so we can characterize it with $z=re^{i\theta}$, where $r \in [\epsilon, R]$ and $\theta \in [0, \pi]$ This has no singularities, so it equals zero. 
+
+Also:
+\begin{align}
+\int_C \frac{e^{iz}}{z} dz & = 0 \text{ (no singularities, so zero)}\\ 
+&= \int_{\epsilon}^R \frac{e^{ix}}{x}dx + \int_0^\pi \frac{e^{iRe^{i\theta}}}{Re^{i\theta}} iRe^{i\theta} d\theta + \int_{+R}^{+\epsilon}\frac{e^{-ix}}{x}dx + \int_{\pi}^{0} ie^{i\epsilon i e^{i\theta}} d\theta \\ 
+&= \int_{\epsilon}^{R} \frac{e^{ix}-e^{-ix}}{x}dx + i \int_{0}^{\pi} e^{iRe^{i\theta}} d\theta - i \int_{0}^{\pi}e^{i\epsilon i e^{i\theta}} d\theta \\ 
+&= 2 i \int_{\epsilon}^{R} \frac{\sin x}{x}dx + i \int_{0}^{\pi} e^{iRe^{i\theta}} d\theta - i \int_{0}^{\pi}e^{i\epsilon i e^{i\theta}} d\theta \\ 
+\end{align}
+
+Now consider that:
+\begin{align}
+\left|\int_{0}^\pi e^{iRe^{i\theta}} d\theta \right| &\leq \int_{0}^\pi \left|e^{iR \cos \theta - R \sin \theta } \right|d\theta \\ 
+& = \int_{0}^\pi e^{-R\sin\theta} d\theta  \\ 
+& = 2 \int_{0}^{\pi/2} e^{-R\sin\theta} d\theta \text{ (integral of halves are equal, so only need to do 2*half integral)}\\ 
+& \leq  2 \int_{0}^{\pi/2} e^{-\frac{2R}{\pi}\theta} d\theta \text{ (linear function vs sine function)} \\ 
+& = \frac{\pi }{R}(1-e^{-R}) 
+\end{align}
+
+This is true since $|e^{iR \cos \theta}| = 1$. Also $\frac{\pi }{R}(1-e^{-R}) \to 0$ as $R \to \infty$.
+
+Taking the limit as $R \to \infty$ for our original problem, we get that:
+
+\begin{align}
+\int_0^\infty \frac{\sin x}{x} dx  &= \frac{1}{2} \int_{0}^{\pi} e^{i \epsilon e^{i \theta }} d\theta 
+\end{align}
+
+As $\epsilon \to \infty$ , $\int_{0}^{\pi} e^{i \epsilon e^{i \theta }} d\theta = \pi$. In conclusion, we get that:
+\begin{align}
+\int_0^\infty \frac{\sin x}{x} dx  &= \frac{pi}{2}
+\end{align}
+\end{ex}
+
+\begin{ex}
+Consider with $a,b \in \R $ and $a<|b|$, 
+\begin{align}
+\int_0^{2\pi} \frac{1}{a+b \cos \theta} d\theta
+\end{align}
+
+We set $z=e^{i\theta}$ and let $C$ be the unit circle. Thus:
+
+\begin{align}
+\int_0^{2\pi} \frac{1}{a+b \cos \theta} d\theta &= \int_C \frac{1}{iz[a+\frac{b}{2} (z+\frac{1}{z})]} d\theta
+\end{align}
+
+
+TODO
+
+We can find the residue at $z$: 
+\begin{align}
+\lim_{z \to z_1} (z-z_1) f(z) = \frac{b}{2\sqrt{a^2-b^2}}
+\end{align}
+
+Hence, by the residue theorem, 
+
+\begin{align}
+\int_0^{2\pi} \frac{1}{a+b \cos \theta} d\theta &= \frac{2\pi i b}{2\sqrt{a^2-b^2}} \left(\frac{2}{bi}\right) \\ 
+&= \frac{2\pi }{\sqrt{a^2-b^2}} 
+\end{align}
+
+
+\end{ex}
+
 
 \end{document}
