@@ -1579,5 +1579,170 @@ Hence, by the residue theorem,
 
 \end{ex}
 
+\begin{ex}
+Find the value of:
+$$\int_0^\infty \sin u^2 du$$
+
+\textbf{Solution:}
+We note that $F(x) = \int_0^x \sin u^2 du$. 
+
+Let $f(z) = e^{iz^2}$ and $C$ be a contour that is a sector of a circle with an angle 0 to $pi/4$ and radius R. So by Cauchy's theorem, since there are no singularities in the contour:
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{sector_contour}
+	\caption{Contour for Example}
+	\label{fig:sectorcontour}
+\end{figure}
+
+$$\int_C e^{iz^2} dz=0$$
+
+
+
+We want to relate this to our original integral. We can break up all parts of our contours
+\begin{align}
+\int_0^R e^{ix^2} dx + \int_0^{\pi/4} e^{i R^2 e^{2i\theta}} d\theta + \int_R^0 e^{i(te^{i\pi/4})^2} e^{i\pi/4} dt = 0 
+\end{align}
+
+Since we've chosen the angle $\pi/4$, we can have the nice form of the gaussian integral on the RHS: 
+
+\begin{align}
+\int_0^R e^{ix^2} dx + \int_0^{\pi/4} e^{i R^2 e^{2i\theta}} d\theta = e^{i\pi/4}  \int_0^R e^{-t^2} dt
+\end{align}
+
+We note te RHS can also be computed using contour integration. Looking at the second term, utilizing $e^{i2\theta} = \cos 2\ theta + i \sin 2 \theta $:
+
+\begin{align}
+\left| \int_0^{\pi/4} e^{i R^2 e^{2i\theta}} d\theta \right| &\leq R \int_0^{\pi/4} e^{-R^2 \sin 2 \theta } d\theta \\
+&= \frac{R}{2} \int_{0}^{\pi/2} e^{-R^2 \sin \theta } d\theta \text{   (change of variables)}\\ 
+& \leq \frac{R}{2} \int_{0}^{\pi/2} e^{-R^2 \theta /\pi^2} d\theta \\ 
+& = \frac{R}{2} \frac{\pi}{2R^2} (1-e^{-R^2}) \\ 
+& = \frac{\pi}{4R}(1-e^{-R^2})
+\end{align}
+
+Finally, if we take the limit, we get zero: $\lim_{R\to \infty } \frac{\pi}{4R}(1-e^{-R^2}) = 0$.
+
+
+Now considering the integral again:
+
+\begin{align}
+\int_0^R e^{ix^2} dx = e^{i\pi/4}  \int_0^R e^{-t^2} dt
+\end{align}
+
+However, we note that $\int_0^\infty e^{-t^2} dt = \sqrt{\pi}/2$, which is a \textit{Gaussian Integral.}
+And so:
+
+\begin{align}
+\int_{0}^{\infty} (\cos x^2 + i \sin x^2  )dx = \frac{1}{\sqrt{2}} (1+i)\sqrt{\pi}/2
+\end{align}
+
+Taking just the real parts or imaginary parts to get the integrals of $\sin x^2$ or $\cos x^2$. 
+
+\textbf{Note:} We can also compute a \textit{gaussian integral} using contour integration. Let $a=\sqrt{\pi i} = (1+i) \sqrt{\pi/2}$ and:
+
+$$g(z) = \frac{e^{-z^2}}{1+e^{-2az}}$$
+
+The contour we are integrating over is: 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{box_c}
+	\caption{Contour for Example. The Right and left sides go to zero, so subtract top from bottom to get the value of the integral over the red contour.}
+	\label{fig:boxc}
+\end{figure}
+
+\begin{align}
+\int_C g(z) dz = 2\pi i \Res[g(z=a/2)]
+\end{align}
+\end{ex}
+
+\begin{ex}
+Consider evaluating:
+\begin{align}
+\int_0^\infty \frac{x^{\lambda-1 }}{1+x} dx,\ \lambda \in (0,1)
+\end{align}
+
+Consider $f(z) = \frac{z^{\lambda-1}}{1+z}$, with branch cut $0 < \arg z < 2 \pi $. There is  a branch cut from 0 to $\infty$, so let us take the branch cut to the positive reals, such that we do not intersect our pole at $z=-1:$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{mycontour}
+\caption{}
+\label{fig:branchc}
+\end{figure}
+
+$f(z)$ has a simple pole at $z=-1$ with a residue:
+
+\begin{align}
+\Res[f, -1] = \lim_{z \to -1} (1+z)f(z) = e^{\pi i (\lambda - 1)} 
+\end{align}
+
+We pick the contour which is the whole plane excluding the branch cut $C = C_1 + C_2 + C_3 + C_4$. By the residue theorem:
+
+\begin{align}
+\int_C \frac{z^{\lambda-1}}{1+z} dx = 2 \pi i e^{i \pi (\lambda-1)} \\ 
+ = \int_{C_1} + \int_{C_2} + \int_{C_3} + \int_{C_4}
+\end{align}
+
+Considering the $C_1$ integral, let $\delta, \epsilon \to 0$, and $R \to \infty$. 
+
+\begin{align}
+\int_{C_1}\frac{z^{\lambda-1}}{1+z} dx &= \int_{C_1} \frac{(x+i\delta)^{\lambda-1}}{1+(x+i\delta)} dx \\ 
+& = \int_\epsilon^R \frac{x^{\lambda-1 }}{1+x} dx \text{ (as $\delta$ to 0)} \\ 
+\end{align}
+
+Also we note that:
+\begin{align}
+\int_{C_1}\frac{z^{\lambda-1}}{1+z} dx &= \int_R^\epsilon \frac{(x-i\delta)^{\lambda-1}}{1+(x-i\delta)} dx \\ 
+& = \int_R^\epsilon \frac{e^{i2\pi(\lambda-1)}}{1+x} dx \text{ (as $\delta$ to 0)} \\ 
+& = -e^{i2\pi\lambda} \int_R^\epsilon \frac{x^{(\lambda-1)}}{1+x} dx \text{ (as $\delta$ to 0)} 
+\end{align}
+
+
+We still have to deal with the other integrals. Let $z=Re^{i\theta}$
+
+\begin{align}
+\left| \int_{C_2} \frac{z^{\lambda-1}}{1+z} dz\right| &= \int_0^{2\pi} \frac{(Re^{i\theta})^{\lambda-1} i Re^{i\theta}}{1 + Re^{i\theta}} d\theta \\ 
+&\leq  R^\lambda \left| \frac{1}{R-1}\right| \\
+& = \frac{2\pi R^\lambda}{R-1}
+\end{align}
+
+As we take $R \to \infty$:
+\begin{align}
+\lim_{R\to \infty } \left| \int_{C_2} \frac{z^{\lambda-1}}{1+z} dz\right| &\leq  0
+\end{align}
+
+
+Finally, we look at $C_4$:
+
+\begin{align}
+\left| \int_{C_4} \frac{z^{\lambda-1}}{1+z} dz\right| &= \left|\int_0^{2\pi } \frac{(\epsilon e^{i \theta(\lambda -1)})\epsilon e^{i \theta}}{1 + \epsilon e^{i \theta}} d\theta \right| \\ 
+& \leq \frac{\epsilon^\lambda}{1-\epsilon} \int_{0}^{2\pi }d\theta = 2 \pi \frac{\epsilon^\lambda}{1-\epsilon}
+\end{align}
+
+This goes to 0 as $\epsilon \to 0$. Now:
+
+\begin{align}
+\int_C \frac{z^{\lambda-1}}{1+z} dx = 2 \pi i e^{i \pi (\lambda-1)} \\ 
+= \int_{C_1} +\int_{C_3} + \int_{C_2} +  \int_{C_4} \\ 
+=  (1-e^{i2\pi\lambda}) \int_0^\infty \frac{x^{(\lambda-1)}}{1+x} dx+ 0 + 0
+\end{align}
+
+Finally, we see that: 
+\begin{align}
+\int_0^\infty \frac{x^{(\lambda-1)}}{1+x} dx = \frac{2\pi i e^{i \pi \lambda }}{e^{i2 \pi \lambda } - 1} \\ 
+= \pi \left(\frac{2i}{e^{i \pi \lambda } - e^{-i \pi \lambda }}\right)
+= \frac{\pi}{\sin \pi \lambda }
+\end{align}
+
+\end{ex}
+
+These ideas, while useful for evaluating real integrals, can also be used to generate series representations for functions with poles. Or, we can do representations for functions with zeros. If a function has zeros which converges to a limit point, the function must be a zero function. 
+
+However, if the series of zeros do not converge, this identity theorem does not apply. We can use the Weirstrass Factorization theorem to generate an expression for the function in terms of the values of the zeros. The expansion will be dependent on the zeros of the function:
+
+$$\sin z = \sum_{n=-\infty}^{\infty}(f(zeros))$$
+
+
 
 \end{document}
