@@ -19,3 +19,7 @@
 \contentsline {subsection}{\numberline {7.3}Non-isolated Singularities }{31}{subsection.7.3}
 \contentsline {section}{\numberline {8}Real Integrals}{31}{section.8}
 \contentsline {subsection}{\numberline {8.1}Evaluation of Real Integrals}{31}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Special Contour Integrals}{37}{subsection.8.2}
+\contentsline {section}{\numberline {9}Special Functions}{37}{section.9}
+\contentsline {subsection}{\numberline {9.1}Gamma Functions}{37}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Beta, Digamma, Riemann Zeta functions}{41}{subsection.9.2}

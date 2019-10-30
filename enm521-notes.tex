@@ -1743,6 +1743,264 @@ However, if the series of zeros do not converge, this identity theorem does not 
 
 $$\sin z = \sum_{n=-\infty}^{\infty}(f(zeros))$$
 
+\subsection{Special Contour Integrals}
+\begin{lemma}[Jordan's]
+Let $f(z) = e^{iaz}g(z),\ a>0$ be a continuous function defined on a \textbf{semi-circular} counter-clockwise contour in the upper half plane centered around the origin:
 
+$$C_r = \{Re^{i\theta}| \theta \in [0, \pi]\}$$
+
+Then we can say that:
+
+\begin{align}
+\left|\int_{C_R}f(z) dz\right| \leq \frac{\pi}{a} M_R
+\end{align}
+
+where $M_R := \max_{\theta \in [0,\pi]}|g(Re^{i\theta})|$ 
+\end{lemma}
+
+Alternative Jordan's lemma:
+
+If the only singularities in $g(z)$ are poles, $a>0$, and $g(z) \to 0$ as $R \to \infty$, then 
+
+$$\lim_{R \to \infty} \int_{C_R}e^{iaz}g(z) dz = 0$$
+
+\begin{lemma}[Indentation Lemma]
+Let $f$ have a simple pole at $a$ with a residue $\Res[f;a]$. Then given an upper half clockwise semi-circular contour around the pole $C_\epsilon$, the resulting contour is:
+
+\begin{align}
+\lim_{\epsilon\to0} \int_{C_\epsilon} f(z) dz = -\Res[f;a]\pi i
+\end{align}
+\end{lemma}
+
+% 10-30
+
+\section{Special Functions}
+\subsection{Gamma Functions}
+\textbf{Note:}
+\begin{align}
+e^{-t} = \lim_{n\to\infty}(1-\frac{t}{n})^n
+\end{align}
+
+Let us define a Gamma function as:
+
+\begin{align}
+\Gamma(z;n) := \int_{0}^{n} (1-\frac{t}{n})^n t^{z-1} dt  
+\end{align}
+
+Then:
+\begin{align}
+\lim_{n\to\infty} \Gamma(z;n) = \Gamma(z)
+\end{align}
+
+Now, let $t = m \tau$, $t^{z-1}dt = n^z \tau^{z-1} d\tau$. Then:
+
+\begin{align}
+\Gamma(z;n) = n^z \int_{0}^{1} (1-\tau)^n \tau^{z-1} d\tau
+\end{align}
+
+By I.B.P.:
+
+
+\begin{align}
+\Gamma(z;n) &= n^z \left[ \frac{1}{z} \left((1-\tau)^n \tau^{z}\right)\right]_0^1 + \frac{n}{z}\int_{0}^{1} (1-\tau)^{n-1} \tau^{z} d\tau \\ 
+&= n^z \left(\frac{n}{z}\int_{0}^{1} (1-\tau)^{n-1} \tau^{z} d\tau\right) \\
+&= n^z \left(\frac{n}{z} \frac{n-1}{z+1}\int_{0}^{1} (1-\tau)^{n-2} \tau^{z+1} d\tau\right) \\
+&...\\
+&= \frac{n(n-1)...(2)(1)}{z(z+1)...(z+n-1)} n^z \int_{0}^{1} \tau^{z+n-1} d\tau 
+\end{align}
+
+We can then conclude that $\Gamma(z)$ converges on:
+
+\begin{align}\label{eq:gamman}
+\Gamma(z) &= \lim_{n\to\infty} \frac{n! n^z}{z(z+1)...(z+n-1)} \\ 
+ &= \lim_{n\to\infty} \frac{(n-1)! (n-1)^z}{(z)_n} 
+\end{align}
+
+\textbf{Note:}
+\begin{align}
+\Gamma(z) &= \lim_{n\to\infty} \left(\frac{n-1}{n} \right)^z   \frac{(n-1)! (n)^z}{(z)_m} \\
+&= \lim_{n\to\infty}  \frac{(n-1)! (n)^z}{(z)_n} 
+\end{align}
+
+Recall that $(z)_n = \frac{\Gamma(z+n)}{\Gamma(z)}$, And thus with some algebraic manipulation:
+
+\begin{align}
+\Gamma(z) &= \lim_{n\to\infty}\frac{(n-1)!n^z}{\Gamma(z+n)}\Gamma(z) \\ 
+1 &= \lim_{n\to\infty}\frac{(n-1)!n^z}{\Gamma(z+n)}
+\end{align}
+
+Now we see:
+
+\begin{align}
+\Gamma(z) &= \lim_{n\to\infty} \frac{(n)! (n+1)^z}{(z)_{n+1}} \\ 
+ &= \frac{1}{z} \lim_{n\to\infty} \frac{(n)! (n+1)^z}{(z+1)...(z+n)} \\ 
+  &= \frac{1}{z} \lim_{n\to\infty} \frac{((n+1)^z}{(1+z)(1+z/2)...(1+z/n)} \\ 
+  &= \frac{1}{z} \prod_{k=1}^{\infty} \frac{(1+\frac{1}{k})^z}{(1+\frac{z}{k})}
+\end{align}
+
+This is shown by \textbf{Gauss}. This infinite product (take the log) converges and therefore represents an analytic function for $z \neq 0, -1, -2,...$. The function also provides analytic continuation into $\Re{z} \leq 0$. 
+
+\Def{Gamma Function}{
+A Gamma function is a special function of the form:
+\begin{align}
+\Gamma (z)=\int_{0}^{\infty}x^{z-1}e^{-x}\,dx
+\end{align}
+
+If $z$ is complex with positive real part, then the integral converges absolutely, and $\gamma(n) = (n-1)!$ for all positive integer $n$.
+
+This formulation allows us to extend the idea of factorials to the complex numbers.
+}
+
+\Def{Euler-Mascheroni Constant}{
+Let $s_n = \sum_{k=1}^n \frac{1}{k}$. This diverges as $n\to\infty$. However, 
+
+\begin{align}
+\lim_{n\to\infty}(s_n - \log n) = \gamma = 0.5772...
+\end{align} 
+
+We define the Euler-Mascheroni Constant as $\gamma$. 
+We can also define the constant $\gamma$ as:
+
+\begin{align}
+\gamma =  \int_0^\infty e^{-t} \left[\frac{1}{1-e^{-t}}-t\right]dt
+\end{align}
+}
+
+Now, from Equation \ref{eq:gamman}, we can see that:
+
+\begin{align}
+\frac{1}{\Gamma(n)}  &= z \lim_{n\to\infty} m^{-z}\frac{(z+1)...(z+n-1)}{m!} \\ 
+& = z \lim_{n\to\infty} (1+\frac{z}{1}) (1+\frac{z}{2}) ... (1+\frac{z}{n}) e^{-z\log m} \\ 
+&  = z \lim_{n\to\infty} \left[\prod_{k=1}^n (1+\frac{z}{k}) e^{-z/k}\right] e^{z(1 + \frac{1}{2} + ... + \frac{1}{m} - \log m )}
+\end{align}
+
+We note that $1 + \frac{1}{2} + ... + \frac{1}{m} - \log m  \to \gamma$, so:
+\begin{align}
+\frac{1}{\Gamma(n)}  = z e^{\gamma z} \lim_{n\to\infty} \left[\prod_{k=1}^n (1+\frac{z}{k}) \right]
+\end{align}
+
+This is provided by Weirstrass. This provides a factorization of $1/\Gamma(z)$ which is entire, with first order zeros only with $\Gamma(z)$ that has poles $z = 0, -1, -2...$. We note that since $1/\Gamma(z)$ has no poles, $\Gamma(z)$ can have no zeros!
+
+Now, recall that:
+
+\begin{align}
+\sin \pi z = \pi z \prod_{n=1}^\infty (1-\frac{z^2}{n^2})
+\end{align}
+
+On the other hand, we have shown that:
+
+\begin{align}
+\sin \pi z &= \frac{\pi}{\Gamma(z) \Gamma(1-z)} \\ 
+&= \frac{-\pi}{z \Gamma(z) \Gamma(-z)} \\ 
+&= \frac{\pi z^2}{z} \prod_{k=1}^\infty (1+\frac{z}{n})(1-\frac{z}{n})
+\end{align}
+
+\begin{theorem}[Contour Integral Representation (Hankel)]
+Consider a contour $C$:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{hankel_contour}
+	\includegraphics[width=0.7\linewidth]{hankel2}
+	\caption{The Hankel contour in general, and then parameterized by a radius E or $\epsilon$. Call the circle contour $C_\epsilon$ or $\gamma_\epsilon$}
+	\label{fig:hankelcontour}
+\end{figure}
+
+
+
+The contour lets us take a branch cut along the negative real axis. We let $\zeta = e^{-\pi r} = r$ on the top side, and $\zeta = e^{-i\pi}r = -r$
+
+
+\begin{align}
+I &= \int_{C} e^{\zeta} \zeta^{-z} d\zeta \\ 
+&= \int_{\infty}^{\epsilon} e^{-r} (re^{-i\pi})^{-z} e^{-i\pi}dr + \int_{C_\epsilon} f(\zeta) + \int_{\epsilon}^{\infty} e^{-r} (re^{i\pi})^{-z} e^{i\pi}dr
+\end{align}
+
+As $\epsilon \to \infty$, $\int_{C_\epsilon} f(\zeta) \to 0$. Therefore:
+
+\begin{align}
+I &= \int_{0}^{\infty} e^{-r} r^{-z} e^{i\pi z}dr  - \int_{0}^{\infty} e^{-r} r^{-z} e^{-\i pi z} dr \\ 
+&= 2 i \sin \pi z  \int_{0}^{\infty} e^{-r} r^{-= z} e^{i\pi z}dr \\ 
+&=  2 i \sin \pi z \Gamma(1-z) \\ 
+&=  2 i \sin \pi z \frac{\Gamma(z)\Gamma(1-z)}{\Gamma(z)}
+&= { 2 i \sin \pi z }{\Gamma(z) \sin \pi z}
+&= { 2 i }{\Gamma(z) } \\ 
+\end{align}
+
+We then rearrange to get:
+
+\begin{align}
+\frac{1}{\Gamma(z)} = \frac{1}{2\pi i } \int_{C} e^\zeta \zeta ^{-z} d\zeta 
+\end{align}
+
+This form is valid for any value of $z$.
+\end{theorem}
+
+\subsection{Beta, Digamma, Riemann Zeta functions}
+
+\Def{Beta Function}{
+We define the beta function as:
+\begin{align}
+ \mathrm{B} (x,y)=\int _{0}^{1}t^{x-1}(1-t)^{y-1}\,dt
+ = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
+  \end{align}
+}
+
+\Def{Digamma Function}{
+The Digamma function (or Psi Function) is
+\begin{align}
+\Psi (z) = \frac{\Gamma'(z)}{\Gamma(z)} = \dv{z} \left(\log \Gamma(z)\right)
+\end{align}
+
+This is meneomorphic. It has simple poles at $z=0, -1, -2..$ The residue at each pole is $-1$. 
+
+Now, recall
+
+\begin{align}
+\log \Gamma(z) = -\log z - \gamma z - \sum_{k=1}^\infty \left[\log(1+\frac{z}{k}) - \frac{z}{k}\right]
+\end{align}
+
+Then, 
+
+\begin{align}
+\Psi(z) = - \frac{1}{z} - \gamma  - \sum_{k=1}^\infty \left[\frac{1}{k(1+\frac{z}{k})} - \frac{1}{k}\right]
+\Psi(z) = - \frac{1}{z} - \gamma  + \sum_{k=1}^\infty \frac{z}{k(z+k)}
+\end{align}
+
+This has simple poles at $z=0,-1,-2,...$. 
+
+We note that $\Psi(1) = -\gamma$. \textit{("It's true by the way!"}) 
+
+Additionally, recall that:
+\begin{align}
+\Gamma(z+1) = \Gamma(z) +\frac{1}{z}
+\end{align}
+
+By direct differentiation:
+\begin{align}
+\frac{\Gamma'(z+1)}{\Gamma(z+1)} = \frac{\Gamma(z) + z \Gamma'(z)}{z \Gamma(z)} = \frac{1}{z} + \gamma(z)
+\end{align}
+
+Then we can compute:
+\begin{align}
+\Psi(1) = -\gamma\\
+\Psi(2) = 1-\gamma \\ 
+\Psi(3) = \frac{1}{2} + 1 - \gamma \\
+...\\
+\Psi(n+1) = \sum_{k=1}^{n} \frac{1}{k} - gamma
+\end{align}
+
+We see that $\Psi(n+1) \sim \log n$. 
+}
+
+\Def{Riemann Zeta Function}{
+\begin{align}
+\zeta(s) = \sum_{n=0}^{\infty} \frac{1}{(1+n)^\zeta} \\ 
+\frac{1}{\zeta(s)} = \prod_{p} (1-\frac{1}{p^s}),\ p \in \text{Primes}
+\end{align}
+
+The poles of the Riemann Zeta Function are $-2, -4...$ 
+}
 
 \end{document}
+
+
