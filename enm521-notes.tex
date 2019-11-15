@@ -35,6 +35,17 @@
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 
+\newcommand{\eq}[1]{\begin{align*}
+	#1
+	\end{align*}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
 \title{ENM 521 - MechE Math part 2}
 \author{Rebecca Li}
 \date{Fall 2019}
@@ -168,9 +179,9 @@ One way to imagine this is to consider the \textit{stereographic projection} (Fi
 
 \subsection{Real and imaginary pairs of Z}
 
-\begin{align}
+\begin{align*}
 	f(z) = u(x,y)+iv(x,y)
-\end{align}
+\end{align*}
 
 The continuity of $f(z)$ is continuous at $z = x_0 + iy_0$ $\iff u(x,y)$ and $v(x,y)$ are continuous at $x_0, y_0$ 
 
@@ -219,10 +230,10 @@ $$ F'(z) = f'(g(z))g'(z)$$
 
 Suppose that $h \to 0$ along the real axis. Then:
 
-\begin{align}
+\begin{align*}
 \frac{f(z+h) - f(z)}{h} & = \frac{u(x+h, y) + iv(x+h,y) - u(x,y) - iv(x,y)}{h}\\
 & = \frac{u(x+h, y) - u(x,y) }{h} + i \frac{v(x+h,y) v(x,y)}{h}
-\end{align}
+\end{align*}
 
 If f is differentiable at z = x+iy, both limits (as $h \to 0$) must exist and:
 
@@ -230,10 +241,10 @@ $$f'(z) = \frac{\partial u}{\partial x} + i  \frac{\partial v}{\partial x}$$
 
 Next, suppose that h = ik, $k \in \R$.
 
-\begin{align}
+\begin{align*}
 \frac{f(z+h) - f(z)}{h} & = \frac{u(x, y+k) + iv(x,y+k) - u(x,y) - iv(x,y)}{ik}\\
 & = \frac{u(x, y+k) - u(x,y) }{ik} + i \frac{v(x,y+k) v(x,y)}{ik}
-\end{align}
+\end{align*}
 
 Since f is differentiable, both limits as $k \to 0$ must exist. We can conclude that:
 
@@ -472,10 +483,10 @@ Consider $s_m = \sum_{k=1}^m r^{k-1} = \frac{1-r^m}{1-r}$. This is a geometric s
 
 \textbf{Proof:}
 
-\begin{align}
+\begin{align*}
 (1-r)\sum_{k=1}^m r^{k-1} &= \sum_{k=1}^m r^{k-1} - r^k \\ 	
 & = 1-r^m
-\end{align}
+\end{align*}
 
 Hence a series $\sum_{m=1}^\infty a_m$ converges absolutely if ther eexists a constant $r \in [0,1)$ and a real number M such that $|a_m| < M r^m,\ m>M$
 \end{theorem}
@@ -529,10 +540,10 @@ Then the series $\sum_{m=1}^\infty a_m$ converges absolutely if $L<1$ and diverg
 Case 1: \\ 
 If $L<1$, choose $r$ such that $L<r<1$. For all but a finite number of m, we have that:
 
-\begin{align}
+\begin{align*}
 |a_m|^{1/m} & < r \\ 
 |a_m|&  < r^m  
-\end{align}
+\end{align*}
 
 This is true since by the definition of $L$, this must be true. 
 
@@ -579,11 +590,11 @@ The provides a necessary condition for uniform convergence.
 \begin{ex}
 $f_m = \frac{1}{1_mz}$. This converges pointwise to 
 
-\begin{align}
+\begin{align*}
 f = \begin{cases}
 0 & if\ z\neq 0 \\ 1 & if\ z = 0 \\ 
 \end{cases}
-\end{align}
+\end{align*}
 
 Since $f$ is not continuous, the convergence cannot be uniform in any region containing the point $z=0$. 
 \end{ex}
@@ -598,10 +609,10 @@ $$s_m(z) = \sum_{k=1}^m f_m(z)$$
 
 For values for which  $\lim_{m \to \infty }s_m(z)$ exists, we say the series converges. 
 
-\begin{align}
+\begin{align*}
 f(z) &= \lim_{m \to \infty } \sum_{k=1}^m f_k(z) \\ 
 & = \sum_{k=1}^\infty f_k(z)
-\end{align}
+\end{align*}
 
 Note, this is different than before. Now $f(z)$ is the limit of the sum, not just the limit.
 
@@ -610,9 +621,9 @@ $\sum\left|f_m(z)\right|$ converges.
 
 \begin{theorem}
 The series $\sum_{m=1}^\infty f_m(z)$ converges uniformly on a set $E$ if and only if to each $\epsilon$, there corresponds an integer $N = N(\epsilon)$, such that for all $z \in E$, 
-\begin{align}
+\begin{align*}
 \left|\sum_{k=m+1}^{m+p}f_k(z) \right| < \epsilon,\ m>N,\ p = 1,2,3..
-\end{align}
+\end{align*}
 
 
 By the triangle inequality, this also implies absolute convergence. 
@@ -740,18 +751,18 @@ Roughly speaking, if $z_0$ in the integral, then $\frac{f(z)}{z-z_0}dz = 2\pi i 
 
 Given $\epsilon>0$, construct a circle $C_1: |z-z_0|=r$. And small enough $r$ such that $|f(z) - f(z_0)|<\epsilon$ for all $z$ on $C_1$. By Cauchy's theorem:
 
-\begin{align}
+\begin{align*}
 \int_C \frac{f(z)}{z-z_0}dz &= \int_{C_1} \frac{f(z)}{z-z_0}dz\\ 
 & = \int_{C_1} \frac{f(z_0)}{z-z_0}dz +  \int_{C_1} \frac{f(z) - f(z_0)}{z-z_0}dz\\
  & = 2 \pi i f(z_0) +  \int_{C_1} \frac{f(z) - f(z_0)}{z-z_0}dz
-\end{align}
+\end{align*}
 
 However:
 
-\begin{align}
+\begin{align*}
 \left|\int_{C_1} \frac{f(z) - f(z_0)}{z-z_0}dz \right| &\leq \int_{C_1} \frac{|f(z) - f(z_0)|}{|z-z_0|}dz \\
 &< \int_{0}^{2\pi} \frac{\epsilon}{r} |dz| = \epsilon 2 \pi 
-\end{align}
+\end{align*}
 
 This goes to zero as $\epsilon \to 0$. Thus, $\int_C \frac{f(z)}{z-z_0}dz = 2 \pi i f(z_0)$
 
@@ -765,10 +776,10 @@ $$f^{(n)}(z_0) = \frac{n!}{2\pi i } \int_C \frac{f(z)}{(z-z_0)^{n+1}}dz$$
 \textbf{Proof:}
 Use the previous result with the definition of the derivative. Assume that $h$ is small enough such that $z_0+h$ is inside $C$. Then:
 
-\begin{align}
+\begin{align*}
 \frac{f(z_0+h) - f(z_0)}{h}& = \frac{1}{2\pi i h } \left(\int_C \frac{f(z+h)}{z-z_0-h} dz - \int_C \frac{f(z)}{z-z_0}dz \right)\\
 &= \frac{1}{2\pi i } \int_C \frac{f(z)}{(z-z_0)(z-z_0-h)} dz
-\end{align}
+\end{align*}
 
 As $h \to 0$, we see $f'(z_0) = \frac{1}{2\pi i h } \int_C \frac{f(z)}{(z-z_0)^2} dz$. However, it is hard to take the limit of an integral so this is hard, so we have to argue this.
 \end{theorem}
@@ -849,27 +860,27 @@ $$\rho(z) = \frac{1}{2 \pi} \int_{C_1} \frac{\rho(\zeta)}{\zeta - z} d\zeta$$.
 
 We set $|z-z_0| = r$, then $ r = |z-z_0|  < |\zeta - z_0| = \rho$. Additionally, 
 
-\begin{align}
+\begin{align*}
 \frac{1}{\zeta - z} &= \frac{1}{\zeta - z_0 - (z - z_0)}\\
 &= \frac{1}{\zeta - z_0} \frac{1}{1-\frac{z-z_0}{\zeta - z_0}}\\
 &= \frac{1}{\zeta - z_0} \left[1 + \frac{z-z_0}{\zeta - z_0} + \left(\frac{z-z_0}{\zeta - z_0}\right)^2 + .. + \left(\frac{z-z_0}{\zeta - z_0}\right)^{n-1} + \sum_{k=m}^\infty \left(\frac{z-z_0}{\zeta - z_0}\right)^k\right] \\ 
 &= \frac{1}{\zeta - z_0} \left[1 + \frac{z-z_0}{\zeta - z_0} + .. + \left(\frac{z-z_0}{\zeta - z_0}\right)^{n-1} + \frac{\left(\frac{z-z_0}{\zeta - z_0}\right)^n}{1-\frac{z-z_0}{\zeta - z_0}}\right]
-\end{align}
+\end{align*}
 
 Then 
 
-\begin{align}
+\begin{align*}
 f(z) = \frac{1}{2 \pi i } \int \frac{f(\zeta)}{\zeta - z_0} d\zeta + ... + \frac{(z-z_0)^{n-1}}{2 \pi i}\int \frac{f(\zeta)}{\zeta - z_0} d\zeta + R_n
-\end{align}
+\end{align*}
 
 Where 
 $$R_n = \frac{1}{2 \pi i } \int_{C_1} \left(\frac{z-z_0}{\zeta - z_0}\right)^n \frac{f(\zeta)}{\zeta - z}d\zeta$$
 
 By Cauchy Integral Formula, we get that 
 
-\begin{align}
+\begin{align*}
 f(z) = f(z_0) + f'(z_0)(z-z_0) + ... + \frac{f^{(n-1)}(z_0)}{n-1}(z-z_0)^{n-1} + R_n
-\end{align}
+\end{align*}
 
 However, we still need to show that $R_n \to 0$ as $n \to \infty$. 
 
@@ -878,11 +889,11 @@ We note that from triangle inequality $$\frac{1}{|\zeta-z|} = \frac{1}{|\zeta - 
 
 Then we can conclude that
 
-\begin{align}
+\begin{align*}
 |R_n| &\leq \frac{1}{2 \pi i } \int_{C_1} \left|\frac{z-z_0}{\zeta - z_0}\right|^n \frac{|f(\zeta)|}{|\zeta - z|}|d\zeta \\ 
 &\leq \frac{M}{2 \pi i } \left(\frac{r}{\rho}\right)^n \int_{C_1} \frac{1}{|\zeta-z|}|d\zeta| \\
 &\leq \frac{M}{2 \pi i } \left(\frac{r}{\rho}\right)^n \frac{1}{\rho - r} 2 \pi \rho 
-\end{align}
+\end{align*}
 
 Since $r/\rho < 1$ as $n \to \infty$, $|R_n| \to 0$
 
@@ -899,10 +910,10 @@ $$a_n  = \frac{f^(n)(z_0)}{n!} = \frac{1}{2 \pi i } \int_{|z-z_0|=\delta} \frac{
 
 \textbf{Note:} Taylor's theorem now fully justifies Maclaurin expansions such as 
 
-\begin{align}
+\begin{align*}
 e^z &= \sum_{n=0}^\infty \frac{z^n}{n!}\\
 \sin z &= \sum_{n=1}^\infty \frac{(-1)^n z^{2n-1}}{(2n-1)!}
-\end{align}
+\end{align*}
 
 
 \begin{ex}
@@ -912,18 +923,18 @@ Consider $\sum_{n=1}^\infty z^n = \frac{1}{1-z}$. It converges within the disk o
 \begin{theorem}
 Let $\{f_n(z)\}$ be a sequence of functions continuous on contour $C$. Suppose that the series $\{f_n(z)\}$ converges uniformly to some function $f(z)$ on the contour. Then, we can show that
 
-\begin{align}
+\begin{align*}
 \lim_{n\to\infty} \int_{C} f_n(z) dz &= \int_{C} \lim_{n\to\infty} f_n(z) dz \\ 
 &= \int_{C}f(z) dz
-\end{align}
+\end{align*}
 
 Essentially, this means we can interchange limits, but only for uniformly converging functions.
 
 We can also do this for series: 
-\begin{align}
+\begin{align*}
 \sum \int_{C} f_n(z) dz &= \int_{C} \sum f_n(z) dz \\ 
 &= \int_{C}f(z) dz
-\end{align}
+\end{align*}
 \end{theorem}
 
 We might expect a function $f(z)$ to be analytic at a point $z_0$ if $\int_{C}f(z)dz = 0$ along every simple closed contour in which $z_0$ is an interior point. However, this is \textbf{NOT TRUE!} 
@@ -964,10 +975,10 @@ $f(x) = \sum_{n=1}^\infty \frac{\sin(nx)}{n^2}$. Its derivative cannot be comput
 \end{ex}
 
 If $f$ is entire, it has a power series representation of 
-\begin{align}
+\begin{align*}
 f(z) = \sum_{n=0}^\infty a_n z^n \\ 
  = \frac{f^(n)(0) z^n}{n!}
-\end{align}
+\end{align*}
 which is valid for all $z$. Then, 
 
 \begin{enumerate}
@@ -980,12 +991,12 @@ Find the Maclaurin expansion of $f(z) = \log(z+1)$ valid for $|z|<1$. We know th
 
 Hence:
 
-\begin{align}
+\begin{align*}
 f(z) &= \log(1+z) \\ 
 & = \int_{0}^z f'(\zeta) d\zeta + f(0) \\ 
 & = \sum_{n=0}^\infty \int_{0}^z (-1)^n\zeta^n d\zeta + 0 \\ 
 &  = \sum_{n=0}^\infty \frac{(-1)^n\zeta^{n+1}}{n+1}  
-\end{align}
+\end{align*}
 \end{ex}
 
 % 10/7
@@ -999,10 +1010,10 @@ $$f^{(m)}(z) \leq \frac{MM!}{r^m}$$
 \textbf{Proof:}
 By Cauchy integral formula:
 
-\begin{align}
+\begin{align*}
 \left|f^{(m)}(z_0)\right| &\leq \frac{m!}{z\pi} \int_{C} \frac{|f(z)|}{|z-z_0|^{m+1}} |dz| \\ 
 & \leq \frac{m!}{z\pi}\frac{M(2\pi r)}{r^{m+1}}
-\end{align}
+\end{align*}
 \end{theorem}
 
 \begin{theorem}[Liouville's theorem]
@@ -1032,10 +1043,10 @@ Suppose that $f(z)$ is an entire function and that $|f(z)| \leq Mr^\lambda$, and
 
 Let $f(z) = \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!} z^n = \sum_{n=0}^\infty a_n z^n$. By Cauchy's inequality, on circle $|z|=r$, we have that:
 
-\begin{align}
+\begin{align*}
 |a_n| &= \left|\frac{f^{(n)}(0)}{n!}\right| \\
 & \leq \frac{Mr^\lambda}{r^m}
-\end{align}
+\end{align*}
 
 Letting $r \to \infty$, we see that $a_n = 0$ whenever $m>\lambda$. Hence $f$ is a polynomial of a degree no more than $\lambda$.
 
@@ -1061,9 +1072,9 @@ A non-constant entire function assumes each complex value with one possible exce
 \begin{theorem}
 Suppose that $P(z) = a_0 + a_1 z + .. + z_m z^m$, for $a_m \neq 0$. Then for $|z| = r$ sufficiently large, 
 
-\begin{align}
+\begin{align*}
 \frac{|a_m|}{z} r^m \leq |P(z)| \leq \frac{3 |a_m|}{2} r^m
-\end{align}
+\end{align*}
 
 \textbf{Note:}
 Along its "rest" path, transcendental functions approach $\infty$ more rapidly than any polynomial. However, polynomials may go to $\infty$ along any path. Transcendental functions grow more rapidly than polynomials, but polynomials grow more uniformly. 
@@ -1095,10 +1106,10 @@ $$f(z) = a_0 + \sum_{n=1}^\infty a_n (z-z_0)^n$$
 
 Since $f(z)$ is continuous t $z_0$, it follows that $f(z_n) \to f(z_0),\ z_n \to z_0$. Therefore:
 
-\begin{align}
+\begin{align*}
 \lim_{n\to\infty}f(z_n) = 0 = f(z_0) = a_0\\
 \implies a_0=0
-\end{align}
+\end{align*}
 
 Hence:
 
@@ -1124,9 +1135,9 @@ Suppose $\{z_n\}$ is a sequence of points with a limit point in domain D. If $f(
 \textbf{Proof:}
 Let $h(z) = f(z) - g(z)$. Recall the mean value theorem for real valued functions:
 
-\begin{align}
+\begin{align*}
 \frac{1}{b-a} \int_{a}^{b} f(x) dx = \frac{F(b)-F(a)}{b-a} = F'{\zeta}
-\end{align}
+\end{align*}
 
 $F' = f,\ a < \zeta < b$. 
 \end{theorem}
@@ -1180,26 +1191,26 @@ If $f(z)$ is analytic in a bounded domain $D$ and continuous in its closure $\ba
 		\label{fig:riemann}
 	\end{figure}
 	Hence, by Cauchy, 
-	\begin{align}
+	\begin{align*}
 	f(z_1) &= \frac{1}{2\pi}\int_C \frac{f(\zeta)}{\zeta - z_1} d\zeta - \frac{1}{2\pi i}\int_{C_1} \frac{f(\zeta)}{\zeta - z_1} d\zeta
-	\end{align}
+	\end{align*}
 	
 	Note that the value of $f(z_1)$ is independent of $r$. We can say that:
 	
-	\begin{align}
+	\begin{align*}
 	\left|\frac{1}{2\pi i }\int \frac{f(\zeta)}{\zeta - z_1} d\zeta\right| \leq \frac{M2\pi r}{2\pi (|z_1-z_0|-r)}
-	\end{align}
+	\end{align*}
 	
 	The RHS goes to zero as $r \to \infty$. And so:
 	
-	\begin{align}
+	\begin{align*}
 	f(z) = \frac{1}{2\pi i }\int_C \frac{f(\zeta)}{\zeta - z_1} d\zeta
-	\end{align}
+	\end{align*}
 	
 	But the right hand side is analytic inside $C$. So define:
-	\begin{align}
+	\begin{align*}
 	f(z_0) = \frac{1}{2\pi i }\int_C \frac{f(\zeta)}{\zeta - z_0} d\zeta
-	\end{align}
+	\end{align*}
 	
 	Thus, the function $f(z)$ becomes analytic in the whole disk $|z-z_0|<R$. 
 	
@@ -1240,9 +1251,9 @@ It follows that $\lim_{z \to z_0}g(z) = a_0$
 
 Now, the coefficients of $g(z)$ cannot all be zero. Suppose that $z_k$ is the first coefficient to be nonzero. Then, 
 
-\begin{align}
+\begin{align*}
 \frac{1}{f(z)(z-z_0)^k} = a_k + a_{k+1}(z-z_0) + a_{k+2}(z-z_0)^2
-\end{align}
+\end{align*}
 Hence, $\lim_{z \to z_0} (z-z_0)^n f(z) = 1/a_k$ and $f(z)$ has a pole of the order $k$ at $z_0$.
 \end{theorem}
 \begin{corollary}
@@ -1306,16 +1317,16 @@ This is valid in some deleted neighborhood about $z_0$.
 
 Next, consider the series:
 
-\begin{align}
+\begin{align*}
 f(z) = \sum_{m=-\infty}^{\infty} a_m(z-z_0)^m
-\end{align}
+\end{align*}
 
 
 First note that 
 
-\begin{align}
+\begin{align*}
 \sum_{n=1}^\infty b_n(z-z_0)^{-n} & = \sum_{m=-\infty}^{-1} a_m (z-z_0)^m
-\end{align}
+\end{align*}
 
 This represents a function $f_1(z)$ which is analytic for some $|z-z_0|>R_1$. This is because $\sum_{m=1}^\infty b_m(z-z_0)^{-m}$ is analytic for $|z-z_0|^{-1}<R = \frac{1}{R_1}$. 
 
@@ -1325,14 +1336,14 @@ Next, suppose $f_2(z) = \sum_{n=0}^\infty a_n(z-z_0)^n$ is analytic for $|z-z_0|
 Suppose $f(z)$ is analytic in the annulus $R_1  < |z-z_0| < R_2$. 
 The Laurent series of a function $f(z)$ is given by
 
-\begin{align}
+\begin{align*}
 f(z)=\sum _{n=-\infty }^{\infty }a_{n}(z-z_0)^{n}
-\end{align}
+\end{align*}
 where $a_n$ and $z_0$ are constants, with an defined by a line integral that generalizes Cauchy's integral formula:
 
-\begin{align}
+\begin{align*}
 a_{n}={\frac {1}{2\pi i}}\oint _{C }{\frac {f(\zeta)}{(\zeta-z_0)^{n+1}}}\,d\zeta
-\end{align}
+\end{align*}
 
 $C$ is any simple closed contour inside of the annulus that makes a complete counterclockwise revolution about $z_0$. 
 
@@ -1359,29 +1370,29 @@ If $R_1 = 0$, the point $z_0$ is an isolated singularity. There are three cases:
 \begin{ex}[Laurent Series expansion]
 	Let $f(z) = \frac{1}{z^2 +1} = \frac{1}{(z-i)(z+i)}$. Then, $f$ has simple poles at $z=\pm i$. We note that $f(z)$ is analytic for $0 < |z-i| < 2$. This is an annulus with outer radius almost 2 expanded around $z=i$. And we can expand about $z=i$:
 	
-	\begin{align}
+	\begin{align*}
 	\frac{1}{z+i} &= \frac{1}{2i[1 + \frac{z-i}{2i}]} \\
 	&= \frac{1}{2i}\sum_{n=0}^\infty (-1)^n \left(\frac{z-i}{2i}\right)^n
-	\end{align}
+	\end{align*}
 	
 	Hence:
-	\begin{align}
+	\begin{align*}
 	f(z) &= \frac{1}{2i(z-i)} \sum_{n=0}^\infty \left(\frac{-1}{2i}\right)^n (z-i)^n,\  \forall z \text{ s.t. } 0 < |z-i| < 2 \\ 
 	&= \sum_{n=-1}^\infty \left(\frac{i}{2}\right)^{n+2} (z-i)^n,\ \forall z \text{ s.t. }0 < |z-i| < 2
-	\end{align}
+	\end{align*}
 	This converges for $0 < |z-i| < 2$. We can also expand about $z=-i$ to get the Laurent series:
-	\begin{align}
+	\begin{align*}
 	f(z) = - \sum_{n=-1}^\infty \left(\frac{-i}{2}\right)^{n+2} (z+i)^n,\ \forall z \text{ s.t. }0 < |z+i| < 2
-	\end{align} 
+	\end{align*} 
 \end{ex}
 
 
 \subsection{Residues}
 \Def{Residue}{The coefficient $a_{-1}$ is a special case, or the integral of the function in the Laurent series. It is called the residue of $f(z)$ at $z=z_0$. It is such that 
 
-\begin{align}
+\begin{align*}
 \frac{1}{2\pi i}\int_C f(\zeta) d\zeta = a_{-1}
-\end{align}
+\end{align*}
 
 }
 
@@ -1389,9 +1400,9 @@ If $R_1 = 0$, the point $z_0$ is an isolated singularity. There are three cases:
 Suppose that $f(z)$ is analytic inside and on a simple closed contour $C$ except for isolated singularities at $z_1, z_2,..,z_n$ inside $C$. Let the residues at these points be $\alpha_1, \alpha_2,..,\alpha_n$ respectively. Then we can compute the following:
 
 
-\begin{align}
+\begin{align*}
 \int_C f(z) dz = 2 \pi i \sum_{i=1}^n \alpha_i
-\end{align}
+\end{align*}
 
 \textbf{Proof:}
 
@@ -1405,15 +1416,15 @@ Suppose that $f(z)$ is analytic inside and on a simple closed contour $C$ except
 
 By the Cauchy Integral Formula, 
 
-\begin{align}
+\begin{align*}
 \int_C f(z) dz = \int_{C_1} f(z) dz + \int_{C_2} f(z) dz + .. + \int_{C_n} f(z) dz
-\end{align}
+\end{align*}
 
 We note the terms are residues, so 
 
-\begin{align}
+\begin{align*}
 \int_C f(z) dz = \sum_{k=1}^n \alpha_k 
-\end{align}
+\end{align*}
 
 
 \end{theorem}
@@ -1457,10 +1468,10 @@ We would like to find the residue of this.
 \textbf{Method 1:}
 
 Set $f(z) =  \frac{z^4-z^3+17z+2}{(z-1)^3}$. Then:
-\begin{align}
+\begin{align*}
 a_{-1} &= \frac{1}{2!} \lim_{z\to1} \dv{^2}{z^2} (z-1)^3 f(z) \\ 
 &= 3
-\end{align}
+\end{align*}
 
 By the residue theorem:
 
@@ -1485,17 +1496,17 @@ $$h(z) = \sum_{n=0}^\infty \delta_n (z-z_0)^n $$
 
 By hypothesis, we have that $\gamma_0 \neq 0$. But $\delta_0 = 0$, and $g(z_0) = \gamma_0$ and $h'(z_0) = \delta_1$. Therefore, 
 
-\begin{align}
+\begin{align*}
 f(z) = \frac{g(z)}{h(z)} & = \frac{\sum\gamma_n (z-z_0)^n}{\sum\delta_n (z-z_0)^n} \\ 
 & = \frac{\gamma_0}{\delta_1 (z-z_0)} \frac{1 + \sum\frac{\gamma_n}{\gamma_0} (z-z_0)^n}{\sum\frac{\delta_n}{\delta_1} (z-z_0)^n} 
-\end{align}
+\end{align*}
 
 Then $f(z)$ has a simple pole at $z=z_0$, which gives us the result that 
 
-\begin{align}
+\begin{align*}
 a_{-1} &= \lim_{z \to z_0}(z-z_0) f(z) \\ 
 & = \frac{\gamma_0}{\delta_1}
-\end{align}
+\end{align*}
 \end{theorem}
 
 \subsection{Non-isolated Singularities }
@@ -1512,69 +1523,69 @@ Consider an additional example of a branch point. Let $f(z) = \log z$. This has 
 \subsection{Evaluation of Real Integrals}
 \begin{ex}
 Evaluate 
-\begin{align}
+\begin{align*}
 \int_0^\infty \frac{\sin x}{x} dx 
-\end{align}
+\end{align*}
 This is kind of hard, so let's just exploit the $e^{iz} = \sin z + i \cos z$. 
 Consider $\int_C \frac{e^{iz}}{z} dz$, where $C$ is a semicircular annulus enclosing the positive imaginary plane excluding the origin. It has an inner radius of $\epsilon$ and outer radius of $R$, so we can characterize it with $z=re^{i\theta}$, where $r \in [\epsilon, R]$ and $\theta \in [0, \pi]$ This has no singularities, so it equals zero. 
 
 Also:
-\begin{align}
+\begin{align*}
 \int_C \frac{e^{iz}}{z} dz & = 0 \text{ (no singularities, so zero)}\\ 
 &= \int_{\epsilon}^R \frac{e^{ix}}{x}dx + \int_0^\pi \frac{e^{iRe^{i\theta}}}{Re^{i\theta}} iRe^{i\theta} d\theta + \int_{+R}^{+\epsilon}\frac{e^{-ix}}{x}dx + \int_{\pi}^{0} ie^{i\epsilon i e^{i\theta}} d\theta \\ 
 &= \int_{\epsilon}^{R} \frac{e^{ix}-e^{-ix}}{x}dx + i \int_{0}^{\pi} e^{iRe^{i\theta}} d\theta - i \int_{0}^{\pi}e^{i\epsilon i e^{i\theta}} d\theta \\ 
 &= 2 i \int_{\epsilon}^{R} \frac{\sin x}{x}dx + i \int_{0}^{\pi} e^{iRe^{i\theta}} d\theta - i \int_{0}^{\pi}e^{i\epsilon i e^{i\theta}} d\theta \\ 
-\end{align}
+\end{align*}
 
 Now consider that:
-\begin{align}
+\begin{align*}
 \left|\int_{0}^\pi e^{iRe^{i\theta}} d\theta \right| &\leq \int_{0}^\pi \left|e^{iR \cos \theta - R \sin \theta } \right|d\theta \\ 
 & = \int_{0}^\pi e^{-R\sin\theta} d\theta  \\ 
 & = 2 \int_{0}^{\pi/2} e^{-R\sin\theta} d\theta \text{ (integral of halves are equal, so only need to do 2*half integral)}\\ 
 & \leq  2 \int_{0}^{\pi/2} e^{-\frac{2R}{\pi}\theta} d\theta \text{ (linear function vs sine function)} \\ 
 & = \frac{\pi }{R}(1-e^{-R}) 
-\end{align}
+\end{align*}
 
 This is true since $|e^{iR \cos \theta}| = 1$. Also $\frac{\pi }{R}(1-e^{-R}) \to 0$ as $R \to \infty$.
 
 Taking the limit as $R \to \infty$ for our original problem, we get that:
 
-\begin{align}
+\begin{align*}
 \int_0^\infty \frac{\sin x}{x} dx  &= \frac{1}{2} \int_{0}^{\pi} e^{i \epsilon e^{i \theta }} d\theta 
-\end{align}
+\end{align*}
 
 As $\epsilon \to \infty$ , $\int_{0}^{\pi} e^{i \epsilon e^{i \theta }} d\theta = \pi$. In conclusion, we get that:
-\begin{align}
+\begin{align*}
 \int_0^\infty \frac{\sin x}{x} dx  &= \frac{pi}{2}
-\end{align}
+\end{align*}
 \end{ex}
 
 \begin{ex}
 Consider with $a,b \in \R $ and $a<|b|$, 
-\begin{align}
+\begin{align*}
 \int_0^{2\pi} \frac{1}{a+b \cos \theta} d\theta
-\end{align}
+\end{align*}
 
 We set $z=e^{i\theta}$ and let $C$ be the unit circle. Thus:
 
-\begin{align}
+\begin{align*}
 \int_0^{2\pi} \frac{1}{a+b \cos \theta} d\theta &= \int_C \frac{1}{iz[a+\frac{b}{2} (z+\frac{1}{z})]} d\theta
-\end{align}
+\end{align*}
 
 
 TODO
 
 We can find the residue at $z$: 
-\begin{align}
+\begin{align*}
 \lim_{z \to z_1} (z-z_1) f(z) = \frac{b}{2\sqrt{a^2-b^2}}
-\end{align}
+\end{align*}
 
 Hence, by the residue theorem, 
 
-\begin{align}
+\begin{align*}
 \int_0^{2\pi} \frac{1}{a+b \cos \theta} d\theta &= \frac{2\pi i b}{2\sqrt{a^2-b^2}} \left(\frac{2}{bi}\right) \\ 
 &= \frac{2\pi }{\sqrt{a^2-b^2}} 
-\end{align}
+\end{align*}
 
 
 \end{ex}
@@ -1601,41 +1612,41 @@ $$\int_C e^{iz^2} dz=0$$
 
 
 We want to relate this to our original integral. We can break up all parts of our contours
-\begin{align}
+\begin{align*}
 \int_0^R e^{ix^2} dx + \int_0^{\pi/4} e^{i R^2 e^{2i\theta}} d\theta + \int_R^0 e^{i(te^{i\pi/4})^2} e^{i\pi/4} dt = 0 
-\end{align}
+\end{align*}
 
 Since we've chosen the angle $\pi/4$, we can have the nice form of the gaussian integral on the RHS: 
 
-\begin{align}
+\begin{align*}
 \int_0^R e^{ix^2} dx + \int_0^{\pi/4} e^{i R^2 e^{2i\theta}} d\theta = e^{i\pi/4}  \int_0^R e^{-t^2} dt
-\end{align}
+\end{align*}
 
 We note te RHS can also be computed using contour integration. Looking at the second term, utilizing $e^{i2\theta} = \cos 2\ theta + i \sin 2 \theta $:
 
-\begin{align}
+\begin{align*}
 \left| \int_0^{\pi/4} e^{i R^2 e^{2i\theta}} d\theta \right| &\leq R \int_0^{\pi/4} e^{-R^2 \sin 2 \theta } d\theta \\
 &= \frac{R}{2} \int_{0}^{\pi/2} e^{-R^2 \sin \theta } d\theta \text{   (change of variables)}\\ 
 & \leq \frac{R}{2} \int_{0}^{\pi/2} e^{-R^2 \theta /\pi^2} d\theta \\ 
 & = \frac{R}{2} \frac{\pi}{2R^2} (1-e^{-R^2}) \\ 
 & = \frac{\pi}{4R}(1-e^{-R^2})
-\end{align}
+\end{align*}
 
 Finally, if we take the limit, we get zero: $\lim_{R\to \infty } \frac{\pi}{4R}(1-e^{-R^2}) = 0$.
 
 
 Now considering the integral again:
 
-\begin{align}
+\begin{align*}
 \int_0^R e^{ix^2} dx = e^{i\pi/4}  \int_0^R e^{-t^2} dt
-\end{align}
+\end{align*}
 
 However, we note that $\int_0^\infty e^{-t^2} dt = \sqrt{\pi}/2$, which is a \textit{Gaussian Integral.}
 And so:
 
-\begin{align}
+\begin{align*}
 \int_{0}^{\infty} (\cos x^2 + i \sin x^2  )dx = \frac{1}{\sqrt{2}} (1+i)\sqrt{\pi}/2
-\end{align}
+\end{align*}
 
 Taking just the real parts or imaginary parts to get the integrals of $\sin x^2$ or $\cos x^2$. 
 
@@ -1651,16 +1662,16 @@ The contour we are integrating over is:
 	\label{fig:boxc}
 \end{figure}
 
-\begin{align}
+\begin{align*}
 \int_C g(z) dz = 2\pi i \Res[g(z=a/2)]
-\end{align}
+\end{align*}
 \end{ex}
 
 \begin{ex}
 Consider evaluating:
-\begin{align}
+\begin{align*}
 \int_0^\infty \frac{x^{\lambda-1 }}{1+x} dx,\ \lambda \in (0,1)
-\end{align}
+\end{align*}
 
 Consider $f(z) = \frac{z^{\lambda-1}}{1+z}$, with branch cut $0 < \arg z < 2 \pi $. There is  a branch cut from 0 to $\infty$, so let us take the branch cut to the positive reals, such that we do not intersect our pole at $z=-1:$
 
@@ -1673,67 +1684,67 @@ Consider $f(z) = \frac{z^{\lambda-1}}{1+z}$, with branch cut $0 < \arg z < 2 \pi
 
 $f(z)$ has a simple pole at $z=-1$ with a residue:
 
-\begin{align}
+\begin{align*}
 \Res[f, -1] = \lim_{z \to -1} (1+z)f(z) = e^{\pi i (\lambda - 1)} 
-\end{align}
+\end{align*}
 
 We pick the contour which is the whole plane excluding the branch cut $C = C_1 + C_2 + C_3 + C_4$. By the residue theorem:
 
-\begin{align}
+\begin{align*}
 \int_C \frac{z^{\lambda-1}}{1+z} dx = 2 \pi i e^{i \pi (\lambda-1)} \\ 
  = \int_{C_1} + \int_{C_2} + \int_{C_3} + \int_{C_4}
-\end{align}
+\end{align*}
 
 Considering the $C_1$ integral, let $\delta, \epsilon \to 0$, and $R \to \infty$. 
 
-\begin{align}
+\begin{align*}
 \int_{C_1}\frac{z^{\lambda-1}}{1+z} dx &= \int_{C_1} \frac{(x+i\delta)^{\lambda-1}}{1+(x+i\delta)} dx \\ 
 & = \int_\epsilon^R \frac{x^{\lambda-1 }}{1+x} dx \text{ (as $\delta$ to 0)} \\ 
-\end{align}
+\end{align*}
 
 Also we note that:
-\begin{align}
+\begin{align*}
 \int_{C_1}\frac{z^{\lambda-1}}{1+z} dx &= \int_R^\epsilon \frac{(x-i\delta)^{\lambda-1}}{1+(x-i\delta)} dx \\ 
 & = \int_R^\epsilon \frac{e^{i2\pi(\lambda-1)}}{1+x} dx \text{ (as $\delta$ to 0)} \\ 
 & = -e^{i2\pi\lambda} \int_R^\epsilon \frac{x^{(\lambda-1)}}{1+x} dx \text{ (as $\delta$ to 0)} 
-\end{align}
+\end{align*}
 
 
 We still have to deal with the other integrals. Let $z=Re^{i\theta}$
 
-\begin{align}
+\begin{align*}
 \left| \int_{C_2} \frac{z^{\lambda-1}}{1+z} dz\right| &= \int_0^{2\pi} \frac{(Re^{i\theta})^{\lambda-1} i Re^{i\theta}}{1 + Re^{i\theta}} d\theta \\ 
 &\leq  R^\lambda \left| \frac{1}{R-1}\right| \\
 & = \frac{2\pi R^\lambda}{R-1}
-\end{align}
+\end{align*}
 
 As we take $R \to \infty$:
-\begin{align}
+\begin{align*}
 \lim_{R\to \infty } \left| \int_{C_2} \frac{z^{\lambda-1}}{1+z} dz\right| &\leq  0
-\end{align}
+\end{align*}
 
 
 Finally, we look at $C_4$:
 
-\begin{align}
+\begin{align*}
 \left| \int_{C_4} \frac{z^{\lambda-1}}{1+z} dz\right| &= \left|\int_0^{2\pi } \frac{(\epsilon e^{i \theta(\lambda -1)})\epsilon e^{i \theta}}{1 + \epsilon e^{i \theta}} d\theta \right| \\ 
 & \leq \frac{\epsilon^\lambda}{1-\epsilon} \int_{0}^{2\pi }d\theta = 2 \pi \frac{\epsilon^\lambda}{1-\epsilon}
-\end{align}
+\end{align*}
 
 This goes to 0 as $\epsilon \to 0$. Now:
 
-\begin{align}
+\begin{align*}
 \int_C \frac{z^{\lambda-1}}{1+z} dx = 2 \pi i e^{i \pi (\lambda-1)} \\ 
 = \int_{C_1} +\int_{C_3} + \int_{C_2} +  \int_{C_4} \\ 
 =  (1-e^{i2\pi\lambda}) \int_0^\infty \frac{x^{(\lambda-1)}}{1+x} dx+ 0 + 0
-\end{align}
+\end{align*}
 
 Finally, we see that: 
-\begin{align}
+\begin{align*}
 \int_0^\infty \frac{x^{(\lambda-1)}}{1+x} dx = \frac{2\pi i e^{i \pi \lambda }}{e^{i2 \pi \lambda } - 1} \\ 
 = \pi \left(\frac{2i}{e^{i \pi \lambda } - e^{-i \pi \lambda }}\right)
 = \frac{\pi}{\sin \pi \lambda }
-\end{align}
+\end{align*}
 
 \end{ex}
 
@@ -1751,9 +1762,9 @@ $$C_r = \{Re^{i\theta}| \theta \in [0, \pi]\}$$
 
 Then we can say that:
 
-\begin{align}
+\begin{align*}
 \left|\int_{C_R}f(z) dz\right| \leq \frac{\pi}{a} M_R
-\end{align}
+\end{align*}
 
 where $M_R := \max_{\theta \in [0,\pi]}|g(Re^{i\theta})|$ 
 \end{lemma}
@@ -1767,9 +1778,9 @@ $$\lim_{R \to \infty} \int_{C_R}e^{iaz}g(z) dz = 0$$
 \begin{lemma}[Indentation Lemma]
 Let $f$ have a simple pole at $a$ with a residue $\Res[f;a]$. Then given an upper half clockwise semi-circular contour around the pole $C_\epsilon$, the resulting contour is:
 
-\begin{align}
+\begin{align*}
 \lim_{\epsilon\to0} \int_{C_\epsilon} f(z) dz = -\Res[f;a]\pi i
-\end{align}
+\end{align*}
 \end{lemma}
 
 % 10-30
@@ -1777,37 +1788,37 @@ Let $f$ have a simple pole at $a$ with a residue $\Res[f;a]$. Then given an uppe
 \section{Special Functions}
 \subsection{Gamma Functions}
 \textbf{Note:}
-\begin{align}
+\begin{align*}
 e^{-t} = \lim_{n\to\infty}(1-\frac{t}{n})^n
-\end{align}
+\end{align*}
 
 Let us define a Gamma function as:
 
-\begin{align}
+\begin{align*}
 \Gamma(z;n) := \int_{0}^{n} (1-\frac{t}{n})^n t^{z-1} dt  
-\end{align}
+\end{align*}
 
 Then:
-\begin{align}
+\begin{align*}
 \lim_{n\to\infty} \Gamma(z;n) = \Gamma(z)
-\end{align}
+\end{align*}
 
 Now, let $t = m \tau$, $t^{z-1}dt = n^z \tau^{z-1} d\tau$. Then:
 
-\begin{align}
+\begin{align*}
 \Gamma(z;n) = n^z \int_{0}^{1} (1-\tau)^n \tau^{z-1} d\tau
-\end{align}
+\end{align*}
 
 By I.B.P.:
 
 
-\begin{align}
+\begin{align*}
 \Gamma(z;n) &= n^z \left[ \frac{1}{z} \left((1-\tau)^n \tau^{z}\right)\right]_0^1 + \frac{n}{z}\int_{0}^{1} (1-\tau)^{n-1} \tau^{z} d\tau \\ 
 &= n^z \left(\frac{n}{z}\int_{0}^{1} (1-\tau)^{n-1} \tau^{z} d\tau\right) \\
 &= n^z \left(\frac{n}{z} \frac{n-1}{z+1}\int_{0}^{1} (1-\tau)^{n-2} \tau^{z+1} d\tau\right) \\
 &...\\
 &= \frac{n(n-1)...(2)(1)}{z(z+1)...(z+n-1)} n^z \int_{0}^{1} \tau^{z+n-1} d\tau 
-\end{align}
+\end{align*}
 
 We can then conclude that $\Gamma(z)$ converges on:
 
@@ -1817,34 +1828,34 @@ We can then conclude that $\Gamma(z)$ converges on:
 \end{align}
 
 \textbf{Note:}
-\begin{align}
+\begin{align*}
 \Gamma(z) &= \lim_{n\to\infty} \left(\frac{n-1}{n} \right)^z   \frac{(n-1)! (n)^z}{(z)_m} \\
 &= \lim_{n\to\infty}  \frac{(n-1)! (n)^z}{(z)_n} 
-\end{align}
+\end{align*}
 
 Recall that $(z)_n = \frac{\Gamma(z+n)}{\Gamma(z)}$, And thus with some algebraic manipulation:
 
-\begin{align}
+\begin{align*}
 \Gamma(z) &= \lim_{n\to\infty}\frac{(n-1)!n^z}{\Gamma(z+n)}\Gamma(z) \\ 
 1 &= \lim_{n\to\infty}\frac{(n-1)!n^z}{\Gamma(z+n)}
-\end{align}
+\end{align*}
 
 Now we see:
 
-\begin{align}
+\begin{align*}
 \Gamma(z) &= \lim_{n\to\infty} \frac{(n)! (n+1)^z}{(z)_{n+1}} \\ 
  &= \frac{1}{z} \lim_{n\to\infty} \frac{(n)! (n+1)^z}{(z+1)...(z+n)} \\ 
   &= \frac{1}{z} \lim_{n\to\infty} \frac{((n+1)^z}{(1+z)(1+z/2)...(1+z/n)} \\ 
   &= \frac{1}{z} \prod_{k=1}^{\infty} \frac{(1+\frac{1}{k})^z}{(1+\frac{z}{k})}
-\end{align}
+\end{align*}
 
 This is shown by \textbf{Gauss}. This infinite product (take the log) converges and therefore represents an analytic function for $z \neq 0, -1, -2,...$. The function also provides analytic continuation into $\Re{z} \leq 0$. 
 
 \Def{Gamma Function}{
 A Gamma function is a special function of the form:
-\begin{align}
+\begin{align*}
 \Gamma (z)=\int_{0}^{\infty}x^{z-1}e^{-x}\,dx
-\end{align}
+\end{align*}
 
 If $z$ is complex with positive real part, then the integral converges absolutely, and $\gamma(n) = (n-1)!$ for all positive integer $n$.
 
@@ -1854,46 +1865,46 @@ This formulation allows us to extend the idea of factorials to the complex numbe
 \Def{Euler-Mascheroni Constant}{
 Let $s_n = \sum_{k=1}^n \frac{1}{k}$. This diverges as $n\to\infty$. However, 
 
-\begin{align}
+\begin{align*}
 \lim_{n\to\infty}(s_n - \log n) = \gamma = 0.5772...
-\end{align} 
+\end{align*} 
 
 We define the Euler-Mascheroni Constant as $\gamma$. 
 We can also define the constant $\gamma$ as:
 
-\begin{align}
+\begin{align*}
 \gamma =  \int_0^\infty e^{-t} \left[\frac{1}{1-e^{-t}}-t\right]dt
-\end{align}
+\end{align*}
 }
 
 Now, from Equation \ref{eq:gamman}, we can see that:
 
-\begin{align}
+\begin{align*}
 \frac{1}{\Gamma(n)}  &= z \lim_{n\to\infty} m^{-z}\frac{(z+1)...(z+n-1)}{m!} \\ 
 & = z \lim_{n\to\infty} (1+\frac{z}{1}) (1+\frac{z}{2}) ... (1+\frac{z}{n}) e^{-z\log m} \\ 
 &  = z \lim_{n\to\infty} \left[\prod_{k=1}^n (1+\frac{z}{k}) e^{-z/k}\right] e^{z(1 + \frac{1}{2} + ... + \frac{1}{m} - \log m )}
-\end{align}
+\end{align*}
 
 We note that $1 + \frac{1}{2} + ... + \frac{1}{m} - \log m  \to \gamma$, so:
-\begin{align}
+\begin{align*}
 \frac{1}{\Gamma(n)}  = z e^{\gamma z} \lim_{n\to\infty} \left[\prod_{k=1}^n (1+\frac{z}{k}) \right]
-\end{align}
+\end{align*}
 
 This is provided by Weirstrass. This provides a factorization of $1/\Gamma(z)$ which is entire, with first order zeros only with $\Gamma(z)$ that has poles $z = 0, -1, -2...$. We note that since $1/\Gamma(z)$ has no poles, $\Gamma(z)$ can have no zeros!
 
 Now, recall that:
 
-\begin{align}
+\begin{align*}
 \sin \pi z = \pi z \prod_{n=1}^\infty (1-\frac{z^2}{n^2})
-\end{align}
+\end{align*}
 
 On the other hand, we have shown that:
 
-\begin{align}
+\begin{align*}
 \sin \pi z &= \frac{\pi}{\Gamma(z) \Gamma(1-z)} \\ 
 &= \frac{-\pi}{z \Gamma(z) \Gamma(-z)} \\ 
 &= \frac{\pi z^2}{z} \prod_{k=1}^\infty (1+\frac{z}{n})(1-\frac{z}{n})
-\end{align}
+\end{align*}
 
 \begin{theorem}[Contour Integral Representation (Hankel)]
 Consider a contour $C$:
@@ -1910,27 +1921,27 @@ Consider a contour $C$:
 The contour lets us take a branch cut along the negative real axis. We let $\zeta = e^{-\pi r} = r$ on the top side, and $\zeta = e^{-i\pi}r = -r$
 
 
-\begin{align}
+\begin{align*}
 I &= \int_{C} e^{\zeta} \zeta^{-z} d\zeta \\ 
 &= \int_{\infty}^{\epsilon} e^{-r} (re^{-i\pi})^{-z} e^{-i\pi}dr + \int_{C_\epsilon} f(\zeta) + \int_{\epsilon}^{\infty} e^{-r} (re^{i\pi})^{-z} e^{i\pi}dr
-\end{align}
+\end{align*}
 
 As $\epsilon \to \infty$, $\int_{C_\epsilon} f(\zeta) \to 0$. Therefore:
 
-\begin{align}
+\begin{align*}
 I &= \int_{0}^{\infty} e^{-r} r^{-z} e^{i\pi z}dr  - \int_{0}^{\infty} e^{-r} r^{-z} e^{-\i pi z} dr \\ 
 &= 2 i \sin \pi z  \int_{0}^{\infty} e^{-r} r^{-= z} e^{i\pi z}dr \\ 
 &=  2 i \sin \pi z \Gamma(1-z) \\ 
 &=  2 i \sin \pi z \frac{\Gamma(z)\Gamma(1-z)}{\Gamma(z)}
 &= { 2 i \sin \pi z }{\Gamma(z) \sin \pi z}
 &= { 2 i }{\Gamma(z) } \\ 
-\end{align}
+\end{align*}
 
 We then rearrange to get:
 
-\begin{align}
+\begin{align*}
 \frac{1}{\Gamma(z)} = \frac{1}{2\pi i } \int_{C} e^\zeta \zeta ^{-z} d\zeta 
-\end{align}
+\end{align*}
 
 This form is valid for any value of $z$.
 \end{theorem}
@@ -1939,67 +1950,237 @@ This form is valid for any value of $z$.
 
 \Def{Beta Function}{
 We define the beta function as:
-\begin{align}
+\begin{align*}
  \mathrm{B} (x,y)=\int _{0}^{1}t^{x-1}(1-t)^{y-1}\,dt
  = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-  \end{align}
+  \end{align*}
 }
 
 \Def{Digamma Function}{
 The Digamma function (or Psi Function) is
-\begin{align}
+\begin{align*}
 \Psi (z) = \frac{\Gamma'(z)}{\Gamma(z)} = \dv{z} \left(\log \Gamma(z)\right)
-\end{align}
+\end{align*}
 
 This is meneomorphic. It has simple poles at $z=0, -1, -2..$ The residue at each pole is $-1$. 
 
 Now, recall
 
-\begin{align}
+\begin{align*}
 \log \Gamma(z) = -\log z - \gamma z - \sum_{k=1}^\infty \left[\log(1+\frac{z}{k}) - \frac{z}{k}\right]
-\end{align}
+\end{align*}
 
 Then, 
 
-\begin{align}
+\begin{align*}
 \Psi(z) = - \frac{1}{z} - \gamma  - \sum_{k=1}^\infty \left[\frac{1}{k(1+\frac{z}{k})} - \frac{1}{k}\right]
 \Psi(z) = - \frac{1}{z} - \gamma  + \sum_{k=1}^\infty \frac{z}{k(z+k)}
-\end{align}
+\end{align*}
 
 This has simple poles at $z=0,-1,-2,...$. 
 
 We note that $\Psi(1) = -\gamma$. \textit{("It's true by the way!"}) 
 
 Additionally, recall that:
-\begin{align}
-\Gamma(z+1) = \Gamma(z) +\frac{1}{z}
-\end{align}
+\begin{align*}
+\Gamma(z+1) = z\Gamma(z) 
+\end{align*}
 
 By direct differentiation:
-\begin{align}
+\begin{align*}
 \frac{\Gamma'(z+1)}{\Gamma(z+1)} = \frac{\Gamma(z) + z \Gamma'(z)}{z \Gamma(z)} = \frac{1}{z} + \gamma(z)
-\end{align}
+\end{align*}
 
 Then we can compute:
-\begin{align}
+\begin{align*}
 \Psi(1) = -\gamma\\
 \Psi(2) = 1-\gamma \\ 
 \Psi(3) = \frac{1}{2} + 1 - \gamma \\
 ...\\
-\Psi(n+1) = \sum_{k=1}^{n} \frac{1}{k} - gamma
-\end{align}
+\Psi(n+1) = \sum_{k=1}^{n} \frac{1}{k} - \gamma
+\end{align*}
 
 We see that $\Psi(n+1) \sim \log n$. 
 }
 
 \Def{Riemann Zeta Function}{
-\begin{align}
+\begin{align*}
 \zeta(s) = \sum_{n=0}^{\infty} \frac{1}{(1+n)^\zeta} \\ 
 \frac{1}{\zeta(s)} = \prod_{p} (1-\frac{1}{p^s}),\ p \in \text{Primes}
-\end{align}
+\end{align*}
 
 The poles of the Riemann Zeta Function are $-2, -4...$ 
 }
+
+\Section{ODEs}
+
+\Section{Frobenius Theory}
+% 11/15
+\Section{Hypergeometric Equations}
+\Def{Hypergeometric Equation}{
+\begin{align}\label{eq:hg}
+z(1-z)w''+[C-(A+B+1)z]w'-ABw=0
+\end{align}
+
+where $A,B,C$ are complex constants. 
+}
+
+\textbf{Note:} It is a $P$ Equation with $a=0, b=1, c\to \infty$, and its solution can be written as:
+
+\begin{align*}
+w = P\begin{bmatrix}[ccc|c]
+0 & 1 & \infty& \\ 
+0 & 0 & A & z\\ 
+1-C & C-A-B & B &
+\end{bmatrix} 
+\end{align*}
+\textbf{Note:} By suitable changes of dependent and independent variables, the general. P equation can be put in the above form for the hyper geometric equation. Therefore, solutions of the P equation can be expressed in terms of the sums of the hypergeometric equation.
+
+\textbf{Note:} It can be shown that the hypergeometric series:
+
+\begin{align*}
+F(A,B,C;z) = 1+\frac{AB}{1C}z + \frac{A(A+1)B(B+1)}{(1)(2)C(C+1)}z^2+...
+\end{align*}
+
+Or as from Wikipedia:
+
+\begin{align*}
+{}_{2}F_{1}(a,b;c;z)=\sum _{n=0}^{\infty }{\frac {(a)_{n}(b)_{n}}{(c)_{n}}}{\frac {z^{n}}{n!}}.
+\end{align*}
+
+This series is convergent for $|z|<1$, and divergent $|z|>1$. This is a solution of the hypergeometric equation, or Equation \ref{eq:hg}.
+
+We note that $C$ cannot be a negative integer.
+
+We can use the transformation rules to get a second solution to the hypergeometric equation of the form:
+
+\begin{align*}
+z^{1-C} F(1+A-C, 1+B-C, 2-C; z)
+\end{align*}
+
+This solution, together with the previous solution of $F(A,B,C;z)$ provide 2 fundamental solutions of Equation \ref{eq:hg} in the vicinity of $z=0$. 
+
+We note that expressions for the function F, which for $|z|>1$, may be obtained by contour integration. 
+
+\subsection{Examples of ODE theory}
+\Def{Legendre Polynomials}{
+The following is the definition of Legendre polynomials using Rodriguez[french]'s formula:
+\begin{align*}
+P_n = \frac{1}{2^n n!} \dv{^n}{z^n} [(z^2-1)^n]
+\end{align*}
+
+Clearly, we see that:
+
+\begin{align*}
+P_0(z) &= 1\\
+P_1(z) &= z\\
+P_2(z)&= \frac{1}{2}(3z^2-1) 
+\end{align*}
+
+}
+
+Since by Cauchy's formula's formula:
+
+\begin{align*}
+(z^2-1)^n = \frac{1}{2\pi i }\oint \frac{(\zeta^2-1)^n}{\zeta-z} d\zeta
+\end{align*}
+
+We take the contour integral representation (Schlafli's Integral):
+
+\begin{align*}
+P_n(z) = \frac{1}{2\pi i n!} \dv{^n}{z^n}\oint ... dz \\ 
+= \frac{1}{2\pi i } \dv{^n}{z^n}\int_C \frac{(t^2-1)^n}{2^n(t-z)^{n+1}} dz
+\end{align*}
+
+Where $C$ is any contour that circles the point $t=z$ once in the counter clockwise direction.
+
+\textbf{Note:}
+
+\begin{align*}
+\int_C \dv{t} \frac{(t^2-1)^{n+1}}{(t-z)^{n+2}} dt = 0
+\end{align*}
+
+This is because $\frac{(t^2-1)^{n+1}}{(t-z)^{n+2}}$ returns to its original value when $t$ circles $z$ once.
+
+Carrying out differentiation and using Schlafli's integral  for $P_n(z)$, it can be seen that $P_n$ satisfies the \textbf{Legendre equation:}
+
+\begin{align*}
+(1-z^2)P_n'' - 2zPn' + n(n+1)P_n = 0
+\end{align*}
+
+This proof shoes that Schlafli's representation for $P_n$ still gives a solution to Legendre's equation for non-integer values of $n$ and provided that $C$ is still a close contour for which the expression  $\frac{(t^2-1)^{n+1}}{(t-z)^{n+2}}$ returns to its original value after a complete circuit.
+
+One such contour is the following in Figure \ref{fig:legbp}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{leg_bp}
+	\caption{There are poles at $-1, 1, z$, and branch point at infinity. So we must do the contour around it. Branch points are in red. This allows us to make a contour that surrounds $z$ }
+	\label{fig:legbp}
+\end{figure}
+
+This choice of Branch cuts and contour $C$ still leads to solutions of the Legendre Equations when $n$ is not an integer. The solution is called a \textit{Legendre function of the first kind.} We not that we can use the the Schlafli form to derive a recursive equation:
+
+\eq{(2n+1)P_n(z) = P'_{n+1}(z) - P_{n-1}(z)\\
+	(z^2-1)P_n'(z)-nzP_n(z) -nP_{n-1}(z) \\
+	nP_n(z) - zP_n'(z) - P'{n-1}(z)=0 \\ 
+	n TODO check phone
+}
+
+\Def{Generating Function}{
+A function $\pi(\zeta, z)$ such that 
+\eq{\phi(\zeta, z) = P_0(z) + \zeta P_1(z) + \zeta^2 P_2(z) + ...}
+
+for small values of $|\zeta|$ is a generating function.
+}
+Using the Schlafli representation:
+
+\begin{align*}
+\phi(\zeta,z) &= \frac{1}{2 \pi i} \int_C \left[\sum_{n=0}^\infty \frac{\zeta^n(t^2-1)^n}{2^n(t-z)^{n+1}}\right]dt \\ 
+&= \frac{1}{2 \pi i} \int_C \frac{1}{t-z}\left[1 -  \frac{\zeta(t^2-1)^n}{2(t-z)}\right]^{-1}dt \\ 
+&= \frac{1}{2 \pi i} \int_C \frac{dt}{t-z-\frac{\zeta(t^2-1)}{2}}
+\end{align*}
+
+
+The denominator vanishes for two values of $t$, but only 1 is inside $c$. The calculation of the residue gives the result:
+
+\begin{align*}
+\phi(\zeta,z)& = (1-2z \zeta + \zeta^2)^{-1/2} \\ 
+&= 1 + \frac{1}{2} \left[\frac{-2z+2\zeta}{(1-2z\zeta + \zeta^2)^{3/2}} \right]_{\zeta=0}
+\end{align*}
+
+where the principal branch is taken. Then, for small $|\zeta|$, then 
+
+\begin{align*}
+\phi(\zeta,z) = P_0(z) + \zeta P_1(z) + \zeta^2 P_2(z)
+\end{align*}
+
+From this, we can check that $P_n(1)=1$:
+
+\begin{align*}
+P_n(-1)& = (-1)^n \\ 
+P_n(-1) &= (-1)^n \\ 
+P_n(-z) &= (-1)^nP_n(z) \\ 
+P_{2n+1}(0) &= 0 
+\end{align*}
+
+\subsection{Laplace's Integrals}
+If we use Schlafli's and let contour $C$ be a circle of radius $|z^2-1|^{1/2}$. Let us set $t=z + |z^2-1|^{1/2} e^{i\theta}$, where $\theta \in [-\pi, \pi]$. Then, 
+
+\begin{align*}
+P_n(z) &= \frac{1}{2^{n+1} \pi } \int_{-\pi}^\pi \left[\frac{z^2-1 + 2z(z^2-1)^{1/2} e^{i\theta} + (z^2-1)^{1/2} e^{i2\theta}}{(z^2-1)^{1/2} e^{i\theta}}\right]^n d\theta \\ 
+&=\frac{1}{ \pi } \int_{0}^\pi [z +(z^2-1)^{1/2} \cos \theta ]^n d\theta 
+\end{align*}
+
+This is called \textbf{Laplace's first integral.}
+
+\Def{Laplace's Second Integral}{
+\begin{align*}
+P_n(z) = \pm \frac{1}{\pi} \int_{0}^\pi \frac{d\theta}{ [z +(z^2-1)^{1/2} \cos \theta ]^n }
+\end{align*}
+}
+
+
 
 \end{document}
 

@@ -23,3 +23,8 @@
 \contentsline {section}{\numberline {9}Special Functions}{37}{section.9}
 \contentsline {subsection}{\numberline {9.1}Gamma Functions}{37}{subsection.9.1}
 \contentsline {subsection}{\numberline {9.2}Beta, Digamma, Riemann Zeta functions}{41}{subsection.9.2}
+\contentsline {section}{\numberline {10}ODEs}{42}{section.10}
+\contentsline {section}{\numberline {11}Frobenius Theory}{42}{section.11}
+\contentsline {section}{\numberline {12}Hypergeometric Equations}{42}{section.12}
+\contentsline {subsection}{\numberline {12.1}Examples of ODE theory}{43}{subsection.12.1}
+\contentsline {subsection}{\numberline {12.2}Laplace's Integrals}{45}{subsection.12.2}
