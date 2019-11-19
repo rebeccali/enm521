@@ -2121,11 +2121,12 @@ One such contour is the following in Figure \ref{fig:legbp}.
 
 This choice of Branch cuts and contour $C$ still leads to solutions of the Legendre Equations when $n$ is not an integer. The solution is called a \textit{Legendre function of the first kind.} We not that we can use the the Schlafli form to derive a recursive equation:
 
-\eq{(2n+1)P_n(z) = P'_{n+1}(z) - P_{n-1}(z)\\
-	(z^2-1)P_n'(z)-nzP_n(z) -nP_{n-1}(z) \\
-	nP_n(z) - zP_n'(z) - P'{n-1}(z)=0 \\ 
-	n TODO check phone
-}
+\begin{align*}
+(2n+1) P_n(z) = P_{n+1}'(z) + P_{n-1}'(z) \\ 
+(z^2-1) P_n'(z) = nzP_n(z)-nP_{n+1}(z) \\ 
+(n+1)P_{n+1}(z) - (2n+1)zP_n(z) + nP_{n+1}(z) = 0\\
+nP_n(z) = zP_n'(z)-P_{n-1}'(z)
+\end{align*}
 
 \Def{Generating Function}{
 A function $\pi(\zeta, z)$ such that 
@@ -2179,6 +2180,138 @@ This is called \textbf{Laplace's first integral.}
 P_n(z) = \pm \frac{1}{\pi} \int_{0}^\pi \frac{d\theta}{ [z +(z^2-1)^{1/2} \cos \theta ]^n }
 \end{align*}
 }
+
+\subsection{Legendre functions and their kinds}
+
+%11-18
+Consider again Legendre's equation:
+
+\eq{(1-z^2)w'' - 2zw' + \nu(\nu +1)w = 0}
+This function is a Legendre function of the first kind. THis equation has 3 regular singularities at $z=\pm1, \infty$ in the finite plane. its solutions are analytic, but not necessarily single valued except at $z=\pm 1$.
+
+The indicial equation gives both roots $\rho = 0$. The branch points at $\pm 1$ are logarithmic. In the vicinity og he origin, the solution is analytic and we can look for expansions of the form:
+
+\eq{w = a_0 + a_1 z + a_2z^2+...}
+
+As we expand, we get two solutions, where $F$ is the hypergeometric equation:
+
+\begin{align*}
+w_1(z) &= 1-\frac{\nu(\nu+1)}{2!}z^2 + \frac{\nu (\nu-2) (\nu+1) (\nu+3)}{4!}z^4+... \\ 
+&= F(-\frac{\nu}{2}, \frac{\nu+1}{2}, \frac{1}{2}; z^2)
+\end{align*}
+
+\begin{align*}
+w_1(z) = zF(-\frac{1-\nu}{2}, \frac{\nu+2}{2}, \frac{3}{2}; z^2)
+\end{align*}
+
+These solutions are linearly independent. The general solution for $|z|<1$ of the form 
+
+\eq{w = A w_1 + B w_2,\ A,B\in \C}
+
+As we have seen, Schlafli's representation provides the analytic continuation of one solution. 
+
+\textbf{Note:} at the point $z=1$, the integrand does not have a branch point. By taking derivatives of $P_\nu$ and evaluating the taylor expansion about $z=1$, we get 
+
+\begin{align*}
+P_\nu(z) = F(\nu+1, -\nu, 1; \frac{1-z}{2})
+\end{align*}
+
+This equation is analytic at $z=1$, but not necessarily analytic at $z=-1$.
+
+Now let us consider \textbf{Legendre functions of the second kind}, with contour in Figure \ref{fig:leg2}:
+
+\begin{align*}
+Q_\nu(z) = \frac{1}{2i\sin \nu \pi } \int_C \frac{(t^2-1)^\nu}{2^\nu (z-t)^{\nu+1}}dt 
+\end{align*}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{leg_2}
+	\caption{Contour of Legendre function of the second kind. It is ok to do this kind of contour since the multi-valuedness cancels out.}
+	\label{fig:leg2}
+\end{figure}
+
+$Q_\nu(z)$ is a L.I. solution of Legendre equations such that $P_\nu, Q_\nu$ provide a fundamental set.
+
+\subsection{Bessel Functions}
+Using separation of variables (e.g. for Helmholtz equation) leads to Bessel's equation:
+
+\begin{align}\label{eq:bes}
+z^2 w'' + z w' + (z^2-\nu^2)z=0,\ \nu \in \C
+\end{align}
+
+We note that this function has regular singular point at $z=0$, however the point $z=\infty$ is not a regular singular point. Since the only singularity in the finite plane is at $z=0$, solutions are expected to be entire except for the branch point at $z=0$. Therefore, look for solutions of the form 
+
+\begin{align*}
+w=z^\rho (a_0 - a_1z + a_2z^2...)
+\end{align*}
+
+We plug this into the Bessel Equation (Equation \ref{eq:bes}). We find the first equation is:
+
+\begin{align}\label{eq:besses}
+a_0(\rho^2-\nu^2&)=0 \\ 
+a_1[(\rho+1)^2-\nu^2] &= 0 \\ 
+a_2[(\rho+2)^2-\nu^2] &= -a_0 \\ 
+a_n[(\rho+n)^2-\nu^2] &= -a_{n-2}
+\end{align}
+
+The indicial equation is $\rho = \pm \nu $. We denote $\rho_1 = +\nu$ to be the root with the largest real part. $\rho_2 = -\nu$ is the second root. Then we choose $\rho = +\nu$ in Equation \ref{eq:besses}.  None of the $a$ coefficients vanishes and we always have a solution of the form:
+
+\eq{1+\frac{1}{1-(\nu+1)} \left(\frac{z}{2}\right)^2 +\frac{1}{2(\nu+1)(\nu+2)}\left(\frac{z}{2}\right)^4+... }
+
+
+Conventionally, we get:
+
+\begin{align*}
+a_0 = \frac{1}{2^\nu \Gamma(\nu+1)}
+\end{align*}
+
+\begin{align*}
+J_\nu (z) = \left(\frac{z}{2}\right)^\nu \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} \left(\frac{z}{2}\right)^{2n}
+\end{align*}
+This is called \textbf{Bessel's equation of the first kind} (of order $\nu$).
+\textbf{Note:} Apart from the factor $\left(\frac{z}{2}\right)^0$, the power series has an infinite radius of convergence, so that $\left(\frac{z}{2}\right)^{-\nu}J_\nu(z)$ is entire.
+
+For \textit{integer} $\nu=n>0$, then the Bessel function has the property:
+
+\begin{align*}
+J_n(z) = \left(\frac{z}{2}\right)^\nu \left[\frac{1}{0!n!} - \frac{1}{1!(n+1)!}\left(\frac{z}{2}\right)^{2}+...\right] 
+\end{align*}
+
+This is called the Bessel Coefficient of order n. It is an entire function.
+
+\textbf{Note:} If the difference between indicial roots $2\nu$ is not an integer, the choice of $\rho=-\nu$ leads to a 2nd linearly independent solution $J_{-\nu}$ Even when $2\nu$ is an odd integer, $J_\nu$ and $J_{-\nu}$ are linearly independent. 
+
+We note since $2\nu = 2n$, then, the only case left is when $\nu = n \geq 0$. Then, one solution is still $J_n$ as given above. The choice $\rho=-\nu$ leads to $J_{-n}(z) = (-1)^n J_n(z)$. This does not provide a linearly independent solution.  This also suggests considering:
+
+\begin{align*}
+\lim_{\nu\to n} = \frac{J_\nu(z) - (-1)^nJ_{-\nu}(z)}{\nu-n}
+\end{align*}
+
+Which leads to the function of the second kind:
+
+\begin{align*}
+Y_{\alpha }(x)={\frac {J_{\alpha }(x)\cos(\alpha \pi )-J_{-\alpha }(x)}{\sin(\alpha \pi )}}
+\end{align*}
+
+
+When $\nu \neq n$, $Y_\nu$ is linearly independent from $J_\nu$. In the limit as $\nu \to n$, 
+
+\begin{align*}
+Y_n(z) = \frac{1}{\pi}  \left[\pdv{J_\nu}{\nu} - (-1)^n \pdv{J_{-\nu}}{\nu}  \right]_{\nu=n}
+\end{align*}
+
+And this is linearly independent from $J_n$. For the case $n\geq 0$, we get:
+
+\begin{align*}
+ Y_{n}(z)=-{\frac {\left({\frac {z}{2}}\right)^{-n}}{\pi }}\sum _{k=0}^{n-1}{\frac {(n-k-1)!}{k!}}\left({\frac {z^{2}}{4}}\right)^{k}+{\frac {2}{\pi }}J_{n}(z)\ln {\frac {z}{2}}-{\frac {\left({\frac {z}{2}}\right)^{n}}{\pi }}\sum _{k=0}^{\infty }(\psi (k+1)+\psi (n+k+1)){\frac {\left(-{\frac {z^{2}}{4}}\right)^{k}}{k!(n+k)!}}
+\end{align*}
+
+Where $\phi(z)$ is the digamma function.
+
+% final exam is friday 13th 
+
+
 
 
 

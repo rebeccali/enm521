@@ -28,3 +28,5 @@
 \contentsline {section}{\numberline {12}Hypergeometric Equations}{42}{section.12}
 \contentsline {subsection}{\numberline {12.1}Examples of ODE theory}{43}{subsection.12.1}
 \contentsline {subsection}{\numberline {12.2}Laplace's Integrals}{45}{subsection.12.2}
+\contentsline {subsection}{\numberline {12.3}Legendre functions and their kinds}{46}{subsection.12.3}
+\contentsline {subsection}{\numberline {12.4}Bessel Functions}{47}{subsection.12.4}
