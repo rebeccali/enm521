@@ -30,3 +30,6 @@
 \contentsline {subsection}{\numberline {12.2}Laplace's Integrals}{45}{subsection.12.2}
 \contentsline {subsection}{\numberline {12.3}Legendre functions and their kinds}{46}{subsection.12.3}
 \contentsline {subsection}{\numberline {12.4}Bessel Functions}{47}{subsection.12.4}
+\contentsline {section}{\numberline {13}Caucy Data on Arbitrary Curve $\Gamma $}{48}{section.13}
+\contentsline {section}{\numberline {14}Fourier Transform }{50}{section.14}
+\contentsline {subsection}{\numberline {14.1}Heuristic for Fourier Transform Inversion Formula}{51}{subsection.14.1}

@@ -2311,8 +2311,223 @@ Where $\phi(z)$ is the digamma function.
 
 % final exam is friday 13th 
 
+\Section{Caucy Data on Arbitrary Curve $\Gamma$}
+Let $\Gamma$ be defined by 
+\eq{\xi (x,y) = 0}
+
+and define adjacent curves $\xi(x,y) = $constant. We also defined a family:
+
+\eq{\eta(x,y)= \text{constant}}
+
+This is defined in such a way that $\xi, \eta$ define a log coordinate system:
+
+\begin{align*}
+J(x,y) = \xi_x \eta_y - \xi_y \eta_x \neq 0
+\end{align*}
+
+The cauchy data on $\Gamma$ prescribe $\phi$ and normal derivative $\dv{\phi}{m}$ on $\Gamma$. Can we compute $\phi_{\eta \eta}, \phi_{\eta \xi }, \phi_{\eta \eta \xi},...$ in order to find $\phi_{\xi \xi }$ from the PDE:
 
 
+\begin{align*}
+A \phi_{xx} + B \phi_{xy} + C \phi_{yy} + D \phi_{x} + E \phi_{y} + F \phi + G = 0
+\end{align*}
+
+ We have to make a change of variables $(x,y) \to (\xi, \eta)$. We note that $\phi_x = \phi_\xi \xi_z + \phi_\eta \eta_x$ and that $\phi_{xx} = \phi_{\xi \xi} \xi_x^2 + 2 \phi_{} \phi_x \eta_x + \phi_{} \eta_x^2 + \phi_{\xi} \xi_{xx} + \phi_{\eta}\eta_{xx}$
+
+The PDE now becomes:
+
+\begin{align*}
+(A \xi_x^2 + 2 B \xi_x \xi_y + C \xi_y^2) \phi_{xx} + 2 (stuff) \phi_{\xi \eta }+ (stuff)\phi_{\eta \eta} + ... + \sigma = 0
+\end{align*}
+
+Now, in order to be able to solve for $\phi_{\xi \xi }$ in terms of $\phi_{\eta}, \phi_{\xi}, \phi_{\xi \eta}, \phi_{\eta \eta} ...$ it is necessarily that the coefficient exist:
+
+\begin{align*}
+A \xi_x^2 + 2 B \xi_x \xi_y + C \xi_y^2 \neq 0
+\end{align*}
+
+On the other hand, if the left hand side = 0, then the procedure fails. We note the coefficient can be written as
+
+
+\begin{align*}
+A \left(\frac{\xi_x}{\xi_y}\right)^2 + 2 B \left(\frac{\xi_x}{\xi_y}\right)^2 + C = 0
+\end{align*}
+
+This is quadratic in $\frac{\xi_x}{\xi_y}$. The solution depends on the discriminant $B^2-AC$. There are three cases: 
+
+\underline{\textbf{Case 1:} $B^2-AC>0$}
+
+In this case, 
+	\begin{align*}
+	\frac{\xi_x}{\xi_y} = \frac{-B\pm \sqrt{B^2-AC}}{A}
+	\end{align*}
+	
+	Now, on $\xi(x,y) = const$, we get 
+	\begin{align*}
+	\dv{y}{x} = - \frac{\xi_x}{\xi_y}
+	\end{align*}
+	
+	From this, we conclude that the Cauchy data is insufficient on any curve for which:
+	
+	\begin{align}\label{eq:d1}
+	\dv{y}{x} = \frac{B + \sqrt{B^2-AC}}{A}
+	\end{align}
+	
+	\begin{align}\label{eq:d2}
+	\dv{y}{x} = \frac{B - \sqrt{B^2-AC}}{A}
+	\end{align}
+	
+	These curved can be obtained by integration and are called \textbf{characteristics.} We choose Equation \ref{eq:d1} to define $\xi(x,y) = const$ and Equation \ref{eq:d2} to define $\eta(x,y) = const$. We note that these equations are never tangent.
+	
+	\textbf{Note: } In this special coordinate system, the PDE becomes:
+	
+	\begin{align*}
+	\phi_{\xi \eta} +\alpha + \phi_\xi + \beta + \phi_\eta + \gamma \phi + \delta = 0
+	\end{align*}
+	
+	We note that if $B^2-AC>0$ in a region, the PDE is hyperbolic. In this case, there are 2 families of characteristics. 
+	
+	\begin{ex}[Wave Equation]
+		Given:
+		
+		\begin{align*}
+		\frac{1}{c^2}\phi_{tt}= \phi_{xx}
+		\end{align*}
+		
+		This has the characteristic:
+		
+		\begin{align*}
+		\xi = x + ct \\ 
+		\eta = x - ct
+		\end{align*}
+		
+		The PDE becomes:
+		
+		\begin{align*}
+		\phi_{\xi \eta} &= 0 \\ 
+		\phi(\xi, \eta)& = F(\xi) G(\eta)
+		\end{align*}
+	\end{ex}
+
+\underline{\textbf{Case 2:} $B^2 - AC = 0$}
+
+Without loss of generality, we take $A\neq 0$. (If $A=0$, take $C\neq 0$). Then, 
+
+\begin{align*}
+\frac{\xi_x}{\xi_y} = -\frac{B}{A} = - \dv{y}{x}
+\end{align*}
+
+In this case, there is only one family of characteristics, or $\xi(x,y) = \text{const}$. Then the equation is said to be \textit{parabolic}. The canonical form is:
+
+\begin{align*}
+\phi_{\eta \eta} + \alpha \phi_\xi + \beta \phi_\eta + \gamma \phi + \delta = 0
+\end{align*}
+
+\begin{ex}[Diffusion Equation]
+
+\begin{align*}
+\phi_x = a^2 \phi_{xx}
+\end{align*}
+\end{ex}
+
+\underline{\textbf{Case 3:} $B^2-AC < 0$}
+
+In the region there is no characteristic and the PDE is elliptioc.
+
+\begin{ex}[Laplace's Equation]
+\begin{align*}
+\phi_{xx} + \phi_{yy} = 0
+\end{align*}
+\end{ex}
+
+\Section{Fourier Transform }
+
+\Def{Fourier Transform}{Given a function $f(t)$, the fourier transform $F(\lambda)$ on $\hat{f}(\lambda)$ is defined by:
+
+\begin{align*}
+F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{i \lambda z} f(\tau) d\tau
+\end{align*}
+
+We note that $F(\lambda)$ is an analytic function. This makes it very powerful! We can use it to convert PDE to ODE, or rather an ODE of the Fourier transform.
+}
+
+\subsection{Heuristic for Fourier Transform Inversion Formula}
+Recall the Fourier series representation. A function $f(t)$, assumed to be square integrable (L2 integrable), defined on an interval $t \in [-T,T]$, has a Fourier series expansion representation given by:
+
+\begin{align*}
+f(t) &= \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n \cos \left(\frac{n \pi t}{T}\right) + b_n \sin \left(\frac{n \pi t}{T}\right) \right)  \\ 
+a_n &= \frac{1}{T} \int_{-T}^{T} f(\tau) \cos \left(\frac{n \pi \tau}{T}\right) d\tau \\
+b_n &= \frac{1}{T} \int_{-T}^{T} f(\tau) \sin \left(\frac{n \pi \tau}{T}\right) d\tau \\
+\end{align*}
+
+If we combine the results, we get that:
+
+\begin{align*}
+f(t) & = \frac{1}{2T} \int_{-T}^T f(\tau) d\tau + \sum_{n=1}^{\infty} \frac{1}{T} \int_{-T}^T f(\tau) \cos \left(\frac{n \pi }{T}\right) (\tau-t) d\tau \\ 
+ &= \sum_{n=-\infty}^{\infty} \frac{1}{2T} \int_{-T}^T f(\tau) \cos \left(\frac{n \pi }{T}\right) (\tau-t) d\tau 
+\end{align*}
+
+Let $\frac{n \pi }{T} = \lambda_n$, and $\frac{\pi}{T} = \lambda_{n+1} -\lambda_n = \delta \lambda_n$. Then, we get:
+
+\begin{align*}
+f(t) &= \frac{1}{2\pi}\sum_{n=-\infty}^{\infty} \delta \lambda_n \int_{-T}^T f(\tau) \cos \lambda_n (\tau-t) d\tau 
+\end{align*}
+
+As we let $n, T \to \infty$:
+
+
+\begin{align*}
+f(t) &= \frac{1}{2\pi}\int_{-\infty}^{\infty}  \int_{-\infty}^\infty f(\tau) \cos \lambda (\tau-t) + d\tau d\lambda \\ 
+ &= \frac{1}{2\pi}\int_{-\infty}^{\infty}  \int_{-\infty}^\infty f(\tau) \left[\cos \lambda (\tau-t) + i\sin \lambda (\tau-t) \right]d\tau d\lambda \\
+ &= \frac{1}{2\pi}\int_{-\infty}^{\infty}  \int_{-\infty}^\infty f(\tau) e^{i\lambda \tau} e^{-i\lambda t}d\tau d\lambda 
+\end{align*}
+
+Therefore,
+\begin{align*}
+f(t) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty F(\lambda) e^{-i\lambda \tau} d\lambda 
+\end{align*}
+
+This is the \textbf{Fourier Inversion Formula.}
+
+\begin{theorem}
+Assume that $f(t)$ is a real, piecewise-smooth function with $\int_{-\infty}^{\infty} |f(t)| dt < \infty $. 
+
+Then, 
+
+\begin{align*}
+\lim_{L \to \infty } \frac{1}{2 \pi } \int_{-L}^{L} \int_{-\infty}^{\infty} f(\tau) \cos \lambda (\tau - t) dt d\lambda = \frac{1}{2} \left[f(t_+) + f(t_-)\right]
+\end{align*}
+
+Where:
+
+\begin{align*}
+f(t_+) = \lim_{\epsilon \to 0} f(t + \epsilon) \\ 
+f(t_-) = \lim_{\epsilon \to 0} f(t - \epsilon)
+\end{align*}
+
+
+
+\Def{Piecewise smooth:} {$f and f'$ are continuous in any finite interval are continuous in any finite interval, except at any finite number of discontinuities.}
+
+\end{theorem}
+
+\begin{lemma}
+Under certain hypothesis on real, piecewise-smooth $f$, then:
+
+\begin{align*}
+\lim_{L \to  \infty} \int_{-T}^{T} f(t + \tau) \frac{\sin L\tau}{\tau} 
+= \frac{\pi}{2} \left[f(t_+) + f(t_-)\right]
+\end{align*}
+
+This is related to the fact for delta functions:
+
+
+\begin{align*}
+\int_{-\infty}^{\infty} f(t - \tau) \delta(\tau) d\tau = f(t)
+\end{align*}
+
+The reason we can think of this is thinking of a Gaussian that becomes infinitely thin and tall as the limit of the Gaussian. The $\frac{\sin L\tau}{\tau} $ is a sort of approximation of a delta function.
+\end{lemma}
 
 
 \end{document}
