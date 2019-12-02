@@ -2529,6 +2529,187 @@ This is related to the fact for delta functions:
 The reason we can think of this is thinking of a Gaussian that becomes infinitely thin and tall as the limit of the Gaussian. The $\frac{\sin L\tau}{\tau} $ is a sort of approximation of a delta function.
 \end{lemma}
 
+% 12-2
+We note that since $\sin \lambda (\tau-t)$ is odd in $\lambda$, the Fourier inversion theorem can also be written as:
+
+\begin{align*}
+\frac{1}{2\pi} \int_{-\infty}^\infty \int_{-\infty}^\infty f(\tau) e^{i \lambda (\tau - t)}  d\tau d\lambda 
+=\frac{1}{2} \left(f(t_+) + f(t_-)\right) 
+\end{align*}
+
+We can rewrite this using the definition of the Fourier transform:
+
+\begin{align*}
+F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{i \lambda \tau} f(\tau) d\tau
+\end{align*}
+This provides the inversion formula:
+
+\begin{align*}
+\frac{1}{2} \left(f(t_+) + f(t_-)\right) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{i \lambda \tau} f(\tau) d\tau
+\end{align*}
+
+Note, there are other possible definitions, and that $f(t)$ need not be real valued.
+
+\subsection{Extensions of Fourier}
+The theorem does not say that the inversion result is not valid under more general hypotheses. As an example of a non-working inversion:
+
+\begin{align*}
+g(t) = \begin{cases}
+t^{-1/2} &t > 0 \\ 
+0 & t < 0
+\end{cases}
+\end{align*}
+\begin{align*}
+\int_{-\infty}^{\infty} \left|g(t)\right| dt = \int_{0}^{\infty} \frac{1}{\sqrt{t}} dt = 2 \sqrt{t} |_0^\infty \to \infty 
+\end{align*}
+Hence, the theorem does not guarantee inversion.
+
+However, contour integration can be used to show:
+
+\begin{align*}
+G(\lambda) &= \frac{1}{\sqrt{2 \pi }} \int_{-\infty}^{\infty} e^{i \lambda \tau } \tau^{-1/2} d\tau \\
+ &=  \frac{1}{\sqrt{\lambda}} \left(1 + i \frac{\lambda}{|\lambda|}\right),\ \lambda \in \R^+, \lambda \neq 0
+\end{align*}
+
+Can we invert $G(\lambda)$ to get back $g(t)$. This does in fact work:
+
+\begin{align*}
+\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} G(\lambda) e^{i\lambda t} d\lambda = g(t)
+\end{align*}
+
+Thus, the inversion results works even though the hypothesis of the Fourier Inversion Theorem are not satisfied. What is the moral of this story? We must try to see if it works.
+
+\begin{ex}
+\begin{align*}
+f(t) = \begin{cases}
+t^{1/2} &t > 0 \\ 
+0 & t < 0
+\end{cases}
+\end{align*}
+
+Then, 
+
+\begin{align*}
+F(\lambda) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} t^{1/2} e^{i\lambda t} dt
+\end{align*}
+
+But this integral does not make sense. It does not converge for $\lambda \in \R$. However, the integral converges when $\Im{\lambda} > 0$. For such a $\lambda$, in fact, it can be shown that $F(\lambda) = \frac{1}{2\sqrt{2}} e^{-i\frac{3\pi}{4}} \lambda^{-\frac{3}{2}}$ for $0 < \arg \lambda < \pi$. By analytic continuation, this definition can be extended to the complex plane, except for $\lambda = 0$. 
+
+Next, we write $\lambda = \lambda_1 + i \lambda_2$, where $\lambda_1, \lambda_2 \in \R$. If we hold $\lambda_2 > 0$ fixed, we can then define $G(\lambda_1) = F(\lambda_1 + i \lambda_2)$. This is the Fourier transform of $g(t) = e^{-\lambda_2 t} f(t)$ for $\lambda_1 \in \R$. Then, by the Fourier Inversion Theorem:
+
+\begin{align*}
+g(t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}  e^{i\lambda_1 t} G(\lambda_1) d\lambda_1
+\end{align*}
+
+Additionally, 
+\begin{align*}
+f(t) &= e^{\lambda_2 t} g(t) \\ 
+&= \frac{1}{\sqrt{2\pi}}\int_{-\infty+i\lambda_2}^{\infty+i\lambda_2}  e^{\lambda t} F(\lambda) d\lambda
+&= \frac{1}{\sqrt{2\pi}}\int_\Gamma  e^{\lambda t} F(\lambda) d\lambda
+\end{align*}
+
+We have now turned this into a contour integral along the real line with contour $\Gamma$. It can be checked that the inversion formula does in fact work.
+
+\end{ex}
+
+
+\subsection{Sine and Consine Transform}
+
+Often, $f(t)$ is defined for $t>0$. Then, it is useful to extend $f$ such that $f(-t) = f(t)$ (i.e., $f$ is even). Then the following is also even:
+
+\begin{align*}
+F(\lambda) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}  e^{i\lambda \tau} f(\tau) d\tau\\
+F(-\lambda) = F(\lambda)
+\end{align*}
+
+And so we can write the cosine and sine transformation:
+\Def{Cosine Transformation}{
+	
+We can consider the cosine Fourier transform of $f$:
+\begin{align*}
+F_c(\lambda) = \sqrt{\frac{2}{\pi}} \int_{0}^{\infty} (\cos \lambda \tau ) f(\tau) d\tau
+f(t) = \sqrt{\frac{2}{\pi}} \int_{0}^{\infty} (\cos \lambda \tau ) F_c(\lambda) d\lambda
+\end{align*}
+}
+
+\Def{Sine Transformation}{
+	
+	We can consider the cosine Fourier transform of $f$:
+	\begin{align*}
+	F_s(\lambda) = \sqrt{\frac{2}{\pi}} \int_{0}^{\infty} (\sin \lambda \tau ) f(\tau) d\tau
+	f(t) = \sqrt{\frac{2}{\pi}} \int_{0}^{\infty} (\sin \lambda \tau ) F_s(\lambda) d\lambda
+	\end{align*}
+}
+
+\subsection{Fourier transform of derivatives}
+
+Consider functions $f$ that vanish as $|t| \to \infty$. Then, 
+
+\begin{align*}
+F_1(\lambda) &= \mathcal{F} \{f'\}\\
+& = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{i\lambda t} f'(t) dt
+\end{align*}
+
+By integration by parts:
+
+\begin{align*}
+F_1(\lambda) & = \frac{1}{\sqrt{2 \pi}} \left[e^{i\lambda t} f(t) \right]_{-\infty }^\infty - i \lambda \int_{-\infty}^{\infty}  e^{i\lambda t} f(t) dt
+&= (-i\lambda) F(\lambda)
+\end{align*}
+
+Similarly, the Fourier transform of higher derivatives $f^{(n)}(t)$ , this is given by:
+
+\begin{align}
+F_n(\lambda) = \mathcal{F} \{f^{(n)}(t)\} = (-i\lambda)^n F(\lambda)
+\end{align}
+
+Note, this result is most useful for ODEs and PDEs.
+
+\begin{ex}[1-D Conductivity]
+\begin{align*}
+\frac{1}{\alpha} \pdv{\phi}{t} = \pdv{ ^2 \phi}{x^2}
+\end{align*}
+
+We need to find $\phi(x,t)$ satisfying initial conditions $\phi(x,0) = g(x)$ and boundary condition $\phi(x,t) \to 0$ as $|x| \to \infty$. 
+
+Thus, we define a Fourier transofrm of $\phi$ with respect ot $x$:
+
+\begin{align*}
+\Phi(\lambda, t) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{i\lambda x} \phi(x,t) dx
+\end{align*}
+
+Then, let us multiply the PDE by $\frac{1}{\sqrt{2 \pi}}  e^{i\lambda x}$. Then, we can integrate. We get:
+
+\begin{align*}
+\pdv{\Phi(\lambda, t)}{t} = \alpha (-i\lambda)^2\Phi(\lambda, t)
+\end{align*}
+
+We note, that we interchanged diff with respect to $t$ and integrated in r.t. x. This is an assumption that can be verified after the fact.
+
+Note, we transformed the PDE in two variables into an ODE in one variable. The Form of the ODE is:
+
+\begin{align*}
+\Phi(\lambda, t) = A(\lambda) e^{-\alpha \lambda^2 t}
+\end{align*}
+where $A(\lambda)$ is an unknown function to be defined from the initial conditions. Thus, for $t=0$, we have:
+
+\begin{align*}
+A(\lambda) = \Phi(\lambda, 0) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{i\lambda x} \phi(x,t) dx
+\end{align*}
+
+We let $g(x) = \phi(x,t)$. Then, let $g(x) = B e^{-\beta x^2}$. 
+
+We do the integration and get:
+
+\begin{align*}
+\phi(x,t) = \frac{B}{\sqrt{1 + 4 \alpha \beta t}} e^{-\frac{\beta x^2}{1 + 4 \alpha \beta t}}
+\end{align*}
+
+
+\end{ex}
+
+
+
 
 \end{document}
 
