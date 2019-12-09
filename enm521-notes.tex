@@ -34,6 +34,8 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
+\def\F{\mathcal{F}}
+\def\conv{\circledast}
 
 \newcommand{\eq}[1]{\begin{align*}
 	#1
@@ -811,7 +813,7 @@ $$\int_{C} \frac{f(z)}{(z-z_0)^2} dz = 2\pi i f'(\pi/2) = 8\pi i $$
 
 
 \Def{Principal Value Integrals}{
-If $z_0$ is outside contour $C$, then $\frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz = 0$. If $z_0$ is on $C$, the integral does not exist. Instead, the integrand blows up "too strongly," much like the drink I'll be having tonight. However, we can re-interpret the integral so as to avoid the singularity, keeping in mind of course that such a reinterpretation is a matter of definition. Given $C$ and $z_0$ through $C$, and not having a corner there , we consider the modified contour $C'$ excluding $z_0$, putting $z_0$ on the inside. By semi-circle of radius $\epsilon>0$. Then:
+If $z_0$ is outside contour $C$, then $\frac{1}{2\pi i}\int_{C} \frac{f(z)}{z-z_0}dz = 0$. If $z_0$ is on $C$, the integral does not exist. Instead, the integrand blows up "too strongly." However, we can re-interpret the integral so as to avoid the singularity, keeping in mind of course that such a reinterpretation is a matter of definition. Given $C$ and $z_0$ through $C$, and not having a corner there , we consider the modified contour $C'$ excluding $z_0$, putting $z_0$ on the inside. By semi-circle of radius $\epsilon>0$. Then:
 
 $$\frac{1}{2\pi i}\int_{C'} \frac{f(z)}{z-z_0}dz = 0$$
 
@@ -884,7 +886,8 @@ f(z) = f(z_0) + f'(z_0)(z-z_0) + ... + \frac{f^{(n-1)}(z_0)}{n-1}(z-z_0)^{n-1} +
 
 However, we still need to show that $R_n \to 0$ as $n \to \infty$. 
 
-For ??? assume $|f(z)| \leq M $ on $C_1$. Then,
+%For ??? assume $|f(z)| \leq M $ on $C_1$. Then,
+If we instead assume $|f(z)| \leq M $ on $C_1$. Then,
 We note that from triangle inequality $$\frac{1}{|\zeta-z|} = \frac{1}{|\zeta - z - z_0 + z_0|} \leq \frac{1}{|\zeta - z_0| - |z-z_0|} = \frac{1}{\rho - r}$$
 
 Then we can conclude that
@@ -1932,9 +1935,9 @@ As $\epsilon \to \infty$, $\int_{C_\epsilon} f(\zeta) \to 0$. Therefore:
 I &= \int_{0}^{\infty} e^{-r} r^{-z} e^{i\pi z}dr  - \int_{0}^{\infty} e^{-r} r^{-z} e^{-\i pi z} dr \\ 
 &= 2 i \sin \pi z  \int_{0}^{\infty} e^{-r} r^{-= z} e^{i\pi z}dr \\ 
 &=  2 i \sin \pi z \Gamma(1-z) \\ 
-&=  2 i \sin \pi z \frac{\Gamma(z)\Gamma(1-z)}{\Gamma(z)}
-&= { 2 i \sin \pi z }{\Gamma(z) \sin \pi z}
-&= { 2 i }{\Gamma(z) } \\ 
+&=  2 i \sin \pi z \frac{\Gamma(z)\Gamma(1-z)}{\Gamma(z)} \\ 
+&= { 2 i \sin \pi z }{\Gamma(z) \sin \pi z} \\ 
+&= { 2 i }{\Gamma(z) } 
 \end{align*}
 
 We then rearrange to get:
@@ -2445,11 +2448,20 @@ In the region there is no characteristic and the PDE is elliptioc.
 \Def{Fourier Transform}{Given a function $f(t)$, the fourier transform $F(\lambda)$ on $\hat{f}(\lambda)$ is defined by:
 
 \begin{align*}
-F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{i \lambda z} f(\tau) d\tau
+F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-i \lambda \tau} f(\tau) d\tau
 \end{align*}
 
 We note that $F(\lambda)$ is an analytic function. This makes it very powerful! We can use it to convert PDE to ODE, or rather an ODE of the Fourier transform.
 }
+
+\subsection{Common Fourier Transforms}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{common_fourier}
+	\caption{Common Fourier Transforms}
+	\label{fig:commonfourier}
+\end{figure}
+
 
 \subsection{Heuristic for Fourier Transform Inversion Formula}
 Recall the Fourier series representation. A function $f(t)$, assumed to be square integrable (L2 integrable), defined on an interval $t \in [-T,T]$, has a Fourier series expansion representation given by:
@@ -2507,7 +2519,7 @@ f(t_-) = \lim_{\epsilon \to 0} f(t - \epsilon)
 
 
 
-\Def{Piecewise smooth:} {$f and f'$ are continuous in any finite interval are continuous in any finite interval, except at any finite number of discontinuities.}
+\Def{Piecewise smooth:} {$f$ and $f'$ are continuous in any finite interval are continuous in any finite interval, except at any finite number of discontinuities.}
 
 \end{theorem}
 
@@ -2646,7 +2658,7 @@ f(t) = \sqrt{\frac{2}{\pi}} \int_{0}^{\infty} (\cos \lambda \tau ) F_c(\lambda) 
 Consider functions $f$ that vanish as $|t| \to \infty$. Then, 
 
 \begin{align*}
-F_1(\lambda) &= \mathcal{F} \{f'\}\\
+F_1(\lambda) &= F.T. \{f'\}\\
 & = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{i\lambda t} f'(t) dt
 \end{align*}
 
@@ -2660,7 +2672,7 @@ F_1(\lambda) & = \frac{1}{\sqrt{2 \pi}} \left[e^{i\lambda t} f(t) \right]_{-\inf
 Similarly, the Fourier transform of higher derivatives $f^{(n)}(t)$ , this is given by:
 
 \begin{align}
-F_n(\lambda) = \mathcal{F} \{f^{(n)}(t)\} = (-i\lambda)^n F(\lambda)
+F_n(\lambda) = F.T. \{f^{(n)}(t)\} = (-i\lambda)^n F(\lambda)
 \end{align}
 
 Note, this result is most useful for ODEs and PDEs.
@@ -2672,7 +2684,7 @@ Note, this result is most useful for ODEs and PDEs.
 
 We need to find $\phi(x,t)$ satisfying initial conditions $\phi(x,0) = g(x)$ and boundary condition $\phi(x,t) \to 0$ as $|x| \to \infty$. 
 
-Thus, we define a Fourier transofrm of $\phi$ with respect ot $x$:
+Thus, we define a Fourier transform of $\phi$ with respect ot $x$:
 
 \begin{align*}
 \Phi(\lambda, t) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{i\lambda x} \phi(x,t) dx
@@ -2697,20 +2709,399 @@ where $A(\lambda)$ is an unknown function to be defined from the initial conditi
 A(\lambda) = \Phi(\lambda, 0) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{i\lambda x} \phi(x,t) dx
 \end{align*}
 
-We let $g(x) = \phi(x,t)$. Then, let $g(x) = B e^{-\beta x^2}$. 
+We let $g(x) = \phi(x,t)$. Then, let $g(x) = B e^{-\beta x^2}$. We get:
+
+\begin{align*}
+A(\lambda) = \Phi(\lambda, 0) = \frac{B}{\sqrt{2 \pi}} \int_{-\infty}^{\infty}  e^{i\lambda x - \beta x^2} dx
+&= \frac{B}{\sqrt{2 \pi}}  e^{-\frac{\lambda^2}{4\beta}}
+\end{align*}
+
+We can complete the square to get:
+
+\begin{align*}
+e^{-\frac{\lambda^2}{4\beta}} \int_{-\infty}^\infty e^{-\beta (x + \lambda / (2\beta))^2} dx = e^{-\frac{\lambda^2}{4\beta}} \sqrt{\frac{\pi}{\beta}}
+\end{align*}
 
 We do the integration and get:
 
 \begin{align*}
+\phi(x,t) = \frac{B}{\sqrt{\beta \pi}} \int_{-\infty}^\infty e^{- i \lambda x-\lambda^2 (1/(4\beta) + x t)} dt 
+\end{align*}
+
+And by completing the square: 
+\begin{align*}
 \phi(x,t) = \frac{B}{\sqrt{1 + 4 \alpha \beta t}} e^{-\frac{\beta x^2}{1 + 4 \alpha \beta t}}
 \end{align*}
 
+We can check the initial and boundary conditions.
 
 \end{ex}
 
+% 12-4
+
+\section{Convolution Integrals}
+
+\Def{Convolution}{
+The convolution of $f$ and $g$ is defined as :
+
+\begin{align*}
+f \conv g = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} f(\xi) g(x - \xi) d\xi
+\end{align*}
+
+}
+
+We not that there is no general form for the Fourer transform of the product of $f$ and $g$:
+
+\begin{align*}
+\F (f \cdot g) \neq \F (f) \F (g)
+\end{align*}
+
+However:
+\begin{align}
+\F (f * g) &= \F(f) \F (g) \\ 
+& = F(\lambda ) G(\lambda)
+\end{align}
+
+\textbf{Proof:}
+
+Consider the inverse Fourier transform of $F(\lambda ) G(\lambda)$:
+
+\begin{align*}
+\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} e^{- i \lambda x}F(\lambda ) G(\lambda) d\lambda  &= \frac{1}{2 \pi} \int_{-\infty}^{\infty} e^{- i \lambda x}F(\lambda ) \int_{-\infty}^{\infty} e^{- i \lambda \xi}G(\lambda ) d\xi d\lambda  \\ 
+& = \frac{1}{2 \pi} \int_{-\infty}^{\infty} d \xi g(\xi) \int_{-\infty}^{\infty} d\lambda e^{- i \lambda (x-\xi)}F(\lambda ) \\ 
+& = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} d \xi g(\xi) f(x-\xi) \\
+& = \frac{1}{\sqrt{2 \pi}} f * g 
+\end{align*}
+
+Therefore:
+
+\begin{align*}
+\F (f * g) = F.T. \left[\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} g(\xi) f(x-\xi) d\xi\right] = F(\lambda ) G(\lambda)
+\end{align*}
+
+As a note, if we set $x=0$, then we get that:
+
+\begin{align*}
+ \int_{-\infty}^{\infty} F(\lambda) G(\lambda) d\lambda =  \int_{-\infty}^{\infty} f(x) g(-x)dx \\
+  \int_{-\infty}^{\infty} F(\lambda) G(-\lambda) d\lambda =  \int_{-\infty}^{\infty} f(x) g(x)dx 
+\end{align*}
+
+Now, if we replace $g(x)$ with $g^* (x)$, then we get:
+\begin{align*}
+ \int_{-\infty}^{\infty} F(\lambda) G^*(\lambda) d\lambda =  \int_{-\infty}^{\infty} f(x) g^*(x)dx 
+\end{align*}
+
+If we let $f = g$, then we get \textbf{Parseval's theorem}:
+
+\begin{align*}
+ \int_{-\infty}^{\infty} |F(\lambda)|^2 d\lambda =  \int_{-\infty}^{\infty} |f(x)|^2dx 
+\end{align*}
+
+This is analogous to \textbf{Parseval's identity for Fourier series:}
+
+\begin{align*}
+\frac{1}{T} \int_{-T}^{T} f^2(t) dt = \frac{1}{2} a_0^2  + \sum_{n=1}^\infty (a_n^2 + b_n^2)
+\end{align*}
+
+
+We note that $x^n f(x)$ is a special equation:
+
+\begin{align*}
+\frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{\infty} e^{- i \lambda x} x^n f(x) dx &= 
+\left(\frac{1}{i}\right)^n \dv{^n}{\lambda^n} \left[\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{- i \lambda x} f(x) dx\right] \\ 
+& = (-i)^n \dv{^n}{\lambda^n} F(\lambda)
+\end{align*}
+
+We also note these transforms are great for linear equations, but cannot really be used on nonlinear equations. It is not a general method for PDEs.
+
+\begin{ex}[Bessel's Equation]
+\begin{align*}
+xy'' + y' + xy = 0
+\end{align*}
+The Fourier transform is:
+\begin{align*}
+-i \dv{\lambda} \left(- \lambda^2 Y\right) - i \lambda Y - i \dv{Y} = 0
+\end{align*}
+
+We have gone from a 2nd order ODE to a first order ODE. This is simpler, since we can always integrate first order equations. This implies:
+
+\begin{align*}
+Y(\lambda) = B(1-\lambda^2)^{-1/2}
+\end{align*}
+
+where $B$ is a constant. Inverting this leads to the integral representation of Bessel's Function $J_0(x)$:
+
+\begin{align*}
+J_0(x) = \frac{B}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{- i \lambda x}(1-\lambda^2)^{-1/2} d\lambda 
+\end{align*}
+\end{ex}
+
+
+\Def{Delta Function}{
+Consider a function 
+\begin{align*}
+f_\epsilon(x) = \frac{1}{\sqrt{\pi \epsilon }} e^{-\frac{x^2}{\epsilon}}
+\end{align*}
+where
+
+\begin{align*}
+ \int_{-\infty}^{\infty} f_\epsilon(x)  dx = 1
+\end{align*}
+
+If we take the limit as $\epsilon \to 0$, we will get the Dirac function:
+
+\begin{align*}
+f_0(x) = \begin{cases}
+0 & x \neq 0\\
+\infty & x = 0 
+\end{cases}
+\end{align*}
+
+However, we still satisfy:
+\begin{align*}
+\int_{-\infty}^{\infty} f_0(x)  dx = 1
+\end{align*}
 
 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{eps_dirac}
+	\caption{Example of how a Gaussian changes as we shrink $\epsilon$. }
+	\label{fig:epsdirac}
+\end{figure}
+
+This is a physical unit impulse. This is not a real function, but it is very useful. We call $f_0(x)$ a generalization function on a distribution:
+
+\begin{align*}
+\delta(x) = \lim_{\epsilon \to 0} f_\epsilon(x)
+\end{align*}
+with the property:
+\begin{align*}
+\int_{-\infty}^{\infty} g(x) \delta(x-a)  dx = g(a)
+\end{align*}
+
+}
+
+There is a formal procedure here, but we can make it rigorous by thinking of a $\delta$ function as a functional, or linear operator, that localizes the value of the function at point $x=a$.
+
+\textbf{Properties of $\delta$ function:}
+\begin{itemize}
+	\item $\delta(-t) = \delta(t)$ 
+	\item $\delta(at) = \frac{1}{|a|}\delta(t)$
+	\item $t\delta(t) = 0$
+	\item $\delta(t^2 - a^2) = \frac{1}{2|a|}\left[\delta(t+a) + \delta(t-a)\right]$
+	\item $\delta(t) = -t \delta ' (t) \ (I.B.P.)$
+\end{itemize}
+
+The Fourier transform of $\delta(t)$ is:
+
+\begin{align*}
+F(\delta) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{- i \lambda t} \delta(t) dt  = \frac{1}{\sqrt{2\pi}} 
+\end{align*}
+
+If we let $g(t) = \delta(t-a)$, the Fourier transform of $g(t)$ is 
+
+\begin{align*}
+G(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{- i \lambda t} \delta(t-a) dt  = \frac{1}{\sqrt{2\pi}} e^{i \lambda a}
+\end{align*}
+
+The inversion is:
+
+\begin{align*}
+g(t) &=  \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi}} e^{- i \lambda t}  e^{i \lambda a} d\lambda \\ 
+&= \frac{1}{2\pi(a-t)} e^{- i \lambda (a-t)} 
+\end{align*}
+
+In short:
+\begin{align*}
+\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{- i \lambda( a-t)} d\lambda = \delta(t-a) 
+\end{align*}
+
+\begin{ex}
+For $x \in (-\infty, \infty), t > 0$:
+\begin{align*}
+\pdv{\phi}{t} = \alpha \pdv{^2\phi}{x^2} 
+\end{align*}
+
+We remember that:
+
+\begin{align*}
+f(x) = \int_{-\infty}^{\infty}f(\xi)\delta(\xi-x) d\xi
+\end{align*}
+
+This "equals" $\delta(t-a)$. We note that $\phi(x,0) = f(x)$ and $\phi(x,t) \to 0$ as $|x| \to \infty$. By linear superposition, the solution to the above problem can be obtained from the solution $G(x,t;\xi)$ of the following problem:
+
+\begin{align*}
+\pdv{G}{t} &= \alpha \pdv{^2G}{x^2} \\
+G(x,0;\xi) &= \delta(x-\xi) \\ 
+G(x,t;\xi)  \to 0 &\text{ as } |x| \to \infty 
+\end{align*}
+
+This is the same problem with a slight variation. The oslution is obtained by the Fourier Transform of the PDE w.r.t. x:
+
+\begin{align*}
+\hat{G}(\lambda, t;\xi) = A(\lambda)e^{-\alpha \lambda^2 t}
+\end{align*}
+
+where 
+
+\begin{align*}
+A(\lambda) & =  \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{- i \lambda x} \delta(x-\xi) dx \\
+& =  \frac{1}{\sqrt{2\pi}} e^{- i \lambda \xi}
+\end{align*}
+
+such that:
+
+\begin{align*}
+\hat{G}(\lambda, t;\xi)  = \frac{1}{\sqrt{2\pi}} e^{- i \lambda \xi - \alpha \lambda^2 t}
+\end{align*}
+
+Inverting this, we get Green's function:
+
+\begin{align*}
+G(x,t;\xi) &=  \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{- i \lambda x}\hat{G} d\lambda \\& = \frac{1}{\sqrt{2\pi \alpha t}} e^{-\frac{|x-\xi|^2}{4 \alpha t}} \\ 
+& = G(x-\xi, t; 0)
+\end{align*}
+\end{ex}
+% 12-9 - need to ask walker to fill in
+
+\subsection{Fourier Transform in 3D}
+Given the problem of Laplace's equation in 3D:
+\begin{align*}
+\pdv{^2\phi}{x^2} + \pdv{^2\phi}{y^2} + \pdv{^2\phi}{z^2} = g(x)
+\end{align*}
+
+With boundary conditions $\phi(\mathbf{x}) \to 0$ as $|\mathbf{x}| \to \infty$. 
+
+\Def{Fourier Transform in 3D}{
+For a function $f$, the Fourier transform is:
+
+\begin{align*}
+F(\mathbf{\lambda}) = \frac{1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{i \mathbf{\lambda x}} f(\mathbf{x}) dv_\mathbf{x}
+\end{align*}
+}
+
+Now let's think about the second derivative Fourier transform in 3D:
+
+\begin{align*}
+G(\lambda_1, \lambda_2, \lambda_3) &= \frac{1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{i (\lambda_1 x \lambda_2 y \lambda_3 z)} \pdv{^2 f(x,y,z)}{x} dxdydz \\ 
+&= -\lambda_x^2 F(\mathbf{\lambda}) -\lambda_y^2 F(\mathbf{\lambda}) -\lambda_z^2 F(\mathbf{\lambda}) \\
+&= \frac{1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{i \mathbf{\lambda x}} \delta(\mathbf{x} - \mathbf{\xi}) dv\mathbf{x} \\ 
+& = \frac{1}{(2 \pi)^{3/2}} e^{i \mathbf{\lambda \xi}}
+\end{align*}
+
+Now this becomes an algebraic equation, where $G$ is the Green's function:
+
+\begin{align*}
+-|\mathbf{\lambda}|^2 G(\mathbf{\mathbf{\lambda}}) = \frac{1}{(2 \pi)^{3/2}}  e^{i \mathbf{\lambda \xi}} \\
+G(\mathbf{\lambda}) = \frac{1}{-(2 \pi)^{3/2}|\mathbf{\lambda}|^2}  e^{i \mathbf{\lambda \xi}} 
+\end{align*}
+
+To finish up, we do the inverse Fourier Transform:
+
+\begin{align*}
+g(\mathbf{x};\xi) = \frac{-1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{-i  \mathbf{\lambda x}} \frac{e^{-i  \mathbf{\lambda \xi}}}{|\mathbf{\lambda}|} d\frac{1}{\mathbf{\lambda}} \\ 
+= \frac{-1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty \frac{e^{-i  \mathbf{\lambda} (\mathbf{x} - \mathbf{\xi})}}{|\mathbf{\lambda}|} d\frac{1}{\mathbf{\lambda}} \\ 
+\end{align*}
+
+This has a problem where there could be a singularity at $\lambda = 0$. We can rewrite this volumetric integral making use of spherical coordinates. We do a change of variables $d \frac{1}{\lambda} = \rho^2 \sin \theta d\rho d\theta d\phi $.
+
+We also have the vector $|\mathbf{x - \xi }| = r$. So then, we get the result:
+
+\begin{align*}
+g(\mathbf{x};\xi) = \frac{-1}{(2 \pi)^{3}} \int_{0}^{2\pi} d\phi \int_0^\infty d\rho \int_0^\pi d\theta \frac{e^{-i \rho r \cos \theta }\rho^2 \sin \theta }{\rho^2} \\
+= \frac{-1}{(2 \pi)^{3}} \int_{0}^{2\pi} d\phi \int_0^\infty d\rho \int_0^\pi d\theta e^{-i \rho r \cos \theta } \sin \theta 
+\end{align*}
+
+We note the final answer does not depend on $\phi$, so we get a factor of $2\pi$.
+
+\begin{align*}
+g(\mathbf{x};\xi) = \frac{-1}{(2 \pi)^{2}}  \int_0^\infty d\rho \int_0^\pi d\theta e^{-i \rho r \cos \theta } \sin \theta 
+\end{align*}
+
+With another change of variables $u = -cos\theta$, $du = -sin\theta d\theta$:
+
+\begin{align*}
+g(\mathbf{x};\xi)&= \frac{-1}{(2 \pi)^{2}}  \int_0^\infty d\rho \int_{-1}^1  e^{i \rho r u} du \\ 
+&= \frac{-1}{(2 \pi)^{2}}  \int_0^\infty d\rho \left[\frac{1}{i\rho r}\right] \left[e^{i \rho r} - e^{-i \rho r}\right]\\
+&= \frac{-1}{2 (\pi)^{2} r}  \int_0^\infty d\rho \frac{1}{\rho}\sin (\rho r)\\
+&= \frac{-1}{2 (\pi)^{2} r}  \int_0^\infty d(r\rho) \frac{1}{r\rho}\sin (\rho r) \\
+&= \frac{-1}{2 (\pi)^{2} r}  \int_0^\infty dx \frac{1}{x}\sin x \\
+& = - \frac{1}{4 \pi r}
+\end{align*}
+
+Back to the Green's function:
+
+\begin{align*}
+g(\mathbf{x};\mathbf{\xi}) = - \frac{1}{4 \pi |\mathbf{x}-\mathbf{\xi}|} \\
+\phi(\mathbf{x}) = -\iiint_{-\infty}^\infty f(\mathbf{\xi}) \frac{1}{4 \pi |\mathbf{x}-\mathbf{\xi}|} dv_\mathbf{x}
+\end{align*}
+This is the idea of a kernel.
+
+\subsection{Wave Equation}
+
+The wave equation is a hyperbolic equation which can be solved with a change of variables.
+
+\begin{align*}
+\pdv{^2u}{t^2} = c^2 \pdv{^2 u}{t^2}
+\end{align*}
+
+The physical interpretation is imagine an infinite string. It has a property $c = \sqrt{T/\rho}$, where $T$ is the tension in the string and $\rho$ is mass per unit length.
+
+We have some boundary conditions:
+
+\begin{align*}
+u(x,0) = h(x) \\ 
+\pdv{u}{t}(x,0) = p(x)
+\end{align*}
+We also have the condition that $u \to 0$ as $|x| \to \infty$. 
+
+A general solution for constant $c$ can easily be found by a change of variables. 
+
+\begin{align*}
+\xi = x + ct\\
+\eta = x - ct 
+\phi(\xi, \eta) = u(\frac{\xi + \eta}{2}, \frac{\xi - \eta}{2c})
+\end{align*}
+
+The PDE becomes:
+\begin{align*}
+\pdv{^\phi}{d\xi d\eta} = 0
+\end{align*}
+
+The solution to this equation is simply with $\alpha, \beta$ arbitrary functions in one variable:
+
+\begin{align*}
+\phi(\xi, \eta) = \alpha (\xi) + \beta(\eta)
+\end{align*}
+
+In terms of $x,t$, we have:
+\begin{align*}
+u(x,t) = \alpha(x+ct) + \beta(x-ct)
+\end{align*}
+
+In making use of the initial conditions, we get the result:
+
+\begin{align*}
+u(x,t) = \frac{1}{2}(h(x+ct) + +h(x-ct)) + \frac{1}{2c} \int_{x-ct}^{x+ct} P(\tau) d\tau
+\end{align*}
+
+Now we can consider the forced version of the wave equation:
+
+\begin{align*}
+\pdv{^2u}{t^2} = c^2 \pdv{^2 u}{t^2} + F
+\end{align*}
+
+Now we must use contour integration in order to solve this. There are two singularities along the real line, so we must do an indented path idea. But should we indent above or below? Alternatively, we can also introduce some friction:
+
+\begin{align*}
+\alpha \pdv{u}{t} + \pdv{^2u}{t^2} = c^2 \pdv{^2 u}{t^2} + F
+\end{align*}
+
+This moves the two singularities. One moves above, one moves below the real axis, solving the contour integration issue. As dissipation moves to zero, we clearly see which side we should indent on to be consistent with physics. This might be important on the exam. 
+
+
+
+% ======================================================================
 \end{document}
-
-
