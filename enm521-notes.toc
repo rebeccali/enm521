@@ -34,9 +34,10 @@
 \contentsline {section}{\numberline {14}Fourier Transform }{50}{section.14}
 \contentsline {subsection}{\numberline {14.1}Common Fourier Transforms}{51}{subsection.14.1}
 \contentsline {subsection}{\numberline {14.2}Heuristic for Fourier Transform Inversion Formula}{51}{subsection.14.2}
-\contentsline {subsection}{\numberline {14.3}Extensions of Fourier}{53}{subsection.14.3}
-\contentsline {subsection}{\numberline {14.4}Sine and Consine Transform}{54}{subsection.14.4}
-\contentsline {subsection}{\numberline {14.5}Fourier transform of derivatives}{55}{subsection.14.5}
+\contentsline {subsection}{\numberline {14.3}Properties of the Fourier Transform}{53}{subsection.14.3}
+\contentsline {subsection}{\numberline {14.4}Extensions of Fourier}{53}{subsection.14.4}
+\contentsline {subsection}{\numberline {14.5}Sine and Consine Transform}{54}{subsection.14.5}
+\contentsline {subsection}{\numberline {14.6}Fourier transform of derivatives}{55}{subsection.14.6}
 \contentsline {section}{\numberline {15}Convolution Integrals}{56}{section.15}
 \contentsline {subsection}{\numberline {15.1}Fourier Transform in 3D}{61}{subsection.15.1}
 \contentsline {subsection}{\numberline {15.2}Wave Equation}{62}{subsection.15.2}

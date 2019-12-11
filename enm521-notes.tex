@@ -2445,10 +2445,10 @@ In the region there is no characteristic and the PDE is elliptioc.
 
 \Section{Fourier Transform }
 
-\Def{Fourier Transform}{Given a function $f(t)$, the fourier transform $F(\lambda)$ on $\hat{f}(\lambda)$ is defined by:
+\Def{Fourier Transform}{Given a function $f(t)$, the Rourier transform $F(\lambda)$ on $\hat{f}(\lambda)$ is defined by:
 
 \begin{align*}
-F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-i \lambda \tau} f(\tau) d\tau
+F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{i \lambda \tau} f(\tau) d\tau
 \end{align*}
 
 We note that $F(\lambda)$ is an analytic function. This makes it very powerful! We can use it to convert PDE to ODE, or rather an ODE of the Fourier transform.
@@ -2499,7 +2499,8 @@ Therefore,
 f(t) &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty F(\lambda) e^{-i\lambda \tau} d\lambda 
 \end{align*}
 
-This is the \textbf{Fourier Inversion Formula.}
+This is the \textbf{Fourier Inversion Formula}, or \textbf{Inverse Fourier Transform\\
+}
 
 \begin{theorem}
 Assume that $f(t)$ is a real, piecewise-smooth function with $\int_{-\infty}^{\infty} |f(t)| dt < \infty $. 
@@ -2561,6 +2562,19 @@ This provides the inversion formula:
 \end{align*}
 
 Note, there are other possible definitions, and that $f(t)$ need not be real valued.
+
+\subsection{Properties of the Fourier Transform}
+For a function $f(t)$ with Fourier Transform $F(\lambda)$
+\begin{itemize}
+	\item $I.F.T.[f(t)] = F(-\lambda)$
+	\item For constants $a,b$: $F.T.[af(t)+bg(t)] = a F.T.[f(t)] + b F.T.[g(t)] $
+	\item $F.T.[f(t)g(t)] = F.T.[f(t)] * F.T.[g(t)]$  where $*$ is the convolution operator.
+	\item $F.T.[f(t) * g(t)] = F.T.[f(t)] F.T.[g(t)]$
+	\item $F.T.[\dv{^n}{t^n} f(t)] = (-i\lambda)^n F(\lambda)$
+	\item $F.T.[\delta(t)] = \frac{1}{\sqrt{2\pi}}$
+	\item $F.T.[1] = \frac{1}{\sqrt{2\pi}}\delta(-t) = \frac{1}{\sqrt{2\pi}}\delta(t)$
+	\item $F.T.[f(t-t_0)] = \frac{1}{\sqrt{2\pi}}  \int_{-\infty}^\infty e^{i \lambda t} f(t-t_0) dt = \frac{1}{\sqrt{2\pi}}  \int_{-\infty}^\infty e^{i \lambda (t'+t_0)} f(t') dt' = e^{i \lambda t_0} F(\lambda)$
+\end{itemize}
 
 \subsection{Extensions of Fourier}
 The theorem does not say that the inversion result is not valid under more general hypotheses. As an example of a non-working inversion:
