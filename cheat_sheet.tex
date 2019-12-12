@@ -81,6 +81,7 @@ ENM 521
 Take the derivative
 Bound to zero
 Do contours around the branch cut (keyhole)
+Exponentials are faster than polynomials 
 
 \section{Common functions}
 \begin{itemize}
@@ -94,8 +95,7 @@ Do contours around the branch cut (keyhole)
 	\item $|\sin z|^2 = \sin ^2 x + \sinh ^2 y$, $|\cos z|^2 = \cos ^2 x + \sinh ^2 y$
 	\item $\log z$ :  B.P. at 0,$\infty$. $D[\log x] = 1/x$. 
 	\item $\lim_{\epsilon \to 0} $$\epsilon \log \epsilon$ = 0
-	\item L'hopital's rule 
-	\item Funny trig rule 
+	\item L'hopital's rule for indefinite limits $ \lim _{x\to c}{\frac {f(x)}{g(x)}}=\lim _{x\to c}{\frac {f'(x)}{g'(x)}}$
 	\item Geometric series 
 \end{itemize}
 
@@ -132,7 +132,7 @@ This is the most general test for convergence of a series.
 \textbf{Harmonic function}: Satisfies $\pdv{^2u}{x^2} + \pdv{^2u}{y^2} = 0$
 \textbf{Analyticity}: Differentiable everywhere in neighborhood of point.
 \textbf{Roots of Unity}: The $k$th root of unity is $\omega$ s.t. $\sum_{n=1}^{k} w^n =0$
-\textbf{Entire Function} (TODO)
+\textbf{Entire Function} holomorphic/analytic all over 
 
 
 \section{Branch Points and Branch Cuts}
@@ -144,11 +144,11 @@ NOTE: only have to say what it is.
 \section{Singularities}
 Isolated singularities
 \begin{itemize}
-	\item \textbf{Pole}: $f$ can be writen as $g/(z-z_0)$
+	\item \textbf{Pole}: $f$ can be written as $g/(z-z_0)$
 	\item \textbf{Removable}: $z_0$ is analytic in neighborhood and limit exists. Chuanpeng says this is not a singularity.
 	\item \textbf{Essential} Neither, yet isolated. Ex. $f(z) = \frac{\sin z}{z}$.
 \end{itemize}
-Non-isolated singularities 
+Non-isolated singularities: each deleted neighborhood has a singularity. e.g. branch points, $2\frac{1}{\sin(1/z)}$
 
 \section{Taylor/Maclaurin series expansion}
 Maclaurin is just taylor about $z=0$.
@@ -184,17 +184,19 @@ Let $f$ have a simple pole at $a$ with a residue $\Res[f;a]$. Then given an uppe
 \lim_{\epsilon\to0} \int_{C_\epsilon} f(z) dz = -\Res[f;a]\pi i
 \end{align}
 
-\textbf{Jordan's Theorem}: If the only singularities in $g(z)$ are poles, $a>0$, and $g(z) \to 0$ as $R \to \infty$, then 
+\textbf{Jordan's lemma}: If $C_R$ is the positive imaginary semicircular contour, the only singularities in $g(z)$ are poles, $a>0$, and $g(z) \to 0$ as $R \to \infty$, then 
 
 $$\lim_{R \to \infty} \int_{C_R}e^{iaz}g(z) dz = 0$$
+
+If you'd like to apply Jordan's lemma for $a<0$, try taking the semicircular contour that goes through the negative semicircular contour. Likewise, we can also say very carefully that Jordan's lemma.
 
 \textbf{Residue theorem}: Suppose that $f(z)$ is analytic inside and on a simple closed contour $C$ except for isolated singularities at $z_1, z_2,..,z_n$ inside $C$. Let the residues at these points be $\alpha_1, \alpha_2,..,\alpha_n$ respectively. Then:
 $\int_C f(z) dz = 2 \pi i \sum_{i=1}^n \alpha_i$
 
 
-Example of sector integration
+Sector integration: take an arc-slice of a circle around a singularity (or two) and then go use residue theorem.
 
-\textbf{Example log expansion}:Find the Maclaurin expansion of $f(z) = \log(z+1)$ valid for $|z|<1$. We know that $f'(z) = \frac{1}{1+z}$. This is just the same as a geometric series: $f'(z) = \sum_{n=0}^\infty (-1)^n z^n$
+Maclaurin expansion of $f(z) = \log(z+1)$ valid for $|z|<1$. We know that $f'(z) = \frac{1}{1+z}$. This is just the same as a geometric series: $f'(z) = \sum_{n=0}^\infty (-1)^n z^n$
 
 Hence:
 
@@ -204,6 +206,73 @@ f(z) &= \log(1+z) \\
 & = \sum_{n=0}^\infty \int_{0}^z (-1)^n\zeta^n d\zeta + 0 \\ 
 &  = \sum_{n=0}^\infty \frac{(-1)^n\zeta^{n+1}}{n+1}  
 \end{align}
+\section{Special Functions}
+\textbf{Gamma function:} $\Gamma(z) = \int_0^\infty x^{z-1} e^{-x} dx$
+
+The infinite form:
+$\lim_{n\to\infty} \Gamma(z;n) := \int_{0}^{n} (1-\frac{t}{n})^n t^{z-1} dt = \Gamma(z) =  $
+Integer: $n \in \mathbb{Z}^+$, $\Gamma(n) = (n+1)!$ 
+Properties of Gamma function
+\begin{itemize}
+	\item $\Gamma(1) = 1$
+	\item $\Gamma(z+1) = z \Gamma(z)$ 
+	\item $\Gamma (z)={\frac {1}{z}}\prod _{n=1}^{\infty }{\frac {\left(1+{\frac {1}{n}}\right)^{z}}{1+{\frac {z}{n}}}}$
+	\item $\Gamma (1-z)\Gamma (z)={\pi  \over \sin(\pi z)},\qquad z\not \in \mathbb{Z} $
+	\item $\Gamma(\frac{1}{2}) = \sqrt{\pi }$
+	\item $ \Gamma (z)={\frac {\Gamma (z+n+1)}{z(z+1)\cdots (z+n)}}$
+	\item $\Gamma(\frac{1}{2} + z) \Gamma(\frac{1}{2} - z) = \frac{\pi}{\cos \pi z}$ 
+	\item $\beta(p,q) = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}$
+	\item $(1+z)^\alpha = \sum_{n=0}^\infty \frac{\Gamma(\alpha+1)}{n!\Gamma(\alpha-n+1)}z^n$ (use the factorial identity)
+	\item 
+\end{itemize}
+
+\textbf{Bessel Equation Definitions}
+1st kind: $J_\nu (z) = \left(\frac{z}{2}\right)^\nu \sum_{n=0}^{\infty} \frac{(-1)^n}{n! \Gamma(\nu+n+1)} \left(\frac{z}{2}\right)^{2n}$
+
+\textbf{Legendre Polynomials}:
+$P_n = \frac{1}{2^n n!} \dv{^n}{z^n} [(z^2-1)^n]$
+$P_0(z) = 1,\ 
+P_1(z) = z,\ 
+P_2(z)= \frac{1}{2}(3z^2-1) 
+$
+
+\textbf{Generating Function}: $\phi(\zeta, z) = P_0(z) + \zeta P_1(z) + \zeta^2 P_2(z) + ...$
+
+
+\section{Fourier Transform}
+Fourier Transform:$F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{i \lambda \tau} f(\tau) d\tau$
+Inverse Fourier Transform: 
+$f(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty F(\lambda) e^{-i\lambda \tau} d\lambda $
+\subsection{Properties of the Fourier Transform}
+For a function $f(t)$ with Fourier Transform $F(\lambda)$
+\begin{itemize}
+	\item $I.F.T.[f(t)] = F(-\lambda)$
+	\item For constants $a,b$: $F.T.[af(t)+bg(t)] = a F.T.[f(t)] + b F.T.[g(t)] $
+	\item $F.T.[f(t)g(t)] = F.T.[f(t)] * F.T.[g(t)]$  where $*$ is the convolution operator.
+	\item $F.T.[f(t) * g(t)] = F.T.[f(t)] F.T.[g(t)]$
+	\item $F.T.[\dv{^n}{t^n} f(t)] = (-i\lambda)^n F(\lambda)$
+	\item $F.T.[\delta(t)] = \frac{1}{\sqrt{2\pi}}$
+	\item $F.T.[1] = \frac{1}{\sqrt{2\pi}}\delta(-t) = \frac{1}{\sqrt{2\pi}}\delta(t)$
+	\item $F.T.[f(t-t_0)] = \frac{1}{\sqrt{2\pi}}  \int_{-\infty}^\infty e^{i \lambda t} f(t-t_0) dt = \frac{1}{\sqrt{2\pi}}  \int_{-\infty}^\infty e^{i \lambda (t'+t_0)} f(t') dt' = e^{i \lambda t_0} F(\lambda)$
+\end{itemize}
+
+\includegraphics[width=0.7\linewidth]{common_fourier}
+
+\textbf{Fourier Coefficients}: 
+
+\textbf{Green's function}: Solution to $LG = \delta$ for linear differential operator $L$.
+
+\includegraphics[width=0.7\linewidth]{green_common}
+
+
+
+\subsection{Laplace Transform}
+$F(s) = \int_{-\infty}^\infty f(t) e^{-st} dt$
+Inverse L.T.:
+$f(t) = \mathcal{L}^{-1}\{F(s)\}(t) = \frac{1}{2\pi i}\int_{\gamma - i \infty }^{\gamma + i \infty } e^{st} F(s) ds$
+
+TODO: ??? 
+
 
 \end{multicols}
 \end{document}

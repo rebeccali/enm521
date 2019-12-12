@@ -2132,7 +2132,7 @@ nP_n(z) = zP_n'(z)-P_{n-1}'(z)
 \end{align*}
 
 \Def{Generating Function}{
-A function $\pi(\zeta, z)$ such that 
+A function $\phi(\zeta, z)$ such that 
 \eq{\phi(\zeta, z) = P_0(z) + \zeta P_1(z) + \zeta^2 P_2(z) + ...}
 
 for small values of $|\zeta|$ is a generating function.
@@ -2435,7 +2435,7 @@ In this case, there is only one family of characteristics, or $\xi(x,y) = \text{
 
 \underline{\textbf{Case 3:} $B^2-AC < 0$}
 
-In the region there is no characteristic and the PDE is elliptioc.
+In the region there is no characteristic and the PDE is elliptic.
 
 \begin{ex}[Laplace's Equation]
 \begin{align*}
@@ -2445,7 +2445,7 @@ In the region there is no characteristic and the PDE is elliptioc.
 
 \Section{Fourier Transform }
 
-\Def{Fourier Transform}{Given a function $f(t)$, the Rourier transform $F(\lambda)$ on $\hat{f}(\lambda)$ is defined by:
+\Def{Fourier Transform}{Given a function $f(t)$, the Fourier transform $F(\lambda)$ on $\hat{f}(\lambda)$ is defined by:
 
 \begin{align*}
 F(\lambda) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{i \lambda \tau} f(\tau) d\tau
@@ -3113,8 +3113,7 @@ Now we must use contour integration in order to solve this. There are two singul
 \alpha \pdv{u}{t} + \pdv{^2u}{t^2} = c^2 \pdv{^2 u}{t^2} + F
 \end{align*}
 
-This moves the two singularities. One moves above, one moves below the real axis, solving the contour integration issue. As dissipation moves to zero, we clearly see which side we should indent on to be consistent with physics. This might be important on the exam. 
-
+This moves the two singularities. One moves above, one moves below the real axis, solving the contour integration issue. As dissipation moves to zero, we clearly see which side we should indent on to be consistent with physics. 
 
 
 % ======================================================================
