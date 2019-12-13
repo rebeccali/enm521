@@ -1860,7 +1860,7 @@ A Gamma function is a special function of the form:
 \Gamma (z)=\int_{0}^{\infty}x^{z-1}e^{-x}\,dx
 \end{align*}
 
-If $z$ is complex with positive real part, then the integral converges absolutely, and $\gamma(n) = (n-1)!$ for all positive integer $n$.
+If $z$ is complex with positive real part, then the integral converges absolutely, and $\Gamma(n) = (n-1)!$ for all positive integer $n$.
 
 This formulation allows us to extend the idea of factorials to the complex numbers.
 }
@@ -1952,7 +1952,7 @@ This form is valid for any value of $z$.
 \subsection{Beta, Digamma, Riemann Zeta functions}
 
 \Def{Beta Function}{
-We define the beta function as:
+We define the Beta function as:
 \begin{align*}
  \mathrm{B} (x,y)=\int _{0}^{1}t^{x-1}(1-t)^{y-1}\,dt
  = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
@@ -2952,7 +2952,7 @@ G(x,0;\xi) &= \delta(x-\xi) \\
 G(x,t;\xi)  \to 0 &\text{ as } |x| \to \infty 
 \end{align*}
 
-This is the same problem with a slight variation. The oslution is obtained by the Fourier Transform of the PDE w.r.t. x:
+This is the same problem with a slight variation. The solution is obtained by the Fourier Transform of the PDE w.r.t. x:
 
 \begin{align*}
 \hat{G}(\lambda, t;\xi) = A(\lambda)e^{-\alpha \lambda^2 t}
@@ -2992,16 +2992,16 @@ With boundary conditions $\phi(\mathbf{x}) \to 0$ as $|\mathbf{x}| \to \infty$.
 For a function $f$, the Fourier transform is:
 
 \begin{align*}
-F(\mathbf{\lambda}) = \frac{1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{i \mathbf{\lambda x}} f(\mathbf{x}) dv_\mathbf{x}
+F(\mathbf{\lambda}) = \frac{1}{(2 \pi)^{3/2}} \iiint_{-\infty}^\infty e^{i \mathbf{\lambda x}} f(\mathbf{x}) dv_\mathbf{x}
 \end{align*}
 }
 
 Now let's think about the second derivative Fourier transform in 3D:
 
 \begin{align*}
-G(\lambda_1, \lambda_2, \lambda_3) &= \frac{1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{i (\lambda_1 x \lambda_2 y \lambda_3 z)} \pdv{^2 f(x,y,z)}{x} dxdydz \\ 
+G(\lambda_1, \lambda_2, \lambda_3) &= \frac{1}{(2 \pi)^{3/2}} \iiint_{-\infty}^\infty e^{i (\lambda_1 x \lambda_2 y \lambda_3 z)} \pdv{^2 f(x,y,z)}{x} dxdydz \\ 
 &= -\lambda_x^2 F(\mathbf{\lambda}) -\lambda_y^2 F(\mathbf{\lambda}) -\lambda_z^2 F(\mathbf{\lambda}) \\
-&= \frac{1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{i \mathbf{\lambda x}} \delta(\mathbf{x} - \mathbf{\xi}) dv\mathbf{x} \\ 
+&= \frac{1}{(2 \pi)^{3/2}} \iiint_{-\infty}^\infty e^{i \mathbf{\lambda x}} \delta(\mathbf{x} - \mathbf{\xi}) dv\mathbf{x} \\ 
 & = \frac{1}{(2 \pi)^{3/2}} e^{i \mathbf{\lambda \xi}}
 \end{align*}
 
@@ -3015,8 +3015,8 @@ G(\mathbf{\lambda}) = \frac{1}{-(2 \pi)^{3/2}|\mathbf{\lambda}|^2}  e^{i \mathbf
 To finish up, we do the inverse Fourier Transform:
 
 \begin{align*}
-g(\mathbf{x};\xi) = \frac{-1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty e^{-i  \mathbf{\lambda x}} \frac{e^{-i  \mathbf{\lambda \xi}}}{|\mathbf{\lambda}|} d\frac{1}{\mathbf{\lambda}} \\ 
-= \frac{-1}{(2 \pi)^{3/2}} \iiint_{-infty}^\infty \frac{e^{-i  \mathbf{\lambda} (\mathbf{x} - \mathbf{\xi})}}{|\mathbf{\lambda}|} d\frac{1}{\mathbf{\lambda}} \\ 
+g(\mathbf{x};\xi) = \frac{-1}{(2 \pi)^{3/2}} \iiint_{-\infty}^\infty e^{-i  \mathbf{\lambda x}} \frac{e^{-i  \mathbf{\lambda \xi}}}{|\mathbf{\lambda}|} d\frac{1}{\mathbf{\lambda}} \\ 
+= \frac{-1}{(2 \pi)^{3/2}} \iiint_{-\infty}^\infty \frac{e^{-i  \mathbf{\lambda} (\mathbf{x} - \mathbf{\xi})}}{|\mathbf{\lambda}|} d\frac{1}{\mathbf{\lambda}} \\ 
 \end{align*}
 
 This has a problem where there could be a singularity at $\lambda = 0$. We can rewrite this volumetric integral making use of spherical coordinates. We do a change of variables $d \frac{1}{\lambda} = \rho^2 \sin \theta d\rho d\theta d\phi $.
